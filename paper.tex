@@ -1,0 +1,54 @@
+\documentclass{ceurart}
+
+\usepackage{paralist}
+\usepackage{todonotes}
+\presetkeys{todonotes}{color=red!40,size=\tiny}{}
+\setlength{\marginparwidth}{2.5cm}
+\usepackage{xspace}
+
+
+
+\newcommand{\NAME}{RAW\xspace}
+\newcommand{\TODO}[1]{\textcolor{red}{#1}}
+\newcommand{\REF}[0]{\textcolor{purple}{REF}\xspace}
+
+\copyrightyear{2022}
+\copyrightclause{Copyright for this paper by its authors.
+  Use permitted under Creative Commons License Attribution 4.0
+  International (CC BY 4.0).}
+
+\conference{ISWC'23: International Semantic Web Conference,
+  November 06--10, 2023, Athens, Greece}
+
+\title{\NAME: RAndom Walks for SPARQL}
+
+\author[1,2]{Author name}[%
+  orcid=0000-0000-0000-0000,
+  email=name@example.com,
+]
+
+\author[2]{Author2 name2}[%
+  orcid=0000-0000-0000-0000,
+  email=name@example.com,
+]
+
+
+\address[1]{Affiliation A}
+\address[2]{Affiliation B}
+
+
+
+\begin{document}
+
+\maketitle
+
+\input{input/abstract.tex}
+\input{input/introduction.tex}
+\input{input/proposal.tex}
+\input{input/experiments.tex}
+\input{input/relatedwork.tex}
+\input{input/conclusion.tex}
+
+\bibliography{biblio.bib}
+
+\end{document}

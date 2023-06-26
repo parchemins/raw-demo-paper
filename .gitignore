@@ -1,3 +1,10 @@
+paper.pdf
+*.abs
+*.xmpdata
+.DS_Store
+*~
+ceurart-example.tex
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
