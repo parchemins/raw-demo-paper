@@ -2,7 +2,11 @@
 \section{Introduction}
 
 Random walks are important but do not have efficient implementations,
-or unsufficient API.
+or unsufficient API. More importantly, they are precluded to servers
+and they do not let outsiders use them.
+
+Could go for triple/quad patterns and it would be enough. But the more
+we push to server the more efficient.
 
 Especially relevant for SPARQL since we often have all indexes.
 
@@ -15,7 +19,8 @@ difficult.
 Random walks enable few use-cases (from most easy to most demanding)
 such as:
 \begin{asparadesc}
-\item [pyRDF2Vec~\cite{steenwinckel2023pyrdf2vec}] needs random walks.
+\item [Summaries] needs random walk values.
+\item [pyRDF2Vec~\cite{steenwinckel2023pyrdf2vec}] needs random walk values.
 \item [FedUP] needs the graphs of random walks.
 \item [Join ordering~\REF] needs cardinalities of random walks.
 \item [Sparklis~\cite{ferre2017sparklis}] needs random walks (at
