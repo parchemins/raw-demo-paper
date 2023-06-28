@@ -1,6 +1,21 @@
 
 \begin{abstract}
-  Meow abstract.
+  Public SPARQL endpoints allow anyone to execute any SPARQL
+  queries. However, due to fair use policies of public SPARQL
+  endpoints, there is no garantee of termination with complete
+  results. Consequently, many long running queries cannot be executed
+  on public SPARQL endpoints. If returning complete result in fixed time is impossible in
+  the general case, it is possible to return a sample of results in
+  fixed time, along with an estimation of the cardinalities of
+  complete results. Sampled results can be incrementally improved
+  following a pay-as-go approach. In this demo, we show that a SPARQL
+  endpoint can be easily extended with a sampling interface returning
+  not only sampled results but also statistics about sampled
+  results. Such interface has many practical use-cases as computing
+  summaries, embeddings, join orderings, approximated aggregations.
+  To validate our approach, we extended JENA with a sampling interface
+  and show what can be obtained with fixed time for queries that
+  traditionaly time-out on public endpoints.
 \end{abstract}
 
 \begin{keywords}

@@ -1,6 +1,33 @@
 
+@InProceedings{10.1007/978-3-031-33455-9_3,
+author="Aimonier-Davat, Julien
+and Skaf-Molli, Hala
+and Molli, Pascal
+and Dang, Minh-Hoang
+and N{\'e}delec, Brice",
+editor="Pesquita, Catia
+and Jimenez-Ruiz, Ernesto
+and McCusker, Jamie
+and Faria, Daniel
+and Dragoni, Mauro
+and Dimou, Anastasia
+and Troncy, Raphael
+and Hertling, Sven",
+title="Join Ordering of SPARQL Property Path Queries",
+booktitle="The Semantic Web",
+year="2023",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="38--54",
+abstract="SPARQL property path queries provide a succinct way to write complex navigational queries over RDF knowledge graphs. However, their evaluation remains difficult as they may involve the execution of transitive closures. As a result, many property path queries just time-out when executed on public online RDF knowledge graphs. One solution to speed up their execution is to find optimal join orders. Although the join ordering problem has been extensively studied for traditional SPARQL queries, the presence of property path patterns biases existing approaches. In this paper we focus on {\$}{\$}C2RPQ{\_}{\{}UF{\}}{\$}{\$}C2RPQUFqueries (conjunctive SPARQL property path queries with UNION and FILTER), and we present a query optimizer that is able to capture the cost of {\$}{\$}C2RPQ{\_}{\{}UF{\}}{\$}{\$}C2RPQUFqueries using an appropriate cost model and a sampling-based cardinality estimator. On the latest Wikidata Query Benchmark, we empirically demonstrate that our approach finds significantly better join orders than Virtuoso and BlazeGraph.",
+isbn="978-3-031-33455-9"
+}
+
+
+
 %% This is the main cited paper by far. But there also exists an ISWC paper.
-%% And a demo paper. 
+%% And a demo paper.
+
 @article{ferre2017sparklis,
   TITLE = {{{SPARKLIS}: An Expressive Query Builder for {SPARQL}
                   Endpoints with Guidance in Natural Language}},
@@ -28,6 +55,15 @@
   isbn="978-3-031-33455-9"
 }
 
+@inproceedings{ristoski2016rdf2vec,
+  title={Rdf2vec: Rdf graph embeddings for data mining},
+  author={Ristoski, Petar and Paulheim, Heiko},
+  booktitle={The Semantic Web--ISWC 2016: 15th International Semantic Web Conference, Kobe, Japan, October 17--21, 2016, Proceedings, Part I 15},
+  pages={498--514},
+  year={2016},
+  organization={Springer}
+}
+
 @inproceedings{li2016wanderjoin,
   author = {Li, F. and Wu, B. and Yi, K. and Zhao, Z.},
   title = {Wander {J}oin: Online Aggregation via Random Walks},
@@ -42,4 +78,1841 @@
   keywords = {joins, online aggregation, random walks},
   location = {San Francisco, California, USA},
   series = {SIGMOD '16}
+}
+
+
+
+@inproceedings{DBLP:conf/semweb/MontoyaVA12,
+  author       = {Gabriela Montoya and
+                  Maria{-}Esther Vidal and
+                  Maribel Acosta},
+  editor       = {Juan F. Sequeda and
+                  Andreas Harth and
+                  Olaf Hartig},
+  title        = {A Heuristic-Based Approach for Planning Federated {SPARQL} Queries},
+  booktitle    = {Proceedings of the Third International Workshop on Consuming Linked
+                  Data, {COLD} 2012, Boston, MA, USA, November 12, 2012},
+  series       = {{CEUR} Workshop Proceedings},
+  volume       = {905},
+  publisher    = {CEUR-WS.org},
+  year         = {2012},
+  url          = {https://ceur-ws.org/Vol-905/MontoyaEtAl\_COLD2012.pdf},
+  timestamp    = {Fri, 10 Mar 2023 16:23:07 +0100},
+  biburl       = {https://dblp.org/rec/conf/semweb/MontoyaVA12.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+%% change this when ressource paper accepted
+@misc{hoangchmark2023izmir,
+  key = {Hackathon},
+  title = {Hackathon on Querying Federations of Knowledge Graphs},
+  howpublished = {\url{https://github.com/MaastrichtU-IDS/federatedQueryKG}},
+  note = {Accessed: 2023-05-09},
+  year = 2023
+}
+
+@article{montoya2017decomposing,
+  title={Decomposing federated queries in presence of replicated fragments},
+  author={Montoya, Gabriela and Skaf-Molli, Hala and Molli, Pascal and Vidal, Maria-Esther},
+  journal={Journal of Web Semantics},
+  volume={42},
+  pages={1--18},
+  year={2017},
+  publisher={Elsevier}
+}
+
+@article{DBLP:journals/pvldb/AbdelazizMOAK17,
+  author    = {Ibrahim Abdelaziz and
+               Essam Mansour and
+               Mourad Ouzzani and
+               Ashraf Aboulnaga and
+               Panos Kalnis},
+  title     = {Lusail: {A} System for Querying Linked Data at Scale},
+  journal   = {Proc. {VLDB} Endow.},
+  volume    = {11},
+  number    = {4},
+  pages     = {485--498},
+  year      = {2017}
+}
+
+@article{DBLP:journals/ijswis/BizerS09,
+  author    = {Christian Bizer and
+               Andreas Schultz},
+  title     = {The Berlin {SPARQL} Benchmark},
+  journal   = {Int. J. Semantic Web Inf. Syst.},
+  volume    = {5},
+  number    = {2},
+  pages     = {1--24},
+  year      = {2009},
+  timestamp = {Tue, 16 Aug 2022 23:09:11 +0200},
+  biburl    = {https://dblp.org/rec/journals/ijswis/BizerS09.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/semweb/SchmidtGHLST11,
+  author    = {Michael Schmidt and
+               Olaf G{\"{o}}rlitz and
+               Peter Haase and
+               G{\"{u}}nter Ladwig and
+               Andreas Schwarte and
+               Thanh Tran},
+  title     = {FedBench: {A} Benchmark Suite for Federated Semantic Data Query Processing},
+  booktitle = {10th International Semantic Web Conference, ISWC 2011},
+  series    = {Lecture Notes in Computer Science},
+  publisher = {Springer},
+  year      = {2011},
+
+}
+
+
+@article{DBLP:journals/ws/0002HN18,
+  author    = {Muhammad Saleem and
+               Ali Hasnain and
+               Axel{-}Cyrille Ngonga Ngomo},
+  title     = {LargeRDFBench: {A} billion triples benchmark for {SPARQL} endpoint
+               federation},
+  journal   = {J. Web Semant.},
+  volume    = {48},
+  pages     = {85--125},
+  year      = {2018},
+  timestamp = {Thu, 14 Oct 2021 08:58:02 +0200},
+  biburl    = {https://dblp.org/rec/journals/ws/0002HN18.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/vldb/CebiricGKKMTZ19,
+  author       = {Sejla Cebiric and
+                  Fran{\c{c}}ois Goasdou{\'{e}} and
+                  Haridimos Kondylakis and
+                  Dimitris Kotzinos and
+                  Ioana Manolescu and
+                  Georgia Troullinou and
+                  Mussab Zneika},
+  title        = {Summarizing semantic graphs: a survey},
+  journal      = {{VLDB} J.},
+  volume       = {28},
+  number       = {3},
+  pages        = {295--327},
+  year         = {2019},
+  timestamp    = {Fri, 25 Dec 2020 01:11:40 +0100},
+  biburl       = {https://dblp.org/rec/journals/vldb/CebiricGKKMTZ19.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+
+
+@inproceedings{charalambidis2015semagrow,
+  title={Sema{G}row: Optimizing federated {SPARQL} queries},
+  author={Charalambidis, Angelos and Troumpoukis, Antonis and Konstantopoulos, Stasinos},
+  booktitle={Proceedings of the 11th International Conference on Semantic Systems},
+  pages={121--128},
+  year={2015}
+}
+
+@inproceedings{acosta2011anapsid,
+  title={{ANAPSID}: an adaptive query processing engine for {SPARQL} endpoints},
+  author={Acosta, Maribel and Vidal, Maria-Esther and Lampo, Tomas and Castillo, Julio and Ruckhaus, Edna},
+  booktitle={10th International Semantic Web Conference (ISWC2011},
+  pages={18--34},
+  year={2011},
+  organization={Springer}
+}
+
+
+@article{acosta2019federated,
+  title={Federated {RDF} query processing},
+  author={Acosta, Maribel and Hartig, Olaf and Sequeda, Juan},
+  journal={Encyclopedia of Big Data Technologies},
+  year={2019},
+  publisher={Springer}
+}
+
+%% Olaf's formalism on core SPARQL including OPT and FILTERS
+@InProceedings{chen2022fedqplplus,
+  author={Cheng, Sijin and Hartig, Olaf},
+  title={Towards Query Processing over Heterogeneous Federations of {RDF} Data Sources},
+  booktitle={The Semantic Web: {ESWC} 2022 Satellite Events},
+  year={2022},
+  publisher={Springer}
+}
+
+%% Olaf's formalism base
+@inproceedings{chen2021fedqpl,
+  author = {Cheng, Sijin and Hartig, Olaf},
+  title = {Fed{QPL}: A Language for Logical Query Plans over Heterogeneous Federations of {RDF} Data Sources},
+  year = {2021},
+  isbn = {9781450389228},
+  publisher = {Association for Computing Machinery},
+  booktitle = {the 22nd International Conference on Information Integration and Web-Based Applications \& Services},
+  pages = {436–445},
+}
+
+
+
+@inproceedings{park2020g,
+  title={{G-CARE}: A framework for performance benchmarking of cardinality estimation techniques for subgraph matching},
+  author={Park, Yeonsu and Ko, Seongyun and Bhowmick, Sourav S and Kim, Kyoungmin and Hong, Kijae and Han, Wook-Shin},
+  booktitle={International Conference on Management of Data (SIGMOD)},
+  year={2020}
+}
+
+@inproceedings{DBLP:conf/esws/SchwarteHHSS11,
+  title={Fed{X}: Optimization techniques for federated query processing on linked data},
+  author={Schwarte, Andreas and Haase, Peter and Hose, Katja and Schenkel, Ralf and Schmidt, Michael},
+  booktitle={International Semantic Web Conference (ISWC)},
+  year={2011},
+  Publisher={Springer}
+}
+
+
+@inproceedings{DBLP:conf/esws/SaleemN14,
+  title={Hibiscus: Hypergraph-based source selection for SPARQL endpoint federation},
+  author={Saleem, Muhammad and Ngomo, Axel-Cyrille Ngonga},
+  booktitle={European Semantic Web Conference (ESWC)},
+  pages={176--191},
+  year={2014},
+  publisher={Springer}
+}
+
+@inproceedings{saleem2018costfed,
+  title={Cost{F}ed: Cost-based query optimization for {SPARQL} endpoint federation},
+  author={Saleem, Muhammad and Potocki, Alexander and Soru, Tommaso and Hartig, Olaf and Ngomo, Axel-Cyrille Ngonga},
+  booktitle={14th International Conference on Semantic Systems (SEMANTICS)},
+  year={2018},
+  pages={163--174},
+  publisher={Elsevier}
+}
+
+@article{umbrich2011comparing,
+  title={Comparing data summaries for processing live queries over linked data},
+  author={Umbrich, J{\"u}rgen and Hose, Katja and Karnstedt, Marcel and Harth, Andreas and Polleres, Axel},
+  journal={World Wide Web},
+  volume={14},
+  number={5-6},
+  pages={495--544},
+  year={2011},
+  publisher={Springer}
+}
+
+@article{cebiric:hal-01925496,
+  TITLE = {{Summarizing Semantic Graphs: A Survey}},
+  AUTHOR = {Cebiric, Sejla and Goasdou{\'e}, Fran{\c c}ois and Kondylakis, Haridimos and Kotzinos, Dimitris and Manolescu, Ioana and Troullinou, Georgia and Zneika, Mussab},
+  URL = {https://hal.inria.fr/hal-01925496},
+  JOURNAL = {{The VLDB Journal}},
+  PUBLISHER = {{Springer}},
+  VOLUME = {28},
+  NUMBER = {3},
+  YEAR = {2019},
+  MONTH = Jun,
+  PDF = {https://hal.inria.fr/hal-01925496/file/hal.pdf},
+  HAL_ID = {hal-01925496},
+  HAL_VERSION = {v1},
+}
+
+@inproceedings{alexander2009describing,
+  title={Describing linked datasets},
+  author={Alexander, Keith and Cyganiak, Richard and Hausenblas, Michael and Zhao, Jun},
+  booktitle={Linked Data on the Web  (LDOW) Workshop, co-located with WWW2009},
+  publisher = {CEUR-WS.org},
+  year={2009}
+}
+
+@inproceedings{DBLP:conf/esws/QuilitzL08,
+  author    = {Bastian Quilitz and Ulf Leser},
+  title     = {Querying Distributed {RDF} Data Sources with {SPARQL}},
+  booktitle = {Extended Semantic Web Conference (ESWC)},
+  year      = {2008},
+  publisher = {Springer},
+  pages     = {524--538}
+}
+
+@inproceedings{harth2010data,
+  title={Data summaries for on-demand queries over linked data},
+  author={Harth, Andreas and Hose, Katja and Karnstedt, Marcel and Polleres, Axel and Sattler, Kai-Uwe and Umbrich, J{\"u}rgen},
+  booktitle={19th international conference on World wide web},
+  pages={411--420},
+  year={2010},
+  publisher = {ACM}
+}
+
+@inproceedings{DBLP:conf/dexa/EndrisGLMVA17,
+  author    = {Kemele M. Endris and
+               Mikhail Galkin and
+               Ioanna Lytra and
+               Mohamed Nadjib Mami and
+               Maria{-}Esther Vidal and
+               S{\"{o}}ren Auer},
+  title     = {{MULDER}: Querying the Linked Data Web by Bridging {RDF} Molecule Templates},
+  booktitle = { International Conference on Database and Expert Systems Applications (DEXA)},
+  publisher = {Springer},
+  year      = {2017},
+}
+
+
+@inproceedings{DBLP:conf/semweb/MontoyaSH17,
+  title={The {O}dyssey approach for optimizing federated {SPARQL} queries},
+  author={Montoya, Gabriela and Skaf-Molli, Hala and Hose, Katja},
+  booktitle={International Semantic Web Conference (ISWC)},
+  pages={471--489},
+  year={2017},
+  publisher={Springer}
+}
+
+
+@inproceedings{stefanoni2018estimating,
+  title={Estimating the cardinality of conjunctive queries over {RDF} data using graph summarisation},
+  author={Stefanoni, Giorgio and Motik, Boris and Kostylev, Egor V},
+  booktitle={The World Wide Web Conference},
+  pages={1043--1052},
+  year={2018}
+}
+
+@inproceedings{neumann2011characteristic,
+  title={Characteristic sets: Accurate cardinality estimation for {RDF} queries with multiple joins},
+  author={Neumann, Thomas and Moerkotte, Guido},
+  booktitle={27th International Conference on Data Engineering},
+  year={2011},
+  organization={IEEE}
+}
+
+@inproceedings{aimonier2020execute,
+  title={How to execute {SPARQL} property path queries online and get complete results?},
+  author={Aimonier-Davat, Julien and Skaf-Molli, Hala and Molli, Pascal},
+  booktitle={4rth Workshop on Storing, Querying and Benchmarking the Web of Data (QuWeDa 2020) Workshop at ISWC2020},
+  year={2020}
+}
+@inproceedings{aimonier2021processing,
+  title={Processing sparql property path queries online with web preemption},
+  author={Aimonier-Davat, Julien and Skaf-Molli, Hala and Molli, Pascal},
+  booktitle={European Semantic Web Conference},
+  pages={57--72},
+  year={2021},
+  organization={Springer}
+}
+
+
+@inproceedings{SPARQLWithPropertyPaths,
+  title={{SPARQL} with property paths},
+  author={Kostylev, Egor V and Reutter, Juan L and Romero, Miguel and Vrgo{\v{c}}, Domagoj},
+  booktitle={International Semantic Web Conference},
+  pages={3--18},
+  year={2015},
+  organization={Springer}
+}
+
+
+@inproceedings{arroyuelo2021worst,
+  title={Worst-case optimal graph joins in almost no space},
+  author={Arroyuelo, Diego and Hogan, Aidan and Navarro, Gonzalo and Reutter, Juan L and Rojas-Ledesma, Javiel and Soto, Adri{\'a}n},
+  booktitle={International Conference on Management of Data},
+  pages={102--114},
+  year={2021}
+}
+
+@inproceedings{arroyuelo2022time,
+  title={Time-and Space-Efficient Regular Path Queries},
+  author={Arroyuelo, Diego and Hogan, Aidan and Navarro, Gonzalo and Rojas-Ledesma, Javiel},
+  booktitle={38th International Conference on Data Engineering (ICDE)},
+  pages={3091--3105},
+  year={2022},
+  organization={IEEE}
+}
+
+@inproceedings{yakovets2016query,
+  title={Query planning for evaluating {SPARQL} property paths},
+  author={Yakovets, Nikolay and Godfrey, Parke and Gryz, Jarek},
+  booktitle={ International Conference on Management of Data},
+  pages={1875--1889},
+  year={2016}
+}
+
+@inproceedings{arenas2012counting,
+  title={Counting beyond a Yottabyte, or how {SPARQL} 1.1 property paths will prevent adoption of the standard},
+  author={Arenas, Marcelo and Conca, Sebasti{\'a}n and P{\'e}rez, Jorge},
+  booktitle={21st international conference on World Wide Web},
+  pages={629--638},
+  year={2012}
+}
+
+@phdthesis{gubichev2015query,
+  title={Query processing and optimization in graph databases},
+  author={Gubichev, Andrey},
+  year={2015},
+  school={Technische Universit{\"a}t M{\"u}nchen}
+}
+
+@inproceedings{gubichev2013sparqling,
+  title={Sparqling kleene: fast property paths in {RDF-3X}},
+  author={Gubichev, Andrey and Bedathur, Srikanta J and Seufert, Stephan},
+  booktitle={First International Workshop on Graph Data Management Experiences and Systems},
+  pages={1--7},
+  year={2013}
+}
+
+@inproceedings{wadhwa2019efficiently,
+  title={Efficiently answering regular simple path queries on large labeled networks},
+  author={Wadhwa, Sarisht and Prasad, Anagh and Ranu, Sayan and Bagchi, Amitabha and Bedathur, Srikanta},
+  booktitle={International Conference on Management of Data},
+  pages={1463--1480},
+  year={2019}
+}
+
+@inproceedings{sengupta2019arrow,
+  title={Arrow: Approximating reachability using random walks over web-scale graphs},
+  author={Sengupta, Neha and Bagchi, Amitabha and Ramanath, Maya and Bedathur, Srikanta},
+  booktitle={International Conference on Data Engineering (ICDE)},
+  pages={470--481},
+  year={2019},
+  organization={IEEE}
+}
+
+
+@inproceedings{seufert2013ferrari,
+  title={Ferrari: Flexible and efficient reachability range assignment for graph indexing},
+  author={Seufert, Stephan and Anand, Avishek and Bedathur, Srikanta and Weikum, Gerhard},
+  booktitle={29th International Conference on Data Engineering (ICDE)},
+  pages={1009--1020},
+  year={2013},
+  organization={IEEE}
+}
+
+@inproceedings{WikidataQueryLogs,
+  title={Navigating the maze of Wikidata query logs},
+  author={Bonifati, Angela and Martens, Wim and Timm, Thomas},
+  booktitle={The World Wide Web Conference},
+  pages={127--138},
+  year={2019}
+}
+
+@inproceedings{angles2022wdbench,
+  title={WDBench: A Wikidata Graph Query Benchmark},
+  author={Angles, Renzo and Aranda, Carlos Buil and Hogan, Aidan and Rojas, Carlos and Vrgo{\v{c}}, Domagoj},
+  booktitle={International Semantic Web Conference},
+  pages={714--731},
+  year={2022},
+  organization={Springer}
+}
+
+@book{norvig1992paradigms,
+  title={Paradigms of artificial intelligence programming: case studies in Common LISP},
+  author={Norvig, Peter},
+  year={1992},
+  publisher={Morgan Kaufmann}
+}
+
+@inproceedings{DBLP:conf/sigmod/KaderBMK09,
+  author    = {Riham Abdel Kader and
+               Peter A. Boncz and
+               Stefan Manegold and
+               Maurice van Keulen},
+  editor    = {Ugur {\c{C}}etintemel and
+               Stanley B. Zdonik and
+               Donald Kossmann and
+               Nesime Tatbul},
+  title     = {{ROX:} run-time optimization of XQueries},
+  booktitle = { International Conference on Management of Data, {SIGMOD} },
+  publisher = {{ACM}},
+  year      = {2009}
+}
+
+@inproceedings{wu2016sampling,
+  title={Sampling-based query re-optimization},
+  author={Wu, Wentao and Naughton, Jeffrey F and Singh, Harneet},
+  booktitle={International Conference on Management of Data},
+  pages={1721--1736},
+  year={2016}
+}
+@inproceedings{stocker2008sparql,
+  title={{SPARQL} basic graph pattern optimization using selectivity estimation},
+  author={Stocker, Markus and Seaborne, Andy and Bernstein, Abraham and Kiefer, Christoph and Reynolds, Dave},
+  booktitle={17th international conference on World Wide Web},
+  pages={595--604},
+  year={2008}
+}
+
+@inproceedings{tsialiamanis2012heuristics,
+  title={Heuristics-based query optimisation for {SPARQL}},
+  author={Tsialiamanis, Petros and Sidirourgos, Lefteris and Fundulaki, Irini and Christophides, Vassilis and Boncz, Peter},
+  booktitle={15th International Conference on Extending Database Technology},
+  pages={324--335},
+  year={2012}
+}
+
+@article{DBLP:journals/corr/abs-2012-14743,
+  author    = {Ziniu Wu and
+               Amir Shaikhha},
+  title     = {BayesCard: {A} Unified Bayesian Framework for Cardinality Estimation},
+  journal   = {CoRR},
+  volume    = {abs/2012.14743},
+  year      = {2020},
+  url       = {https://arxiv.org/abs/2012.14743},
+  eprinttype = {arXiv},
+  eprint    = {2012.14743},
+  timestamp = {Fri, 08 Jan 2021 17:23:09 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-2012-14743.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/pvldb/ZhuWHZPQZC21,
+  author    = {Rong Zhu and
+               Ziniu Wu and
+               Yuxing Han and
+               Kai Zeng and
+               Andreas Pfadler and
+               Zhengping Qian and
+               Jingren Zhou and
+               Bin Cui},
+  title     = {{FLAT:} Fast, Lightweight and Accurate Method for Cardinality Estimation},
+  journal   = {Proc. {VLDB} Endow.},
+  volume    = {14},
+  number    = {9},
+  pages     = {1489--1502},
+  year      = {2021},
+  url       = {http://www.vldb.org/pvldb/vol14/p1489-zhu.pdf},
+  doi       = {10.14778/3461535.3461539},
+  timestamp = {Thu, 21 Apr 2022 17:09:21 +0200},
+  biburl    = {https://dblp.org/rec/journals/pvldb/ZhuWHZPQZC21.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/corr/abs-1809-00677,
+  author    = {Andreas Kipf and
+               Thomas Kipf and
+               Bernhard Radke and
+               Viktor Leis and
+               Peter A. Boncz and
+               Alfons Kemper},
+  title     = {Learned Cardinalities: Estimating Correlated Joins with Deep Learning},
+  journal   = {CoRR},
+  volume    = {abs/1809.00677},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1809.00677},
+  eprinttype = {arXiv},
+  eprint    = {1809.00677},
+  timestamp = {Fri, 05 Oct 2018 11:34:52 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1809-00677.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/icdm/ChenL16,
+  author    = {Xiaowei Chen and
+               John C. S. Lui},
+  editor    = {Francesco Bonchi and
+               Josep Domingo{-}Ferrer and
+               Ricardo Baeza{-}Yates and
+               Zhi{-}Hua Zhou and
+               Xindong Wu},
+  title     = {Mining Graphlet Counts in Online Social Networks},
+  booktitle = {{IEEE} 16th International Conference on Data Mining, {ICDM} 2016,
+               December 12-15, 2016, Barcelona, Spain},
+  pages     = {71--80},
+  publisher = {{IEEE} Computer Society},
+  year      = {2016},
+  url       = {https://doi.org/10.1109/ICDM.2016.0018},
+  doi       = {10.1109/ICDM.2016.0018},
+  timestamp = {Wed, 16 Oct 2019 14:14:51 +0200},
+  biburl    = {https://dblp.org/rec/conf/icdm/ChenL16.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/icde/MeimarisPMA17,
+  author    = {Marios Meimaris and
+               George Papastefanatos and
+               Nikos Mamoulis and
+               Ioannis Anagnostopoulos},
+  title     = {Extended Characteristic Sets: Graph Indexing for {SPARQL} Query Optimization},
+  booktitle = {33rd {IEEE} International Conference on Data Engineering, {ICDE} 2017,
+               San Diego, CA, USA, April 19-22, 2017},
+  pages     = {497--508},
+  publisher = {{IEEE} Computer Society},
+  year      = {2017},
+  url       = {https://doi.org/10.1109/ICDE.2017.106},
+  doi       = {10.1109/ICDE.2017.106},
+  timestamp = {Mon, 15 Jun 2020 17:09:19 +0200},
+  biburl    = {https://dblp.org/rec/conf/icde/MeimarisPMA17.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/sigmod/ParkKBKHH20,
+  author    = {Yeonsu Park and
+               Seongyun Ko and
+               Sourav S. Bhowmick and
+               Kyoungmin Kim and
+               Kijae Hong and
+               Wook{-}Shin Han},
+  editor    = {David Maier and
+               Rachel Pottinger and
+               AnHai Doan and
+               Wang{-}Chiew Tan and
+               Abdussalam Alawini and
+               Hung Q. Ngo},
+  title     = {{G-CARE:} {A} Framework for Performance Benchmarking of Cardinality
+               Estimation Techniques for Subgraph Matching},
+  booktitle = {International Conference on Management of
+               Data, {SIGMOD} Conference 2020},
+  pages     = {1099--1114},
+  publisher = {{ACM}},
+  year      = {2020},
+  url       = {https://doi.org/10.1145/3318464.3389702},
+  doi       = {10.1145/3318464.3389702},
+  timestamp = {Sun, 25 Oct 2020 22:52:43 +0100},
+  biburl    = {https://dblp.org/rec/conf/sigmod/ParkKBKHH20.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/esws/VidalRLMSP10,
+  author    = {Maria{-}Esther Vidal and
+               Edna Ruckhaus and
+               Tomas Lampo and
+               Amad{\'{\i}}s Mart{\'{\i}}nez and
+               Javier Sierra and
+               Axel Polleres},
+  title     = {Efficiently Joining Group Patterns in {SPARQL} Queries},
+  booktitle = {7th Extended Semantic Web Conference, {ESWC} 2010}},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {6088},
+  pages     = {228--242},
+  publisher = {Springer},
+  year      = {2010}
+}
+
+@article{ali2021survey,
+  title={A survey of {RDF} stores \& {SPARQL} engines for querying knowledge graphs},
+  author={Ali, Waqas and Saleem, Muhammad and Yao, Bin and Hogan, Aidan and Ngomo, Axel-Cyrille Ngonga},
+  journal={The VLDB Journal},
+  pages={1--26},
+  year={2021},
+  publisher={Springer}
+}
+
+@inproceedings{DBLP:journals/jmlr/WangS12,
+  author    = {Weijia Wang and
+               Mich{\`{e}}le Sebag},
+  editor    = {Steven C. H. Hoi and
+               Wray L. Buntine},
+  title     = {Multi-objective Monte-Carlo Tree Search},
+  booktitle = {Proceedings of the 4th Asian Conference on Machine Learning, {ACML}
+               2012, Singapore, Singapore, November 4-6, 2012},
+  series    = {{JMLR} Proceedings},
+  volume    = {25},
+  pages     = {507--522},
+  publisher = {JMLR.org},
+  year      = {2012},
+  url       = {http://proceedings.mlr.press/v25/wang12b.html},
+  timestamp = {Sat, 04 Sep 2021 14:47:43 +0200},
+  biburl    = {https://dblp.org/rec/journals/jmlr/WangS12.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/cidr/LeisRGK017,
+  title={Cardinality Estimation Done Right: Index-Based Join Sampling.},
+  author={Leis, Viktor and Radke, Bernhard and Gubichev, Andrey and Kemper, Alfons and Neumann, Thomas},
+  booktitle={Cidr},
+  year={2017}
+}
+
+@inproceedings{cluet1995complexity,
+  title={On the complexity of generating optimal left-deep processing trees with cross products},
+  author={Cluet, Sophie and Moerkotte, Guido},
+  booktitle={International Conference on Database Theory},
+  pages={54--67},
+  year={1995},
+  organization={Springer}
+}
+
+@article{DBLP:journals/ml/WangS13,
+  author    = {Weijia Wang and
+               Mich{\`{e}}le Sebag},
+  title     = {Hypervolume indicator and dominance reward based multi-objective Monte-Carlo
+               Tree Search},
+  journal   = {Mach. Learn.},
+  volume    = {92},
+  number    = {2-3},
+  pages     = {403--429},
+  year      = {2013},
+  url       = {https://doi.org/10.1007/s10994-013-5369-0},
+  doi       = {10.1007/s10994-013-5369-0},
+  timestamp = {Sat, 04 Sep 2021 14:47:42 +0200},
+  biburl    = {https://dblp.org/rec/journals/ml/WangS13.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/vldb/KrishnamurthyBZ86,
+  author    = {Ravi Krishnamurthy and
+               Haran Boral and
+               Carlo Zaniolo},
+  editor    = {Wesley W. Chu and
+               Georges Gardarin and
+               Setsuo Ohsuga and
+               Yahiko Kambayashi},
+  title     = {Optimization of Nonrecursive Queries},
+  booktitle = {VLDB'86 Twelfth International Conference on Very Large Data Bases,
+               August 25-28, 1986, Kyoto, Japan, Proceedings},
+  pages     = {128--137},
+  publisher = {Morgan Kaufmann},
+  year      = {1986},
+  url       = {http://www.vldb.org/conf/1986/P128.PDF},
+  timestamp = {Wed, 29 Mar 2017 16:45:23 +0200},
+  biburl    = {https://dblp.org/rec/conf/vldb/KrishnamurthyBZ86.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/ecml/KocsisS06,
+  author    = {Levente Kocsis and
+               Csaba Szepesv{\'{a}}ri},
+  editor    = {Johannes F{\"{u}}rnkranz and
+               Tobias Scheffer and
+               Myra Spiliopoulou},
+  title     = {Bandit Based Monte-Carlo Planning},
+  booktitle = {Machine Learning: {ECML} 2006, 17th European Conference on Machine
+               Learning, Berlin, Germany, September 18-22, 2006, Proceedings},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {4212},
+  pages     = {282--293},
+  publisher = {Springer},
+  year      = {2006},
+  url       = {https://doi.org/10.1007/11871842\_29},
+  doi       = {10.1007/11871842\_29},
+  timestamp = {Tue, 14 May 2019 10:00:54 +0200},
+  biburl    = {https://dblp.org/rec/conf/ecml/KocsisS06.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/tods/LiWYZ19,
+  author    = {Feifei Li and
+               Bin Wu and
+               Ke Yi and
+               Zhuoyue Zhao},
+  title     = {Wander Join and {XDB:} Online Aggregation via Random Walks},
+  journal   = {{ACM} Trans. Database Syst.},
+  volume    = {44},
+  number    = {1},
+  pages     = {2:1--2:41},
+  year      = {2019},
+  url       = {https://doi.org/10.1145/3284551},
+  doi       = {10.1145/3284551},
+  timestamp = {Tue, 21 May 2019 07:19:14 +0200},
+  biburl    = {https://dblp.org/rec/journals/tods/LiWYZ19.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/pvldb/MarcusNMZAKPT19,
+  author    = {Ryan C. Marcus and
+               Parimarjan Negi and
+               Hongzi Mao and
+               Chi Zhang and
+               Mohammad Alizadeh and
+               Tim Kraska and
+               Olga Papaemmanouil and
+               Nesime Tatbul},
+  title     = {Neo: {A} Learned Query Optimizer},
+  journal   = {Proc. {VLDB} Endow.},
+  volume    = {12},
+  number    = {11},
+  pages     = {1705--1718},
+  year      = {2019},
+  url       = {http://www.vldb.org/pvldb/vol12/p1705-marcus.pdf},
+  doi       = {10.14778/3342263.3342644},
+  timestamp = {Sat, 25 Apr 2020 13:59:39 +0200},
+  biburl    = {https://dblp.org/rec/journals/pvldb/MarcusNMZAKPT19.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{williams1992simple,
+  title={Simple statistical gradient-following algorithms for connectionist reinforcement learning},
+  author={Williams, Ronald J},
+  journal={Machine learning},
+  volume={8},
+  number={3},
+  pages={229--256},
+  year={1992},
+  publisher={Springer}
+}
+
+@article{schmidhuber2015deep,
+  title={Deep learning in neural networks: An overview},
+  author={Schmidhuber, J{\"u}rgen},
+  journal={Neural networks},
+  volume={61},
+  pages={85--117},
+  year={2015},
+  publisher={Elsevier}
+}
+
+@article{mnih2013playing,
+  title={Playing atari with deep reinforcement learning},
+  author={Mnih, Volodymyr and Kavukcuoglu, Koray and Silver, David and Graves, Alex and Antonoglou, Ioannis and Wierstra, Daan and Riedmiller, Martin},
+  journal={arXiv preprint arXiv:1312.5602},
+  year={2013}
+}
+
+@article{schulman2017proximal,
+  title={Proximal policy optimization algorithms},
+  author={Schulman, John and Wolski, Filip and Dhariwal, Prafulla and Radford, Alec and Klimov, Oleg},
+  journal={arXiv preprint arXiv:1707.06347},
+  year={2017}
+}
+
+@inproceedings{zitzler1998multiobjective,
+  title={Multiobjective optimization using evolutionary algorithms—a comparative case study},
+  author={Zitzler, Eckart and Thiele, Lothar},
+  booktitle={International conference on parallel problem solving from nature},
+  pages={292--301},
+  year={1998},
+  organization={Springer}
+}
+
+@article{watkins1992q,
+  title={Q-learning},
+  author={Watkins, Christopher JCH and Dayan, Peter},
+  journal={Machine learning},
+  volume={8},
+  number={3-4},
+  pages={279--292},
+  year={1992},
+  publisher={Springer}
+}
+
+@article{DBLP:journals/corr/abs-1808-03196,
+  author    = {Sanjay Krishnan and
+               Zongheng Yang and
+               Ken Goldberg and
+               Joseph M. Hellerstein and
+               Ion Stoica},
+  title     = {Learning to Optimize Join Queries With Deep Reinforcement Learning},
+  journal   = {CoRR},
+  volume    = {abs/1808.03196},
+  year      = {2018},
+  url       = {http://arxiv.org/abs/1808.03196},
+  eprinttype = {arXiv},
+  eprint    = {1808.03196},
+  timestamp = {Sun, 02 Sep 2018 15:01:54 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1808-03196.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{arulkumaran2017deep,
+  title={Deep reinforcement learning: A brief survey},
+  author={Arulkumaran, Kai and Deisenroth, Marc Peter and Brundage, Miles and Bharath, Anil Anthony},
+  journal={IEEE Signal Processing Magazine},
+  volume={34},
+  number={6},
+  pages={26--38},
+  year={2017},
+  publisher={IEEE}
+}
+
+@book{sutton2018reinforcement,
+  title={Reinforcement learning: An introduction},
+  author={Sutton, Richard S and Barto, Andrew G},
+  year={2018},
+  publisher={MIT press}
+}
+
+@book{garcia2008database,
+  title={Database systems: the complete book},
+  author={Garcia-Molina, Hector and Ullman, Jeffrey and Widom, Jennifer},
+  year={2014},
+  publisher={Pearson Education India}
+}
+
+@inproceedings{DBLP:conf/icdt/CluetM95,
+  author    = {Sophie Cluet and
+               Guido Moerkotte},
+  editor    = {Georg Gottlob and
+               Moshe Y. Vardi},
+  title     = {On the Complexity of Generating Optimal Left-Deep Processing Trees
+               with Cross Products},
+  booktitle = {Database Theory - ICDT'95, 5th International Conference, Prague, Czech
+               Republic, January 11-13, 1995, Proceedings},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {893},
+  pages     = {54--67},
+  publisher = {Springer},
+  year      = {1995},
+  url       = {https://doi.org/10.1007/3-540-58907-4\_6},
+  doi       = {10.1007/3-540-58907-4\_6},
+  timestamp = {Tue, 14 May 2019 10:00:54 +0200},
+  biburl    = {https://dblp.org/rec/conf/icdt/CluetM95.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{selingerl1979access,
+  title={Access path selection in a relational database management system},
+  author={Selingerl, P and Astrahan, M and Chamberlin, D and Lorie, R and Price, T},
+  booktitle={ACM SIGMOD},
+  year={1979}
+}
+
+@article{zhou2020database,
+  title={Database meets artificial intelligence: A survey},
+  author={Zhou, Xuanhe and Chai, Chengliang and Li, Guoliang and Sun, Ji},
+  journal={IEEE Transactions on Knowledge and Data Engineering},
+  year={2020},
+  publisher={IEEE}
+}
+
+@inproceedings{DBLP:conf/semweb/AcostaV15,
+  author    = {Maribel Acosta and
+               Maria{-}Esther Vidal},
+  editor    = {Marcelo Arenas and
+               {\'{O}}scar Corcho and
+               Elena Simperl and
+               Markus Strohmaier and
+               Mathieu d'Aquin and
+               Kavitha Srinivas and
+               Paul Groth and
+               Michel Dumontier and
+               Jeff Heflin and
+               Krishnaprasad Thirunarayan and
+               Steffen Staab},
+  title     = {Networks of Linked Data Eddies: An Adaptive Web Query Processing Engine
+               for {RDF} Data},
+  booktitle = {The Semantic Web - {ISWC} 2015 - 14th International Semantic Web Conference,
+               Bethlehem, PA, USA, October 11-15, 2015, Proceedings, Part {I}},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {9366},
+  pages     = {111--127},
+  publisher = {Springer},
+  year      = {2015},
+  url       = {https://doi.org/10.1007/978-3-319-25007-6\_7},
+  doi       = {10.1007/978-3-319-25007-6\_7},
+  timestamp = {Tue, 07 Sep 2021 13:48:19 +0200},
+  biburl    = {https://dblp.org/rec/conf/semweb/AcostaV15.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{Trummer2021SkinnerDBRQ,
+  title={SkinnerDB: Regret-bounded Query Evaluation via Reinforcement Learning},
+  author={Immanuel Trummer and Junxiong Wang and Ziyun Wei and Deepak Maram and Samuel Moseley and Saehan Jo and Joseph Antonakakis and Ankush Rayabhari},
+  journal={ACM Transactions on Database Systems (TODS)},
+  year={2021},
+  volume={46},
+  pages={1 - 45}
+}
+
+@article{yang2022balsa,
+  title={Balsa: Learning a Query Optimizer Without Expert Demonstrations},
+  author={Yang, Zongheng and Chiang, Wei-Lin and Luan, Sifei and Mittal, Gautam and Luo, Michael and Stoica, Ion},
+  journal={arXiv preprint arXiv:2201.01441},
+  year={2022}
+}
+
+@inproceedings{DBLP:conf/www/AzzamAMKPH21,
+  author    = {Amr Azzam and
+               Christian Aebeloe and
+               Gabriela Montoya and
+               Ilkcan Keles and
+               Axel Polleres and
+               Katja Hose},
+  editor    = {Jure Leskovec and
+               Marko Grobelnik and
+               Marc Najork and
+               Jie Tang and
+               Leila Zia},
+  title     = {WiseKG: Balanced Access to Web Knowledge Graphs},
+  booktitle = {{WWW} '21: The Web Conference 2021, Virtual Event / Ljubljana, Slovenia,
+               April 19-23, 2021},
+  pages     = {1422--1434},
+  publisher = {{ACM} / {IW3C2}},
+  year      = {2021},
+  url       = {https://doi.org/10.1145/3442381.3449911},
+  doi       = {10.1145/3442381.3449911},
+  timestamp = {Mon, 07 Jun 2021 14:20:06 +0200},
+  biburl    = {https://dblp.org/rec/conf/www/AzzamAMKPH21.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/icml/GellyS07,
+  author    = {Sylvain Gelly and
+               David Silver},
+  editor    = {Zoubin Ghahramani},
+  title     = {Combining online and offline knowledge in {UCT}},
+  booktitle = {Machine Learning, Proceedings of the Twenty-Fourth International Conference
+               {(ICML} 2007), Corvallis, Oregon, USA, June 20-24, 2007},
+  series    = {{ACM} International Conference Proceeding Series},
+  volume    = {227},
+  pages     = {273--280},
+  publisher = {{ACM}},
+  year      = {2007},
+  url       = {https://doi.org/10.1145/1273496.1273531},
+  doi       = {10.1145/1273496.1273531},
+  timestamp = {Tue, 06 Nov 2018 16:58:29 +0100},
+  biburl    = {https://dblp.org/rec/conf/icml/GellyS07.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/corr/abs-1911-11689,
+  author    = {Jonas Heitz and
+               Kurt Stockinger},
+  title     = {Join Query Optimization with Deep Reinforcement Learning Algorithms},
+  journal   = {CoRR},
+  volume    = {abs/1911.11689},
+  year      = {2019},
+  url       = {http://arxiv.org/abs/1911.11689},
+  eprinttype = {arXiv},
+  eprint    = {1911.11689},
+  timestamp = {Tue, 03 Dec 2019 20:41:07 +0100},
+  biburl    = {https://dblp.org/rec/journals/corr/abs-1911-11689.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/sigmod/HellersteinA00,
+  author    = {Ron Avnur and
+               Joseph M. Hellerstein},
+  editor    = {Weidong Chen and
+               Jeffrey F. Naughton and
+               Philip A. Bernstein},
+  title     = {Eddies: Continuously Adaptive Query Processing},
+  booktitle = {Proceedings of the 2000 {ACM} {SIGMOD} International Conference on
+               Management of Data, May 16-18, 2000, Dallas, Texas, {USA}},
+  pages     = {261--272},
+  publisher = {{ACM}},
+  year      = {2000},
+  url       = {https://doi.org/10.1145/342009.335420},
+  doi       = {10.1145/342009.335420},
+  timestamp = {Tue, 01 Jun 2021 15:22:37 +0200},
+  biburl    = {https://dblp.org/rec/conf/sigmod/HellersteinA00.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/sigmod/TrummerWMMJA19,
+  author    = {Immanuel Trummer and
+               Junxiong Wang and
+               Deepak Maram and
+               Samuel Moseley and
+               Saehan Jo and
+               Joseph Antonakakis},
+  editor    = {Peter A. Boncz and
+               Stefan Manegold and
+               Anastasia Ailamaki and
+               Amol Deshpande and
+               Tim Kraska},
+  title     = {SkinnerDB: Regret-Bounded Query Evaluation via Reinforcement Learning},
+  booktitle = {Proceedings of the 2019 International Conference on Management of
+               Data, {SIGMOD} Conference 2019, Amsterdam, The Netherlands, June 30
+               - July 5, 2019},
+  pages     = {1153--1170},
+  publisher = {{ACM}},
+  year      = {2019},
+  url       = {https://doi.org/10.1145/3299869.3300088},
+  doi       = {10.1145/3299869.3300088},
+  timestamp = {Sat, 22 Jun 2019 17:10:04 +0200},
+  biburl    = {https://dblp.org/rec/conf/sigmod/TrummerWMMJA19.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/icde/Yu0C020,
+  author    = {Xiang Yu and
+               Guoliang Li and
+               Chengliang Chai and
+               Nan Tang},
+  title     = {Reinforcement Learning with Tree-LSTM for Join Order Selection},
+  booktitle = {36th {IEEE} International Conference on Data Engineering, {ICDE} 2020,
+               Dallas, TX, USA, April 20-24, 2020},
+  pages     = {1297--1308},
+  publisher = {{IEEE}},
+  year      = {2020},
+  url       = {https://doi.org/10.1109/ICDE48307.2020.00116},
+  doi       = {10.1109/ICDE48307.2020.00116},
+  timestamp = {Fri, 05 Jun 2020 17:54:57 +0200},
+  biburl    = {https://dblp.org/rec/conf/icde/Yu0C020.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/cidr/MarcusP19,
+  author    = {Ryan Marcus and
+               Olga Papaemmanouil},
+  title     = {Towards a Hands-Free Query Optimizer through Deep Learning},
+  booktitle = {9th Biennial Conference on Innovative Data Systems Research, {CIDR}
+               2019, Asilomar, CA, USA, January 13-16, 2019, Online Proceedings},
+  publisher = {www.cidrdb.org},
+  year      = {2019},
+  url       = {http://cidrdb.org/cidr2019/papers/p96-marcus-cidr19.pdf},
+  timestamp = {Tue, 23 Mar 2021 15:36:39 +0100},
+  biburl    = {https://dblp.org/rec/conf/cidr/MarcusP19.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/sigmod/MarcusP18,
+  author    = {Ryan Marcus and
+               Olga Papaemmanouil},
+  editor    = {Rajesh Bordawekar and
+               Oded Shmueli},
+  title     = {Deep Reinforcement Learning for Join Order Enumeration},
+  booktitle = {Proceedings of the First International Workshop on Exploiting Artificial
+               Intelligence Techniques for Data Management, aiDM@SIGMOD 2018, Houston,
+               TX, USA, June 10, 2018},
+  pages     = {3:1--3:4},
+  publisher = {{ACM}},
+  year      = {2018},
+  url       = {https://doi.org/10.1145/3211954.3211957},
+  doi       = {10.1145/3211954.3211957},
+  timestamp = {Wed, 21 Nov 2018 12:44:08 +0100},
+  biburl    = {https://dblp.org/rec/conf/sigmod/MarcusP18.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/vldb/OnoL90,
+  author    = {Kiyoshi Ono and
+               Guy M. Lohman},
+  editor    = {Dennis McLeod and
+               Ron Sacks{-}Davis and
+               Hans{-}J{\"{o}}rg Schek},
+  title     = {Measuring the Complexity of Join Enumeration in Query Optimization},
+  booktitle = {16th International Conference on Very Large Data Bases, August 13-16,
+               1990, Brisbane, Queensland, Australia, Proceedings},
+  pages     = {314--325},
+  publisher = {Morgan Kaufmann},
+  year      = {1990},
+  url       = {http://www.vldb.org/conf/1990/P314.PDF},
+  timestamp = {Wed, 29 Mar 2017 16:45:24 +0200},
+  biburl    = {https://dblp.org/rec/conf/vldb/OnoL90.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{DBLP:conf/sigmod/BabcockC05,
+  author    = {Brian Babcock and
+               Surajit Chaudhuri},
+  editor    = {Fatma {\"{O}}zcan},
+  title     = {Towards a Robust Query Optimizer: {A} Principled and Practical Approach},
+  booktitle = {Proceedings of the {ACM} {SIGMOD} International Conference on Management
+               of Data, Baltimore, Maryland, USA, June 14-16, 2005},
+  pages     = {119--130},
+  publisher = {{ACM}},
+  year      = {2005},
+  url       = {https://doi.org/10.1145/1066157.1066172},
+  doi       = {10.1145/1066157.1066172},
+  timestamp = {Thu, 11 Mar 2021 15:20:15 +0100},
+  biburl    = {https://dblp.org/rec/conf/sigmod/BabcockC05.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+% we show that the techniques borrowed from traditional SQL query
+% optimization (such as Dynamic Programming algorithm or greedy
+% heuristics) are not immediately capable of handling large SPARQL
+% queries
+
+@inproceedings{hertzschuch2021simplicity,
+  title={Simplicity Done Right for Join Ordering.},
+  author={Hertzschuch, Axel and Hartmann, Claudio and Habich, Dirk and Lehner, Wolfgang},
+  booktitle={CIDR},
+  year={2021}
+}
+
+@article{yakovets2016optimization,
+  title={Optimization of regular path queries in graph databases},
+  author={Yakovets, Nikolay},
+  year={2016}
+}
+
+@incollection{erling2009rdf,
+  title={{RDF} Support in the {V}irtuoso {DBMS}},
+  author={Erling, Orri and Mikhailov, Ivan},
+  booktitle={Networked Knowledge-Networked Media},
+  pages={7--24},
+  year={2009},
+  publisher={Springer}
+}
+
+@inproceedings{buil2013sparql,
+  title={SPARQL web-querying infrastructure: ready for action?},
+  author={Buil-Aranda, Carlos and Hogan, Aidan and Umbrich, J{\"u}rgen and Vandenbussche, Pierre-Yves},
+  booktitle={International Semantic Web Conference},
+  pages={277--293},
+  year={2013},
+  organization={Springer}
+}
+
+@article{fernandez2013binary,
+  title={Binary {RDF} representation for publication and exchange ({HDT})},
+  author={Fern{\'a}ndez, Javier D and Mart{\'\i}nez-Prieto, Miguel A and Guti{\'e}rrez, Claudio and Polleres, Axel and Arias, Mario},
+  journal={Journal of Web Semantics},
+  volume={19},
+  pages={22--41},
+  year={2013},
+  publisher={Elsevier}
+}
+
+@inproceedings{malyshev2018getting,
+  title={Getting the most out of Wikidata: semantic technology usage in Wikipedia’s knowledge graph},
+  author={Malyshev, Stanislav and Kr{\"o}tzsch, Markus and Gonz{\'a}lez, Larry and Gonsior, Julius and Bielefeldt, Adrian},
+  booktitle={International Semantic Web Conference},
+  pages={376--394},
+  year={2018},
+  organization={Springer}
+}
+
+@incollection{thompson2016bigdata,
+  title={The Bigdata{\textregistered} {RDF} graph database},
+  author={Thompson, Bryan and Personick, Mike and Cutcher, Martyn},
+  booktitle={Linked Data Management},
+  pages={221--266},
+  year={2016},
+  publisher={Chapman and Hall/CRC}
+}
+
+@inproceedings{DBLP:conf/edbt/Gubichev014,
+  author    = {Andrey Gubichev and
+               Thomas Neumann},
+  title     = {Exploiting the query structure for efficient join ordering in {SPARQL}
+               queries},
+  booktitle = {17th International Conference on Extending Database
+               Technology, {EDBT}},
+  year      = {2014}
+ 
+}
+
+
+
+@article{DBLP:journals/cacm/VrandecicK14,
+  author    = {Denny Vrandecic and
+               Markus Kr{\"{o}}tzsch},
+  title     = {Wikidata: a free collaborative knowledgebase},
+  journal   = {Commun. {ACM}},
+  volume    = {57},
+  number    = {10},
+  pages     = {78--85},
+  year      = {2014},
+  url       = {https://doi.org/10.1145/2629489},
+  doi       = {10.1145/2629489},
+  timestamp = {Wed, 14 Nov 2018 10:22:37 +0100},
+  biburl    = {https://dblp.org/rec/journals/cacm/VrandecicK14.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{DBLP:journals/pvldb/LeisGMBK015,
+  author    = {Viktor Leis and
+               Andrey Gubichev and
+               Atanas Mirchev and
+               Peter A. Boncz and
+               Alfons Kemper and
+               Thomas Neumann},
+  title     = {How Good Are Query Optimizers, Really?},
+  journal   = {{VLDB} Endow.},
+  volume    = {9},
+  number    = {3},
+  pages     = {204--215},
+  year      = {2015},
+}
+
+@inproceedings{azzam2020smart,
+  author    = {Amr Azzam and
+               Javier D. Fern{\'{a}}ndez and
+               Maribel Acosta and
+               Martin Beno and
+               Axel Polleres},
+  title     = {{SMART-KG:} Hybrid Shipping for {SPARQL} Querying on the Web},
+  booktitle = {{WWW} '20: The Web Conference 2020},
+  pages     = {984--994},
+  publisher = {{ACM} / {IW3C2}},
+  year      = {2020},
+ }
+
+@article{singh2020probabilistic,
+  title={Probabilistic data structures for big data analytics: A comprehensive review},
+  author={Singh, Amritpal and Garg, Sahil and Kaur, Ravneet and Batra, Shalini and Kumar, Neeraj and Zomaya, Albert Y},
+  journal={Knowledge-Based Systems},
+  volume={188},
+  pages={104987},
+  year={2020},
+  publisher={Elsevier}
+}
+
+@inproceedings{heule2013hyperloglog,
+  title={Hyperloglog in practice: Algorithmic engineering of a state of the art cardinality estimation algorithm},
+  author={Heule, Stefan and Nunkesser, Marc and Hall, Alexander},
+  booktitle={Proceedings of the 16th International Conference on Extending Database Technology},
+  pages={683--692},
+  year={2013}
+}
+
+
+@inproceedings{flajolet2007hyperloglog,
+  TITLE = {{HyperLogLog: the analysis of a near-optimal cardinality estimation algorithm}},
+  AUTHOR = {Flajolet, Philippe and Fusy, {\'E}ric and Gandouet, Olivier and Meunier, Fr{\'e}d{\'e}ric},
+  URL = {https://hal.inria.fr/hal-00406166},
+  BOOKTITLE = {{AofA: Analysis of Algorithms}},
+  ADDRESS = {Juan les Pins, France},
+  EDITOR = {Jacquet, Philippe},
+  PUBLISHER = {{Discrete Mathematics and Theoretical Computer Science}},
+  SERIES = {DMTCS Proceedings},
+  VOLUME = {DMTCS Proceedings vol. AH, 2007 Conference on Analysis of Algorithms (AofA 07)},
+  PAGES = {137-156},
+  YEAR = {2007},
+  MONTH = Jun,
+  KEYWORDS = {cardinality estimation ; Probabilistic algorithm},
+  PDF = {https://hal.inria.fr/hal-00406166v2/file/dmAH0110.pdf},
+  HAL_ID = {hal-00406166},
+  HAL_VERSION = {v2},
+}
+
+
+@article{considine2009robust,
+  title={Robust approximate aggregation in sensor data management systems},
+  author={Considine, Jeffrey and Hadjieleftheriou, Marios and Li, Feifei and Byers, John and Kollios, George},
+  journal={ACM Transactions on Database Systems (TODS)},
+  volume={34},
+  number={1},
+  pages={1--35},
+  year={2009},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{ting2019approximate,
+  title={Approximate distinct counts for billions of datasets},
+  author={Ting, Daniel},
+  booktitle={Proceedings of the 2019 International Conference on Management of Data},
+  pages={69--86},
+  year={2019}
+}
+
+@inproceedings{grall2020processing,
+  TITLE = {Processing {SPARQL} Aggregate Queries with Web Preemption},
+  AUTHOR = {Grall, Arnaud and Minier, Thomas and Skaf-Molli, Hala and Molli, Pascal},
+  URL = {https://hal.archives-ouvertes.fr/hal-02511819},
+  BOOKTITLE = {{17th Extended Semantic Web Conference (ESWC 2020)}},
+  ADDRESS = {Heraklion, Greece},
+  PUBLISHER = {{Springer, Cham}},
+  SERIES = {The Semantic Web: ESWC 2020},
+  YEAR = {2020},
+  MONTH = Jun,
+  PDF = {https://hal.archives-ouvertes.fr/hal-02511819/file/article_SaGe_ESWC2020.pdf},
+  HAL_ID = {hal-02511819},
+  HAL_VERSION = {v1},
+}
+
+@inproceedings{multiset2001,
+  author="Syropoulos, Apostolos",
+  title="Mathematics of Multisets",
+  booktitle="Workshop on Multiset Processing: Multiset Processing, Mathematical Computer Science, and Molecular Computing Points of View",
+  year="2001",
+  pages="347--358"
+}
+
+@article{BlasgenGMP79,
+  author    = {Mike W. Blasgen and
+               Jim Gray and
+               Michael F. Mitoma and
+               Thomas G. Price},
+  title     = {The Convoy Phenomenon},
+  journal   = {Operating Systems Review},
+  volume    = {13},
+  number    = {2},
+  pages     = {20--25},
+  year      = {1979}
+}
+
+@article{Fife68a,
+  author    = {Dennis W. Fife},
+  title     = {{R68-47} Computer Scheduling Methods and Their Countermeasures},
+  journal   = {{IEEE} Trans. Computers},
+  volume    = {17},
+  number    = {11},
+  pages     = {1098--1099},
+  year      = {1968}
+}
+
+@book{RR2014,
+ author = {Anderson, Thomas and Dahlin, Michael},
+ title = {Operating Systems: Principles and Practice},
+ year = {2014},
+ isbn = {0985673524, 9780985673529},
+ edition = {2nd},
+ publisher = {Recursive books},
+}
+
+@inproceedings{vora2011hadoop,
+  title={Hadoop-{HBase} for large-scale data},
+  author={Vora, Mehul Nalin},
+  booktitle={International Conference on Computer Science and Network Technology},
+  volume={1},
+  pages={601--605},
+  year={2011},
+  organization={IEEE}
+}
+
+@article{DBLP:journals/corr/abs-1110-0725,
+ author    = {Paulo Jesus and
+               Carlos Baquero and
+               Paulo S{\'{e}}rgio Almeida},
+  title     = {A Survey of Distributed Data Aggregation Algorithms},
+ journal={IEEE Communications Surveys \& Tutorials},
+  volume    = {17},
+  number    = {1},
+  pages     = {381--404},
+  year      = {2015},
+}
+
+
+@inproceedings{schatzle2013pigsparql,
+  title={{PigSPARQL}: A {SPARQL} Query Processing Baseline for Big Data.},
+  author={Sch{\"a}tzle, Alexander and Przyjaciel-Zablocki, Martin and Hornung, Thomas and Lausen, Georg},
+  booktitle={International Semantic Web Conference (Posters \& Demos)},
+  volume={1035},
+  pages={241--244},
+  year={2013}
+}
+
+
+@article{schatzle2016s2rdf,
+  title={{S2RDF}: {RDF} querying with {SPARQL} on spark},
+  author={Sch{\"a}tzle, Alexander and Przyjaciel-Zablocki, Martin and Skilevic, Simon and Lausen, Georg},
+  journal={VLDB Endowment},
+  volume={9},
+  number={10},
+  pages={804--815},
+  year={2016}
+}
+
+@article{Kaminski2017,
+ author = {Kaminski, Mark and Kostylev, Egor V. and Grau, Bernardo Cuenca},
+ title = {Query Nesting, Assignment, and Aggregation in {SPARQL 1.1}},
+ journal = {ACM Trans. Database Syst.},
+ volume = {42},
+ number = {3},
+ month = aug,
+ year = {2017},
+ issn = {0362-5915},
+ pages = {1-46},
+ articleno = {17},
+ numpages = {46},
+ acmid = {3083898},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {SPARQL},
+}
+
+@inproceedings{Kaminski2016,
+ author = {Kaminski, Mark and Kostylev, Egor V. and Cuenca Grau, Bernardo},
+ title = {Semantics and Expressive Power of Subqueries and Aggregates in {SPARQL} 1.1},
+ booktitle = {International Conference on World Wide Web},
+ series = {WWW '16},
+ year = {2016},
+ isbn = {978-1-4503-4143-1},
+ location = {Montr\&\#233;al, Qu\&\#233;bec, Canada},
+ pages = {227--238},
+ numpages = {12},
+ acmid = {2883022},
+ keywords = {RDF, SPARQL, aggregation, data analytics, expressive power, grouping, linked data, query languages, query nesting, semantics, subqueries, value computation},
+}
+
+@inproceedings{sparql11,
+  author    = {Steve, Harris and Andy, Seaborne},
+  title     = {{SPARQL} 1.1 Query Language},
+  booktitle = {Recommendation W3C},
+  year      = {2013}
+}
+
+@article{dean2010mapreduce,
+  title={Map{R}educe: a flexible data processing tool},
+  author={Dean, Jeffrey and Ghemawat, Sanjay},
+  journal={Communications of the ACM},
+  volume={53},
+  number={1},
+  pages={72--77},
+  year={2010},
+  publisher={ACM}
+}
+
+@inproceedings{Yan:1995:EAL:645921.673154,
+ author = {Yan, Weipeng P. and Larson, Per-\AAke},
+ title = {Eager Aggregation and Lazy Aggregation},
+ booktitle = { 21th International Conference on Very Large Data Bases, VLDB},
+ year = {1995},
+ isbn = {1-55860-379-4},
+ pages = {345--357},
+ 
+}
+
+@inproceedings{srivastava1996answering,
+  title={Answering queries with aggregation using views},
+  author={Srivastava, Divesh and Dar, Shaul and Jagadish, Hosagrahar V and Levy, Alon Y},
+  booktitle={VLDB},
+  volume={96},
+  number={September},
+  pages={318--329},
+  year={1996}
+}
+
+@article{li2018approximate,
+  title={Approximate query processing: what is new and where to go?},
+  author={Li, Kaiyu and Li, Guoliang},
+  journal={Data Science and Engineering},
+  volume={3},
+  number={4},
+  pages={379--397},
+  year={2018},
+  publisher={Springer}
+}
+
+@inproceedings{schmachtenberg2014adoption,
+  author    = {Max Schmachtenberg and
+               Christian Bizer and
+               Heiko Paulheim},
+  title     = {Adoption of the Linked Data Best Practices in Different Topical Domains},
+  booktitle = {13th International Semantic Web Conference (ISWC)},
+  pages     = {245--260},
+  year      = {2014},
+  volume    = {8796}
+}
+
+@incollection{ErlingM09,
+  author    = {Orri Erling and
+               Ivan Mikhailov},
+  title     = {{RDF} Support in the Virtuoso {DBMS}},
+  booktitle = {Networked Knowledge - Networked Media - Integrating Knowledge Management,
+               New Media Technologies and Semantic Systems},
+  pages     = {7--24},
+  year      = {2009}
+}
+
+@article{bizer2009linked,
+  author    = {Christian Bizer and
+               Tom Heath and
+               Tim Berners{-}Lee},
+  title     = {Linked Data - The Story So Far},
+  journal   = {Int. J. Semantic Web Inf. Syst.},
+  volume    = {5},
+  number    = {3},
+  pages     = {1--22},
+  year      = {2009}
+}
+
+
+@inproceedings{pietriga2018browsing,
+  title={Browsing Linked Data Catalogs with {LODA}tlas},
+  author={Pietriga, Emmanuel and G{\"o}z{\"u}kan, Hande and Appert, Caroline and Destandau, Marie and {\v{C}}ebiri{\'c}, {\v{S}}ejla and Goasdou{\'e}, Fran{\c{c}}ois and Manolescu, Ioana},
+  booktitle={International Semantic Web Conference},
+  pages={137--153},
+  year={2018},
+  organization={Springer}
+}
+
+@article{vandenbussche2017sparqles,
+  title={{SPARQLES}: Monitoring public {SPARQL} endpoints},
+  author={Vandenbussche, Pierre-Yves and Umbrich, J{\"u}rgen and Matteis, Luca and Hogan, Aidan and Buil-Aranda, Carlos},
+  journal={Semantic web},
+  volume={8},
+  number={6},
+  pages={1049--1065},
+  year={2017},
+  publisher={IOS Press}
+}
+
+@article{DBLP:journals/semweb/VandenbusscheUM17,
+  author    = {Pierre{-}Yves Vandenbussche and
+               J{\"{u}}rgen Umbrich and
+               Luca Matteis and
+               Aidan Hogan and
+               Carlos Buil Aranda},
+  title     = {{SPARQLES:} Monitoring public {SPARQL} endpoints},
+  journal   = {Semantic Web},
+  volume    = {8},
+  number    = {6},
+  pages     = {1049--1065},
+  year      = {2017}
+}
+
+
+@inproceedings{axel2014,
+  author    = {Carlos Buil Aranda and
+               Axel Polleres and
+               J{\"{u}}rgen Umbrich},
+  title     = {Strategies for Executing Federated Queries in {SPARQL1.1}},
+  booktitle = {The Semantic Web - {ISWC} 2014 - 13th International Semantic Web Conference},
+  pages     = {390--405},
+  year      = {2014},
+  volume    = {8797},
+  publisher = {Springer}
+}
+
+@inproceedings{gorlitz2011splendid,
+  title={Splendid: {SPARQL} endpoint federation exploiting void descriptions},
+  author={G{\"o}rlitz, Olaf and Staab, Steffen},
+  booktitle={Proceedings of the Second International Conference on Consuming Linked Data},
+  volume={782},
+  pages={13--24},
+  year={2011},
+  organization={CEUR-WS. org}
+}
+
+@article{DBLP:journals/corr/HartigA16,
+  author    = {Olaf Hartig and
+               Carlos Buil Aranda},
+  title     = {br{TPF}: Bindings-Restricted Triple Pattern Fragments (Extended Preprint)},
+  journal   = {CoRR},
+  volume    = {abs/1608.08148},
+  year      = {2016},
+  url       = {http://arxiv.org/abs/1608.08148},
+  eprinttype = {arXiv},
+  eprint    = {1608.08148},
+  timestamp = {Mon, 13 Aug 2018 16:47:20 +0200},
+  biburl    = {https://dblp.org/rec/journals/corr/HartigA16.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+@inproceedings{minier2019sage,
+  TITLE = {{Sa{G}e: Web Preemption for Public {SPARQL} Query Services}},
+  AUTHOR = {Minier, Thomas and Skaf-Molli, Hala and Molli, Pascal},
+  URL = {https://hal.archives-ouvertes.fr/hal-02017155},
+  BOOKTITLE = {{The World Wide Web Conference 2019 (WWW'19)}},
+  ADDRESS = {San Francisco, United States},
+  YEAR = {2019},
+  MONTH = May,
+  DOI = {10.1145/3308558.3313652},
+  PDF = {https://hal.archives-ouvertes.fr/hal-02017155/file/paper.pdf},
+  HAL_ID = {hal-02017155},
+  HAL_VERSION = {v1},
+}
+
+@article{HasnainMZH16,
+  author    = {Ali Hasnain and
+               Qaiser Mehmood and
+               Syeda Sana e Zainab ang
+               Aidan Hogan},
+  title     = {{SPORTAL:} Profiling the Content of Public {SPARQL} Endpoints},
+  journal   = {Int. J. Semantic Web Inf. Syst.},
+  volume    = {12},
+  number    = {3},
+  pages     = {134--163},
+  year      = {2016}
+}
+
+@inproceedings{axeldesemweb18,
+  author    = {Axel Polleres and
+               Maulik R. Kamdar and
+               Javier D. Fern{\'{a}}ndez and
+               Tania Tudorache and
+               Mark A. Musen},
+  title     = {A More Decentralized Vision for Linked Data},
+  booktitle = {Proceedings of the 2nd Workshop on Decentralizing the Semantic Web (DeSemWeb 2018)
+               co-located with ISWC 2018},
+  year      = {2018}
+}
+
+@article{WeissKB08,
+  author    = {Cathrin Weiss and
+               Panagiotis Karras and
+               Abraham Bernstein},
+  title     = {Hexastore: sextuple indexing for semantic web data management},
+  journal   = {{PVLDB}},
+  volume    = {1},
+  number    = {1},
+  pages     = {1008--1019},
+  year      = {2008}
+}
+
+@article{NeumannW10,
+  author    = {Thomas Neumann and
+               Gerhard Weikum},
+  title     = {The {RDF-3X} engine for scalable management of {RDF} data},
+  journal   = {{VLDB} J.},
+  volume    = {19},
+  number    = {1},
+  pages     = {91--113},
+  year      = {2010}
+}
+
+@inproceedings{soulet2019anytime,
+  author    = {Arnaud Soulet and Fabian M. Suchanek},
+  title     = {Anytime Large-Scale Analytics of {Linked Open Data}},
+  booktitle = {18th International Semantic Web Conference, {ISWC}},
+  year      = {2019}
+}
+
+@inproceedings{AuerDML12,
+  author    = {S{\"{o}}ren Auer and
+               Jan Demter and
+               Michael Martin and
+               Jens Lehmann},
+  title     = {{LODStats} - An Extensible Framework for High-Performance Dataset Analytics},
+  booktitle = {{EKAW} 2012},
+  pages     = {353--362},
+  year      = {2012}
+}
+
+@article{PerezAG09,
+  author    = {Jorge P{\'{e}}rez and
+               Marcelo Arenas and
+               Claudio Guti{\'{e}}rrez},
+  title     = {Semantics and complexity of {SPARQL}},
+  journal   = {{ACM} Transations on Database Systems},
+  volume    = {34},
+  number    = {3},
+  pages     = {16:1--16:45},
+  year      = {2009}
+}
+
+@inproceedings{IbragimovHPZ15,
+  author    = {Dilshod Ibragimov and
+               Katja Hose and
+               Torben Bach Pedersen and
+               Esteban Zim{\'{a}}nyi},
+  title     = {Processing Aggregate Queries in a Federation of {SPARQL} Endpoints},
+  booktitle = {{ESWC} 2015},
+  pages     = {269--285},
+  year      = {2015}
+}
+
+@inproceedings{ColazzoGMR14,
+  author    = {Dario Colazzo and
+               Fran{\c{c}}ois Goasdou{\'{e}} and
+               Ioana Manolescu and
+               Alexandra Roatis},
+  title     = {{RDF} analytics: lenses over semantic graphs},
+  booktitle = {23rd International World Wide Web Conference, {WWW} '14},
+  pages     = {467--478},
+  year      = {2014}
+}
+
+@inproceedings{Schmidt0L10,
+  author    = {Michael Schmidt and
+               Michael Meier and
+               Georg Lausen},
+  title     = {Foundations of {SPARQL} query optimization},
+  booktitle = {Database Theory - {ICDT} 2010},
+  pages     = {4--33},
+  year      = {2010}
+}
+
+@article{graefe1993query,
+  author    = {Goetz Graefe},
+  title     = {Query Evaluation Techniques for Large Databases},
+  journal   = {{ACM} Comput. Surv.},
+  volume    = {25},
+  number    = {2},
+  pages     = {73--170},
+  year      = {1993}
+}
+
+@article{Comer79,
+  author    = {Douglas Comer},
+  title     = {The Ubiquitous {B-T}ree},
+  journal   = {{ACM} Comput. Surv.},
+  volume    = {11},
+  number    = {2},
+  pages     = {121--137},
+  year      = {1979}
+}
+
+@article{ONeilCGO96,
+  author    = {Patrick E. O'Neil and
+               Edward Cheng and
+               Dieter Gawlick and
+               Elizabeth J. O'Neil},
+  title     = {The {Log}-{Structured} {Merge}-{Tree} ({LSM}-{Tree})},
+  journal   = {Acta Inf.},
+  volume    = {33},
+  number    = {4},
+  pages     = {351--385},
+  year      = {1996}
+}
+
+@article{LuoVLDB19,
+  author    = {Chen Luo and
+               Michael J. Carey},
+  title     = {{LSM}-based storage techniques: a survey},
+  journal   = {The VLDB Journal},
+  volume    = {28},
+  pages     = {1-26},
+  year      = {2019}
+}
+
+@inproceedings{DayanI18,
+  author    = {Niv Dayan and
+               Stratos Idreos},
+  title     = {Dostoevsky: Better Space-Time Trade-Offs for {LSM}-Tree Based Key-Value
+               Stores via Adaptive Removal of Superfluous Merging},
+  booktitle = {ACM {SIGMOD} Conference 2018, Houston, TX, USA, June 10-15},
+  pages     = {505--520},
+  year      = {2018}
+}
+
+@article{verborgh2016triple,
+  author    = {Ruben Verborgh and
+               Miel Vander Sande and
+               Olaf Hartig and
+               Joachim Van Herwegen and
+               Laurens De Vocht and
+               Ben De Meester and
+               Gerald Haesendonck and
+               Pieter Colpaert},
+  title     = {Triple Pattern Fragments: {A} low-cost knowledge graph interface for
+               the Web},
+  journal   = {J. Web Sem.},
+  volume    = {37-38},
+  pages     = {184--206},
+  year      = {2016}
+}
+
+@inproceedings{olaf2017,
+  author    = {Olaf Hartig and
+               Ian Letter and
+               Jorge P{\'{e}}rez},
+  title     = {A Formal Framework for Comparing Linked Data Fragments},
+  booktitle = {{ISWC} 2017 - Vienna, Austria, October 21-25},
+  pages     = {364--382},
+  year      = {2017},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {10587},
+  publisher = {Springer}
+}
+
+@inproceedings{DongCGBSS17,
+  author    = {Siying Dong and
+               Mark Callaghan and
+               Leonidas Galanis and
+               Dhruba Borthakur and
+               Tony Savor and
+               Michael Strum},
+  title     = {Optimizing Space Amplification in {RocksDB}},
+  booktitle = {{CIDR} 2017,
+               Chaminade, CA, USA, January 8-11, 2017},
+  year      = {2017}
+}
+
+@inproceedings{WylotPWC11,
+  author    = {Marcin Wylot and
+               Jig{\'{e}} Pont and
+               Mariusz Wisniewski and
+               Philippe Cudr{\'{e}}{-}Mauroux},
+  title     = {dipLODocus[RDF] - Short and Long-Tail {RDF} Analytics for Massive
+               Webs of Data},
+  booktitle = {{ISWC} 2011 - 10th International Semantic Web Conference,
+               Bonn, Germany, October 23-27},
+  pages     = {778--793},
+  year      = {2011}
+}
+
+@article{GrayCBLRVPP97,
+  author    = {Jim Gray and
+               Surajit Chaudhuri and
+               Adam Bosworth and
+               Andrew Layman and
+               Don Reichart and
+               Murali Venkatrao and
+               Frank Pellow and
+               Hamid Pirahesh},
+  title     = {{Data} {Cube}: {A} Relational Aggregation Operator Generalizing Group-by,
+               Cross-Tab, and Sub Totals},
+  journal   = {Data Min. Knowl. Discov.},
+  volume    = {1},
+  number    = {1},
+  pages     = {29--53},
+  year      = {1997}
+}
+
+@article{JesusBA15,
+  author    = {Paulo Jesus and
+               Carlos Baquero and
+               Paulo S{\'{e}}rgio Almeida},
+  title     = {A Survey of Distributed Data Aggregation Algorithms},
+  journal   = {{IEEE} Communications Surveys and Tutorials},
+  volume    = {17},
+  number    = {1},
+  pages     = {381--404},
+  year      = {2015}
 }
