@@ -1,5 +1,107 @@
 
-\section{Introduction}
+\section{Introduction (from sampling)}
+
+Sampling-based approximate query processing (S-AQP)
+~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} has many use-case in RDF
+including computing large scale
+statistics\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
+computing embeddings with random walks\cite{ristoski2016rdf2vec}, join
+orderings\cite{DBLP:conf/cidr/LeisRGK017}, approximated
+aggregations\cite{DBLP:journals/tods/LiWYZ19}, summaries
+computation~\cite{10.1007/978-3-030-49461-2_10}. However, current
+SPARQL endpoints are not able to efficiently deliver for a given query
+results drawn uniformly at random. To illustrate, drawing a triple
+uniformly at random can be achieved by executing:
+%
+\verb+select * {?s ?p ?o} LIMIT 1 OFFSET r+
+%
+where $r$ is a random number between 0 and the cardinality of the
+graph~\cite{soulet2019anytime}. However, if r>100M, all query time-out
+on Wikidata returning no result\footnote{other methods relying on
+  ORDER BY rand() is also not ensured to terminate in bounded time
+}. Of course, it is possible to draw a random triple in logarithmic
+time using the internal index of a TripleStore, but this is not
+accessible for the end-user. In this demo, we demonstrate how we
+extended JENA to support efficiently sampling-based approximate
+processing. Given a SPARQL query and a budget in time, JENA-RAW is
+able to deliver random results along with a cardinality estimation of
+the total number of results.
+
+
+
+
+
+
+\section{Introduction (from quota)}
+
+Public SPARQL endpoints as Wikidata or DBPedia allow anyone to execute
+any SPARQL queries. However, due to fair use policies of public SPARQL
+endpoints, there is no guarantee of termination with complete
+results. On Wikidata, queries are stopped after 60s returning partial
+results~\footnote{\url{https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual}},
+On Dbpedia, the maximum execution time is set to 120 second with a
+maximum 10000
+results~\footnote{\url{https://www.dbpedia.org/resources/sparql/#ratesandlimits}}. Consequently,
+it exist a class of SPARQL queries that time-out when executed on
+public SPARQL endpoint~\cite{DBLP:conf/semweb/MalyshevKGGB18} that is
+the base for the Wikidata benchmark\cite{angles2022wdbench}.
+
+It is impossible for a SPARQL endpoint to ensure that any query
+returns complete results in fixed time. However, it is possible to
+ensure to return a sample of results in fixed time, along with an
+estimation of the cardinalities of complete results. For example, the
+$Q_1$ of figure~\ref{fig:q1-nojo} timeout on Wikidata, returning
+partial non-random results. However, it is possible to sample the
+evaluation of Q1, returning random results along with an estimation of
+the cardinality of results with a confidence interval. For a budget of
+1s, on JENA-RAW, we obtained 50 results on potentially 1000 results
+more or less 50.
+
+Sampled results can be incrementally improved following a
+pay-as-go approach ie. resending the same
+query for another budget of 1s allows to get other random results with
+possible duplicates, but with an higher accuracy on cardinality.
+
+
+
+\begin{figure}[t]
+ \begin{center}
+  \subfloat [Query $Q_1^{J_1}$ time-out >60s] {\label{fig:q1-nojo}
+   \adjustbox{valign=T}{
+    \resizebox{0.45\textwidth}{!}{
+     \lstinputlisting[basicstyle=\scriptsize\sffamily,
+     language=sparql,numbers=none,columns=fixed,
+     showstringspaces=false]{./figures/q1w.rq}}}}
+  \subfloat [Query $Q_1^{J_2}$ forced join order $\sim 451ms$] {\label{fig:q1j2}
+   \adjustbox{valign=T}{
+    \resizebox{0.45\textwidth}{!}{
+     \lstinputlisting[basicstyle=\scriptsize\sffamily,
+     language=sparql,numbers=none,columns=fixed,
+     showstringspaces=false]{./figures/q1w-jo.rq}}}}
+ \end{center}
+ \caption{The query $Q_1$ searches for creative works and the list of
+  fiction works that inspired them. $Q_1$ time-out on
+  the Wikidata online server (>60s)}
+ \label{fig:q1}
+\end{figure}
+
+Sampling query evaluation has many practical use-cases that is
+currently limited as computing
+large scale statistics\cite{soulet2019anytime}, embeddings with random
+walks\cite{ristoski2016rdf2vec}, join
+orderings\cite{DBLP:conf/cidr/LeisRGK017}, approximated
+aggregations\cite{DBLP:journals/tods/LiWYZ19}.
+
+
+
+
+To validate our
+approach, we extended JENA with a sampling interface and show what can
+be obtained with fixed time for queries that traditionaly time-out on
+public endpoints.
+
+
+
 
 Random walks are important but do not have efficient implementations,
 or unsufficient API. More importantly, they are precluded to servers
@@ -28,3 +130,8 @@ such as:
 \item [Wander Join~\cite{li2016wanderjoin}] needs the cardinality of
   random walks, failed and succeeded.
 \end{asparadesc}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../paper.tex"
+%%% End:
