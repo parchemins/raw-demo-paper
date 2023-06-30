@@ -2,30 +2,51 @@
 \section{Introduction (from sampling)}
 
 Sampling-based approximate query processing (S-AQP)
-~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} has many use-case in RDF
-including computing large scale
+~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} allows to process a query on
+a sample of data, in order to deliver approximated results quickly with
+bounded errors. S-AQP has many important use-cases in RDF including
+computing large scale
 statistics\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
 computing embeddings with random walks\cite{ristoski2016rdf2vec}, join
 orderings\cite{DBLP:conf/cidr/LeisRGK017}, approximated
-aggregations\cite{DBLP:journals/tods/LiWYZ19}, summaries
-computation~\cite{10.1007/978-3-030-49461-2_10}. However, current
-SPARQL endpoints are not able to efficiently deliver for a given query
-results drawn uniformly at random. To illustrate, drawing a triple
-uniformly at random can be achieved by executing:
+aggregations~\cite{DBLP:journals/tods/LiWYZ19}, summaries
+computation~\cite{10.1007/978-3-030-49461-2_10}, graph
+exploration~\cite{??}. 
+However, given a query, current SPARQL endpoints are not able to efficiently deliver
+results drawn uniformly at random. To illustrate, to
+compute large scale statistics, ~\cite{soulet2019anytime} relies on
+the following very simple sampling query $Q_s$:
 %
 \verb+select * {?s ?p ?o} LIMIT 1 OFFSET r+
 %
 where $r$ is a random number between 0 and the cardinality of the
-graph~\cite{soulet2019anytime}. However, if r>100M, all query time-out
-on Wikidata returning no result\footnote{other methods relying on
-  ORDER BY rand() is also not ensured to terminate in bounded time
-}. Of course, it is possible to draw a random triple in logarithmic
-time using the internal index of a TripleStore, but this is not
-accessible for the end-user. In this demo, we demonstrate how we
-extended JENA to support efficiently sampling-based approximate
-processing. Given a SPARQL query and a budget in time, JENA-RAW is
-able to deliver random results along with a cardinality estimation of
-the total number of results.
+served graph. On Wikidata, $0<r<12B$, and
+unfortunately when $r>100M$, $Q_s$ time-out on Wikidata returning no
+result\footnote{other methods relying on ORDER BY rand() or SAMPLE
+  with subqueries also time-out}. SPARQL endpoints providers are aware
+of the problem and provides ad-hoc solutions restricted to triple
+patterns\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service.}},
+b, ~\footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}.
+
+% From the state of art~\cite{DBLP:conf/cidr/LeisRGK017}, we know that
+% is possible to draw a random triple from a triple pattern in
+% logarithmic time using the internal index of a TripleStore. Extending
+% to BGP support just multiply this complexity by the number of triple
+% pattern in the query. Sampling queries makes sense only if the
+% approximation error can also be estimated ie. for a query
+
+In this demonstration, we extended JENA to support efficiently
+sampling-based approximate query processing for core SPARQL queries.
+Given a core SPARQL query and a budget in time, JENA-RAW is able to
+deliver random results along with a cardinality estimation of the
+total number of results. JENA-RAW supports the pay-as-you-approach
+ie. sampling the query multiple times returns more result and improve
+the accuracy of the cardinality.
+%
+In the demonstration, we show that for a query that time-out on
+wikidata (60s) and deliver partial non-random results, we deliver in
+1s partial random results along with an accurate cardinality
+estimation of the query. 
 
 
 
