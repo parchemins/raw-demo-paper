@@ -1,6 +1,28 @@
 
 \section{\NAME}
 
+ \begin{figure}[t]
+  \begin{center}
+   \subfloat [Query $Q_1^{J_1}$ time-out >60s] {\label{fig:q1-nojo}
+    \adjustbox{valign=T}{
+    \resizebox{0.45\textwidth}{!}{
+     \lstinputlisting[basicstyle=\scriptsize\sffamily,
+     language=sparql,numbers=none,columns=fixed,
+     showstringspaces=false]{./figures/q1w.rq}}}}
+  \subfloat [Query $Q_1^{J_2}$ forced join order $\sim 451ms$] {\label{fig:q1j2}
+   \adjustbox{valign=T}{
+    \resizebox{0.45\textwidth}{!}{
+     \lstinputlisting[basicstyle=\scriptsize\sffamily,
+     language=sparql,numbers=none,columns=fixed,
+     showstringspaces=false]{./figures/q1w-jo.rq}}}}
+ \end{center}
+ \caption{The query $Q_1$ searches for creative works and the list of
+  fiction works that inspired them. $Q_1$ time-out on
+  the Wikidata online server (>60s)}
+ \label{fig:q1}
+\end{figure}
+
+
 Pay-as-you-go \texttt{:)}.
 
 The more the server can do, the better. But client must also be able

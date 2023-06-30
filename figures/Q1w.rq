@@ -1,0 +1,10 @@
+SELECT ?name ?othername   WHERE {
+ ?v3 wdt:P279 wd:Q17537576 .       #109
+ ?v2 wdt:P279 ?v3 .                #3.2M
+ ?v wdt:P279 ?v2 .                 #3.2M
+ ?artWork wdt:P31 ?v .             #99M
+ ?artWork wdt:P144 ?otherWork.     #52K
+ ?otherWork wdt:P136 wd:Q8253 .    #810
+ ?artWork rdfs:label ?name .       #738M
+ Filter regex(?name,"tre") .
+ ?otherWork rdfs:label ?othername} #738M
