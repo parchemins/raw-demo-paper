@@ -1,0 +1,5 @@
+SELECT DISTINCT ?x1 ?x3 WHERE {
+  ?x1 wdt:P641 wd:Q3609 .  # tp3
+  ?x1 wdt:P17 ?x3 .        # tp2
+  ?x3 wdt:P361 wd:Q27611 . # tp1
+}

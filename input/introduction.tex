@@ -3,29 +3,34 @@
 
 Sampling-based approximate query processing (S-AQP)
 ~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} drastically reduce query
-execution time to deliver approximated results  with
-bounded errors. S-AQP has many important use-cases in RDF including
+execution time to deliver approximated results with error
+estimation. S-AQP has many important use-cases in RDF including
 computing large scale
 statistics\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
 computing embeddings with random walks\cite{ristoski2016rdf2vec}, join
 orderings\cite{DBLP:conf/cidr/LeisRGK017}, approximated
 aggregations~\cite{DBLP:journals/tods/LiWYZ19}, summaries
-computation~\cite{10.1007/978-3-030-49461-2_10}, exploratory queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}. 
-However, given a query, current SPARQL endpoints are not able to efficiently deliver
-results drawn uniformly at random. To illustrate, to
-compute large scale statistics, ~\cite{soulet2019anytime} relies on
-the following very simple sampling query $Q_s$:
+computation~\cite{10.1007/978-3-030-49461-2_10}, exploratory
+queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.  However, given a
+query, current SPARQL endpoints have no support to deliver efficiently
+results drawn uniformly at random. To illustrate, to compute large
+scale statistics, ~\cite{soulet2019anytime} relies on the following
+very simple sampling query $Q_s$:
 %
 \verb+select * {?s ?p ?o} LIMIT 1 OFFSET r+
 %
 where $r$ is a random number between 0 and the cardinality of the
-served graph. On Wikidata, $0<r<12B$, and
-unfortunately when $r>100M$, $Q_s$ time-out on Wikidata returning no
-result\footnote{other methods relying on ORDER BY rand() or SAMPLE
-  with subqueries also time-out}. SPARQL endpoints providers are aware
-of the problem and provides ad-hoc solutions restricted to triple
+served graph. On Wikidata, $0<r<12B$, and unfortunately when $r>100M$,
+$Q_s$ time-out on Wikidata returning no result\footnote{other methods
+  to sample relying on ORDER BY rand() or SAMPLE with subqueries also
+  time-out}. Some SPARQL endpoints providers provides ad-hoc solutions
+to compute more efficiently random triples from triple
 patterns\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service.}},
-b, ~\footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}.
+b,
+~\footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}. However,
+the complexity of sampling remains unclear and the sampling is limited
+to triple pattern, there is nothing equivalent to the TABLESAMPLE
+clause that is part of the SQL standard since 2003.
 
 % From the state of art~\cite{DBLP:conf/cidr/LeisRGK017}, we know that
 % is possible to draw a random triple from a triple pattern in
@@ -36,16 +41,21 @@ b, ~\footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}.
 
 In this demonstration, we extended JENA to support efficiently
 sampling-based approximate query processing for core SPARQL queries.
-Given a core SPARQL query and a budget in time, JENA-RAW is able to
-deliver random results along with a cardinality estimation of the
-total number of results. JENA-RAW supports the pay-as-you-approach
-ie. sampling the query multiple times returns more result and improve
-the accuracy of the cardinality.
+Given a core SPARQL $Q$ query and a budget in time,
+\NAME~\footnote{\url{https://github.com/Chat-Wane/raw-jena}} is
+able to deliver random results along with a cardinality estimation of
+the total number of results. The complexity of the sampling is in
+$O(k.log(|D|)$ where $k$ is the number of triple pattern in
+$Q$. \NAME supports the pay-as-you-approach ie. sampling the query
+multiple times returns more result and improve the accuracy of the
+cardinality.
 %
 In the demonstration, we show that for a query that time-out on
 wikidata (60s) and deliver partial non-random results, we deliver in
 1s partial random results along with an accurate cardinality
-estimation of the query. 
+estimation of the query. This correspond to the exploratory query
+use-case, but the others use-cases are also possible using the same
+the API.
 
 
 
