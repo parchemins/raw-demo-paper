@@ -42,14 +42,19 @@ $Q_s$ time-out  returning no result\footnote{other methods
 % approximation error can also be estimated ie. for a query
 
   In this demonstration, we extended JENA to support efficiently
-  sampling-based approximate query processing for core conjunctive
+  S-AQP for core conjunctive
   SPARQL queries.  Given a SPARQL $Q$ query and a budget in time,
   \NAME~\footnote{\url{https://github.com/Chat-Wane/raw-jena}} is able
   to deliver random results along with a cardinality estimation of the
-  total number of results. The complexity of the sampling is in
-  $O(k.log(|G|)$ where $k$ is the number of triple pattern in $Q$ and
-  $lG|$ the size of the dataset. \NAME supports the
-  pay-as-you-approach ie. sampling the query multiple times returns
+  total number of results. Our approach relies on random
+ walks as defined in WanderJoin\cite{li2016wanderjoin}. This approach
+ has been proven accurate on the G-Care
+ benchmark\cite{DBLP:conf/sigmod/ParkKBKHH20} for RDF datasets. Thanks
+ to traditional indexing schema of RDF \footnote{SPO,POS,OSP}, random
+ walks for conjunctive queries can be executed in $k.log(|G|)$ where
+ $k$ is the number of triple patterns in the query and $|G|$ the size
+ of the dataset. Thanks to the random walk approach, \NAME converges
+ to complete results ie. sampling the query multiple times returns
   more result and improve the accuracy of the cardinality.
   %
 
