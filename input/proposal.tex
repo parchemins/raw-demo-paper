@@ -10,21 +10,33 @@
  
 
  
- Take the query 604 of WDbench presented in the
+ As a motivating example, we rely on the query 604 of
+ WDbench\cite{angles2022wdbench} presented in the
  figure~\ref{fig:raw_screenshot}. This query are looking for people
  with the same birth and death date. This query returns ~25M results,
- takes more than 2 hours to execute on JENA and time-out on the public
- Wikidata SPARQL endpoint. However, using \NAME,
- in 35 seconds, it is possible to estimate that the query should
- return around 26 millions of results more or less 3 millions and
- return 1434 random results, knowing the probability to draw each
- result individually.
+ time-out on the public Wikidata SPARQL endpoint, and takes more than
+ 2 hours to execute on JENA. However, using \NAME, in 35 seconds, it
+ is possible to estimate that the query should return around 26
+ millions of results more or less 3 millions and return 1434 random
+ results
 
- Given a conjunctive query, \NAME determines a join order for triple
- patterns and draw random mappings for each triple patterns following
- the join order.
+% =======
+% \NAME relies on random walks as described in Wander
+% Join~\cite{li2019wanderjoin}. Random walks offer several advantages:
+% \begin{inparaenum}[(1)]
+%   \item They proved to be the best approach for estimating the cardinality
+%     of conjunctive SPARQL queries~\cite{park2020g}
+%   \item They do not require maintaining statistics~\cite{gubichev2015query}
+%   \item They can be efficiently implemented just by relying on
+%     traditional SPO, POS, and OSP indexes that are widely available on
+%     existing triple stores~\cite{DBLP:conf/cidr/LeisRGK017}.
+% \end{inparaenum}
+% >>>>>>> 5231642086fb5dee8bbaf39175f7b5ce28485db4
 
  
+To achieve such result,  \NAME first determines a join order for the
+query 604 as presented in the figure~\ref{fig:raw_screenshot} on the
+right panel with \verb+quad\#1+ to \verb+quad\#6+ 
 
  
  
@@ -32,10 +44,29 @@
 % \NAME's random walks. The top part of the figure shows where the users
 % type their queries.
 
-By pressing the play button, it asks the server
-for random walks on this whole BGP. When the server reaches a
-configurable threshold of $10 000$ random walks, or $60s$ execution
-time, it returns its results. By repeating the operation, results are
+By pressing the play button, \NAME asks the server for random walks on
+this whole BGP using the join order described on the right panel of
+figure~\ref{fig:raw_screenshot}~\footnote{$quad_1$ to  $quad_6$ }. When the server reaches a configurable threshold
+of $10 000$ random walks, or $60s$ execution time, it returns its
+results.
+
+Random walks follow the join order for $Q_{604}$. Starting from the
+\verb+quad\#1+, it draws a random mapping $\mu_1$ for \verb+?x1+ with
+a probability of $1/|quad_1|$. As \verb+?x1+ is now bounded, it draws a
+random mapping $\mu_2$ for \verb+?x3+ for the second triple pattern
+with a probability of $1/|mu_1@quad_2|$. with $\mu_1$ and $\mu_2$, the
+random walk cannot find a result for the third triple pattern
+$quad_3$. The random walk failed but is returned along with the
+probability of this path as described in the lower panel of the
+figure~\ref{fig:raw_screenshot}.
+
+By collecting 10000 walks like this in 2s, \NAME is able to compute
+the first cardinality estimation in the left panel of
+figure~\ref{fig:raw_screenshot} ie. it estimates the cardinality of
+the query to 34M more or less 15M. It also display estimated
+cardinalities for each triple pattern of the join order in the right panel.
+
+By repeating the operation, results are
 merged iteratively in a pay-as-you-go fashion hence displaying more
 accurate information. Figure~\ref{fig:raw_screenshot} shows that over
 $10$ iterations, \NAME performed $100k$ random walks but only $1434$
