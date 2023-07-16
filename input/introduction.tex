@@ -2,37 +2,37 @@
 \section{Introduction}
 
 Sampling-based approximate query processing (S-AQP)
-~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} drastically reduce query
-execution time to deliver approximated results with error
+~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} drastically reduces query
+execution time in order to deliver approximated results with error
 estimation. S-AQP has many important use-cases in RDF including
 computing large scale
-statistics\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
-computing embeddings with random walks\cite{ristoski2016rdf2vec}, join
-orderings for query optimisation\cite{DBLP:conf/cidr/LeisRGK017},
+statistics~\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
+embeddings with random walks~\cite{ristoski2016rdf2vec}, join
+orderings for query optimisation~\cite{DBLP:conf/cidr/LeisRGK017},
 approximated
-aggregations~\cite{DBLP:journals/tods/LiWYZ19,DBLP:conf/cikm/00010XYPZ2},
-summaries computation~\cite{10.1007/978-3-030-49461-2_10}, exploratory
-queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.  However, given a
-query, current SPARQL endpoints have no support for approximated query
-processing. This is a major issue, especially  for public SPARQL endpoints where
-many queries just time-out without S-AQP support. To illustrate, suppose you just want to draw a
-random triple from Wikidata as proposed in~\cite{soulet2019anytime} with query $Q_s$:
+aggregations~\cite{DBLP:journals/tods/LiWYZ19,wang2022approximate},
+summaries~\cite{10.1007/978-3-030-49461-2_10}, exploratory
+queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.
 %
-\verb+select * {?s ?p ?o} LIMIT 1 OFFSET r+
-%
-where $r$ is a random number between 0 and the cardinality of Wikidata
- ie. $0<r<12B$. Unfortunately when $r>100M$,
-$Q_s$ time-out  returning no result\footnote{other methods
-  to sample relying on ORDER BY rand() also time-out}. Some SPARQL endpoints
-  providers provides ad-hoc solutions to compute more efficiently
-  random triples from triple
-  patterns\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service.}},
-  b,
-  ~\footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}. However,
-   the sampling is
-  limited to triple patterns and the underlying complexity is not
-  established. On SPARQL, there is nothing equivalent to the
-  TABLESAMPLE clause that is part of the SQL standard since 2003.
+However, current SPARQL endpoints do not support approximate query
+processing. This is a major issue considering that many queries just
+time out on public SPARQL endpoints without S-AQP support.
+
+\noindent One could draw random triples from
+Wikidata~\cite{soulet2019anytime} by repeatedly executing
+\texttt{SELECT * \{?s ?p ?o\} LIMIT 1 OFFSET r} where $r$ is a random
+number between $0$ and the dataset size ($0<r<12B$). However, this
+method times out for $r$ above $100M$. Sampling methods relying on
+\texttt{ORDER BY RAND()} also time out~\REF. Ad-hoc methods enabled by
+some SPARQL endpoints allow for more efficient random draws from
+triple
+patterns\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service.}}
+\footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}.
+However, the sampling is limited to single triple patterns and the
+underlying complexity remains unspecified\todo{or ``is not
+  established'' was good too}.  On SPARQL, there is nothing equivalent
+to the \texttt{TABLESAMPLE} clause that is part of the SQL standard
+since 2003.
 
 % From the state of art~\cite{DBLP:conf/cidr/LeisRGK017}, we know that
 % is possible to draw a random triple from a triple pattern in
@@ -41,32 +41,30 @@ $Q_s$ time-out  returning no result\footnote{other methods
 % pattern in the query. Sampling queries makes sense only if the
 % approximation error can also be estimated ie. for a query
 
-  In this demonstration, we extended JENA to support efficiently
-  sampling-based approximate query processing for core conjunctive
-  SPARQL queries.  Given a SPARQL $Q$ query and a budget in time,
-  \NAME~\footnote{\url{https://github.com/Chat-Wane/raw-jena}} is able
-  to deliver random results along with a cardinality estimation of the
-  total number of results. The complexity of the sampling is in
-  $O(k.log(|G|)$ where $k$ is the number of triple pattern in $Q$ and
-  $lG|$ the size of the dataset. \NAME supports the
-  pay-as-you-approach ie. sampling the query multiple times returns
-  more result and improve the accuracy of the cardinality.
-  %
+In this demonstration, we extended Apache Jena to support efficient
+sampling-based approximate query processing (S-AQP) for
+\TODO{core}\todo{maybe keep ``conjunctive'' only. in abstract too}
+conjunctive SPARQL queries. This extension, called \NAME, delivers
+random results of the given query $Q$ with a logarithmic time
+complexity: $\mathcal{O}(k.log(|G|)$ where $k$ is the number of
+triple/quad patterns of $Q$, and $|G|$ is the dataset size. \NAME also
+provides the cardinality estimation and confidence interval of
+$Q$ in a pay-as-you-go fashion~\cite{li2019wanderjoin}: sampling a
+query multiple times improves on the accuracy of provided estimates.
 
-  For the demonstration, we uploaded the Wikidata
-  Benchmark\cite{angles2022wdbench} in \NAME. As many queries are
-  timing-out on WDbench, users can see what they can obtain with the
-  same queries processed with S-AQP and how results and
-  accuracy evolve with the pay as you go approach.
-
-  The overall objective of the demonstration is to show the usefulness
-  of S-AQP for SPARQL endpoints, the feasability of implementation on
-  well-known engine, and how the eco-system of public sparql endpoints
-  can take advantage of such new processing regime.
-
-
-
-
+\noindent For the demonstration, we load the Wikidata
+Benchmark~\cite{angles2022wdbench} in \NAME. From the queries that
+time out on WDBench, users \TODO{can see what they can get} with S-AQP
+and how results and accuracy evolve using the pay-as-you-go approach.
+Overall, this demonstration highlights
+\begin{inparaenum}[(i)]
+\item the benefits of S-AQP for SPARQL endpoints,
+\item the feasibility of implementation on well-known engines,
+\item how the ecosystem of public SPARQL endpoints can take
+  advantage of such new processing \TODO{regime}
+  \todo{Probably a typo, but with P.M. you never know :p}
+  \todo{Also, third point is repeatition of first one?}.
+\end{inparaenum}
 
 
 % \section{Introduction (from quota)}

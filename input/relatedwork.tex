@@ -8,7 +8,7 @@ queries\footnote{\url{https://www.postgresql.org/docs/current/sql-select.html}}.
 after a table name in a select query specifies that sampling have to
 be used when retreiving rows in that table. Such approach does not
 allow to estimate the total number of results as proposed in
-WanderJoin\cite{DBLP:journals/tods/LiWYZ19}.  In SPARQL, it is possible to draw random
+Wander~Join\cite{li2019wanderjoin}.  In SPARQL, it is possible to draw random
 results from a SPARQL query using \verb+ ORDER BY RAND() LIMIT 100'+
 or using random \verb+OFFSET+. However, such queries are not garanteed
 to terminate in fixed time, making sampling of query results at least as
@@ -29,7 +29,7 @@ queries~\cite{DBLP:conf/cidr/LeisRGK017} including property path evaluation\cite
 make it available for end-user by exposing estimations with random
 results. Externally it has been used for large scale anaytics of
 linked data~\cite{soulet2019anytime}, and aggregate
-estimation\cite{li2016wanderjoin}, embedding
+estimation\cite{li2019wanderjoin}, embedding
 generation~\cite{ristoski2016rdf2vec}, summaries~\cite{10.1007/978-3-030-49461-2_10}.
 
 Debattista et al. [4] propose approximating specific quality metrics
