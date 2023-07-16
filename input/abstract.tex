@@ -1,21 +1,21 @@
 
-\begin{abstract} Sampling-based approximate query processing (S-AQP) has many
+\begin{abstract}
+  Sampling-based approximate query processing (S-AQP) has many
   important use-cases in RDF including computing large scale
   statistics, embeddings, join orderings, approximated aggregations,
   summaries, exploratory queries. However, current SPARQL endpoints
-  are not able to efficiently deliver results drawn uniformly at
-  random. In this demonstration, we extended JENA to support
-  efficiently sampling-based approximate query processing for core
-  SPARQL queries.  we show that for a query that time-out on wikidata
-  (60s) and deliver partial non-random results, we deliver in 1s
-  partial random results along with an accurate cardinality estimation
-  of the query.
-
+  cannot efficiently deliver results drawn uniformly at random. In
+  this demonstration, we extended Apache Jena to support efficient
+  S-AQP for \TODO{core} SPARQL queries. A query that times out on
+  Wikidata after 60 seconds delivers partial non-random results; We
+  deliver partial random results along with cardinality
+  estimation in a pay-as-you-go fashion. \todo{logarithmic time complexity?}
 \end{abstract}
 
 \begin{keywords}
   SPARQL \sep
   Sampling \sep
+  Approximate query processing \sep
   Random walks
 \end{keywords}
 
