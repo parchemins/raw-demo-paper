@@ -3,7 +3,7 @@
 \begin{figure}[t]
   \centering
   \begin{minipage}{0.49\textwidth}
-    \subfloat[$(Q_e$]{
+    \subfloat[$(Q_e)$]{
       \lstinputlisting[
         basicstyle=\scriptsize\sffamily,
         language=sparql,
@@ -33,7 +33,7 @@
     }
   \end{minipage}
   \caption{
-    query $Q_e$  evaluated on RDF graph $G_1$.
+    query $Q_e$  evaluated on RDF graph $G_1$ from \cite{10.1007/978-3-031-33455-9_3}.
   }
   \label{fig:random_walks_example}
 \end{figure}
@@ -45,7 +45,7 @@
 
 \paragraph{Sampling principles}
 
-
+\NAME is based on WanderJoin\cite{li2019wanderjoin}.
 Let $Q$ be a SPARQL conjunctive query, and $J = \langle tp_1, ..., tp_n \rangle$ be
 the join order used to perform random walks. A random walk
 $\gamma_i = \langle t_1, ..., t_n\rangle$ is computed over
