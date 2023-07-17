@@ -4,12 +4,12 @@
   important use-cases in RDF including computing large scale
   statistics, embeddings, join orderings, approximated aggregations,
   summaries, exploratory queries. However, current SPARQL endpoints
-  cannot efficiently deliver results drawn uniformly at random. In
-  this demonstration, we extended Apache Jena to support efficient
-  S-AQP for \TODO{core} SPARQL queries. A query that times out on
-  Wikidata after 60 seconds delivers partial non-random results; We
-  deliver partial random results along with cardinality
-  estimation in a pay-as-you-go fashion. \todo{logarithmic time complexity?}
+  have no support for S-AQP, and many queries just time-out on public
+  SPARQL endpoints. In this demonstration, we present \NAME: an
+  extension of Apache Jena to support S-AQP for conjunctive SPARQL
+  queries relying on random walks. \NAME delivers partial random
+  results along with cardinality estimation in a pay-as-you-go fashion
+  with a logarithmic complexity.
 \end{abstract}
 
 \begin{keywords}

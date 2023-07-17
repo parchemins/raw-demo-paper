@@ -1,5 +1,4 @@
 
-
 \begin{figure}
   \setlength{\fboxsep}{0pt} % box tighlty around text
   \begin{subfigure}{0.48\textwidth}
@@ -26,7 +25,7 @@
     \caption{RDF Graph $G_1$: $A$, $B$, and $C$ are cycling sports; $D$ and $E$
       are countries of Central America.}
   \end{subfigure}
-  \caption{\label{fig:random_walks_example}Query $Q_e$  evaluated on the RDF graph $G_1$.
+  \caption{\label{fig:random_walks_example}Query $Q_e$  evaluated on the RDF graph $G_1$ from \cite{10.1007/978-3-031-33455-9_3}.
     \TODO{Better caption}}
 \end{figure}
 
@@ -34,7 +33,7 @@
 
 \paragraph{Sampling principles.}
 
-
+\NAME is based on WanderJoin\cite{li2019wanderjoin}.
 Let $Q$ be a SPARQL conjunctive query, and $J = \langle tp_1, ..., tp_n \rangle$ be
 the join order used to perform random walks. A random walk
 $\gamma_i = \langle t_1, ..., t_n\rangle$ is computed over
@@ -104,29 +103,41 @@ and the cardinality of the query is estimated as $card(\Gamma) =
  figure~\ref{fig:raw_screenshot}. This query are looking for people
  with the same birth and death date. This query returns ~25M results,
  time-out on the public Wikidata SPARQL endpoint, and takes more than
- 2 hours to execute on JENA. However, using \NAME, in 35 seconds, it
- is possible to estimate that the query should return around 26
- millions of results more or less 3 millions and return 1434 random
- results
+ 2 hours to execute on JENA. However, in 35 seconds \NAME estimates the
+ cardinality of $Q_{604}$ around 26 millions of results more or less 3
+ millions and returns 1434 random results.
 
  
 % \paragraph{Web interface.}
-Figure~\ref{fig:raw_screenshot} presents the user interface exploiting
-\NAME's random walks. The top part of the figure shows where the users
-type their queries. By pressing the play button, it asks the server
-for random walks on this whole BGP. When the server reaches a
-configurable threshold of $10 000$ random walks, or $60s$ execution
-time, it returns its results. By repeating the operation, results are
-merged iteratively in a pay-as-you-go fashion hence displaying more
-accurate information. Figure~\ref{fig:raw_screenshot} shows that over
-$10$ iterations, \NAME performed $100k$ random walks but only $1434$
-actual successes.  Yet, the bottom left figure provides an estimation
-of the number of results over the number of random walks with
-confidence intervals. The bottom right figure provides the estimated
-number of intermediate results along with the number of random walks
-that reached each triple/quad pattern.  Finally, the bottom part shows
-both failed and succeeded random walks along with the probability that
-they were chosen at execution time.
+ Figure~\ref{fig:raw_screenshot} presents the user interface
+ exploiting \NAME's random walks. The top part of the figure shows
+ where the users type their queries. The bottom panel displays the
+ random walks $\gamma_i$ with $P(\gamma_i))$ ie. all displayed random
+ walks failed.  The left panel presents the evolution of cardinality
+ estimation and confidence interval when the number of random walks
+ increases. As we can see, the cardinality estimation converges to the
+ real cardinality.
+
+ The right panel display the join order $J$ with number of random
+ walks that reach the triple pattern ie. for 100000 random walks
+ launched on $quad_1$, only 1434 reached $quad_6$.
+
+ By pressing the play button, it asks the server for random walks on
+ this whole BGP. When the server reaches a configurable threshold of
+ $10 000$ random walks, or $60s$ execution time, it returns its
+ results. By repeating the operation, results are merged iteratively
+ in a pay-as-you-go fashion hence displaying more accurate
+ information. Figure~\ref{fig:raw_screenshot} shows that over $10$
+ iterations, \NAME performed $100k$ random walks but only $1434$
+ actual successes.
+
+ % Yet, the bottom left figure provides an estimation
+ % of the number of results over the number of random walks with
+ % confidence intervals. The bottom right figure provides the estimated
+ % number of intermediate results along with the number of random walks
+ % that reached each triple/quad pattern.  Finally, the bottom part
+ % shows both failed and succeeded random walks along with the
+ % probability that they were chosen at execution time.
 
 % \paragraph{Getting insights on timed out WDBench queries.}
 % A few queries of WDBench fail to execute under the 60 seconds mark,
