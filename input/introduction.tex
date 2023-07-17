@@ -1,10 +1,9 @@
 
 \section{Introduction}
 
-Sampling-based approximate query processing (S-AQP)
-~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} drastically reduces query
+Sampling-based Approximate Query Arocessing (S-AQP) drastically reduces query
 execution time in order to deliver approximated results with error
-estimation. S-AQP has many important use-cases in RDF including
+estimation~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}. S-AQP has many important use-cases in RDF including
 computing large scale
 statistics~\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
 embeddings with random walks~\cite{ristoski2016rdf2vec}, join
@@ -14,24 +13,28 @@ aggregations~\cite{DBLP:journals/tods/LiWYZ19,wang2022approximate},
 summaries~\cite{10.1007/978-3-030-49461-2_10}, exploratory
 queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.
 %
-However, current SPARQL endpoints do not support approximate query
-processing. This is a major issue considering that many queries just
-time out on public SPARQL endpoints without S-AQP support.
-
-\noindent One could draw random triples from
+However, current SPARQL endpoints have no native support for S-AQP,
+pushing end-users to materialize result then sample
+results. Consequenly, sampling has the same cost than evaluating
+SPARQL queries and many queries just time out on public SPARQL
+endpoints.
+%
+One could draw random triples from
 Wikidata~\cite{soulet2019anytime} by repeatedly executing
-\texttt{SELECT * \{?s ?p ?o\} LIMIT 1 OFFSET r} where $r$ is a random
+\lstinline[language=SPARQL]|SELECT * {?s ?p ?o} LIMIT 1 OFFSET r|, where $r$ is a random
 number between $0$ and the dataset size ($0<r<12B$). However, this
-method times out for $r$ above $100M$. Other sampling methods relying
-on \texttt{ORDER BY RAND() limit 1} also time out as they require
-materialisation of results. Ad-hoc methods enabled by some SPARQL
-endpoints allow for more efficient random draws from triple
+method times out for $r$ above $100M$. Some triple stores proposes
+ad-hoc methods for sampling triple
 patterns\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service.}}
 \footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}.
 However, the sampling is limited to single triple patterns and the
 underlying complexity is not established.  On SPARQL, there is nothing
 equivalent to the \texttt{TABLESAMPLE} clause that is part of the SQL
-standard since 2003.
+standard since 2003. This is a major issue, especially when trying to
+build an eco-system based on SPARQL endpoints. With no S-AQP support
+on SPARQL endpoints, building summaries directly from SPARQL endpoints
+is difficult, as computing VOID descriptions, computing embedding,
+optimising join orders for federated queries etc.
 
 % From the state of art~\cite{DBLP:conf/cidr/LeisRGK017}, we know that
 % is possible to draw a random triple from a triple pattern in
@@ -40,23 +43,21 @@ standard since 2003.
 % pattern in the query. Sampling queries makes sense only if the
 % approximation error can also be estimated ie. for a query
 
-  In this demonstration, we extended JENA to support efficiently
-  S-AQP for core conjunctive
-  SPARQL queries.  Given a SPARQL $Q$ query and a budget in time,
-  \NAME~\footnote{\url{https://github.com/Chat-Wane/raw-jena}} is able
-  to deliver random results along with a cardinality estimation of the
-  total number of results. Our approach relies on random
- walks as defined in WanderJoin\cite{li2016wanderjoin}. This approach
- has been proven accurate on the G-Care
- benchmark\cite{DBLP:conf/sigmod/ParkKBKHH20} for RDF datasets. Thanks
- to traditional indexing schema of RDF \footnote{SPO,POS,OSP}, random
- walks for conjunctive queries are executed in $k.log(|G|)$ where
- $k$ is the number of triple patterns in the query and $|G|$ the size
- of the dataset. Thanks to the random walk approach, \NAME converges
- to complete results ie. sampling the query multiple times returns
-  eventually all results  and the  the accuracy of the cardinality
-  estimation eventually converge to the exact cardinality.
-
+In this demonstration, we extended JENA to support efficiently S-AQP
+for conjunctive SPARQL queries.  Given a SPARQL $Q$ query and a budget
+in time, \NAME~\footnote{\url{https://github.com/Chat-Wane/raw-jena}}
+is able to deliver random results along with a cardinality estimation
+of the total number of results. Our approach relies on random walks as
+defined in WanderJoin\cite{li2016wanderjoin}. This approach has been
+proven accurate on the G-Care
+benchmark\cite{DBLP:conf/sigmod/ParkKBKHH20} for RDF datasets. Thanks
+to traditional indexing schema of RDF \footnote{SPO,POS,OSP}, random
+walks for conjunctive queries are executed in $k.log(|G|)$ where $k$
+is the number of triple patterns in the query and $|G|$ the size of
+the dataset. Thanks to the random walk approach, \NAME converges to
+complete results ie. sampling the query multiple times returns
+eventually all results and the the accuracy of the cardinality
+estimation eventually converge to the exact cardinality.
 
 \noindent For the demonstration, we load the Wikidata
 Benchmark~\cite{angles2022wdbench} in \NAME. From the queries that
