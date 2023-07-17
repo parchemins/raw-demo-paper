@@ -60,11 +60,11 @@ optimising join orders for federated queries etc.
  returns all results, and the estimated cardinality eventually converges
  to the exact cardinality.
 
-\noindent For the demonstration, we load the Wikidata
-Benchmark~\cite{angles2022wdbench} in \NAME. From the queries that
-time-out on WDBench, users \TODO{can see what they can get} with S-AQP,
-and how results and the accuracy of cardinality estimates evolve using
-the pay-as-you-go approach. Overall, this demonstration highlights
+ \noindent For the demonstration, we load the Wikidata
+ Benchmark~\cite{angles2022wdbench} of 1,2B triples in \NAME and
+ re-execute queries that time-out with S-AQP as described in
+ section~\ref{proposal}. Thanks to S-AQP results, users can understand
+ why these queries time-out. Overall, this demonstration highlights
 \begin{inparaenum}[(i)]
 \item the benefits of S-AQP for the public SPARQL endpoints ecosystem,
 \item the feasibility of implementation on well-known engines,
