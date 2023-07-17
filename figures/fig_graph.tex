@@ -1,0 +1,32 @@
+
+\begin{tikzpicture}
+
+  \thickmuskip=0mu
+  \medmuskip=0mu
+  \thinmuskip=0mu
+
+  \newcommand\X{65pt}
+  \newcommand\Y{-17.6pt}
+  \newcommand\PREDICATE{\tiny}
+  
+  \draw (0, 0) node(A){\textbf{A}} +(-5pt, -5pt) rectangle +(5pt, 5pt);
+  \draw (\X, 0) node(D){\textbf{D}} +(-5pt, -5pt) rectangle +(5pt, 5pt);
+  \draw (2.2*\X, 0) node(Q3609){\textbf{Q3609}} +(-15pt, -5pt) rectangle +(15pt, 5pt);
+
+  \draw (\X, \Y) node(B){\textbf{B}} +(-5pt, -5pt) rectangle +(5pt, 5pt);
+  \draw (2.2*\X, \Y) node(Q27611){\textbf{Q27611}} +(-18pt, -5pt) rectangle +(18pt, 5pt);
+  \draw (0, 2*\Y) node(C){\textbf{C}} +(-5pt, -5pt) rectangle +(5pt, 5pt);
+  \draw (1*\X, 2*\Y) node(E){\textbf{E}} +(-5pt, -5pt) rectangle +(5pt, 5pt);
+  
+
+  \draw[->] (A) -- node[fill=white, font=\PREDICATE]{P17} (D);
+  \draw[->] (C) -- node[fill=white, sloped, font=\PREDICATE]{P641} (B);
+  \draw[->] (C) -- node[fill=white, sloped, font=\PREDICATE]{P17} (E);
+  \draw[->] (B) -- node[fill=white, sloped, font=\PREDICATE, xshift=-1.5em]{P641} (Q3609);
+  \draw[->] (E) -- node[fill=white, sloped, font=\PREDICATE]{P361} (Q27611);
+  \draw[->] (D) -- node[fill=white, sloped, font=\PREDICATE, xshift=-1.4em]{P361} (Q27611);
+  \draw[->] (A) to[out=20, in=165] node[fill=white,sloped, font=\PREDICATE]{P641} (Q3609);
+  
+  
+
+\end{tikzpicture}

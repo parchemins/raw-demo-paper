@@ -1,49 +1,38 @@
 
 
-\begin{figure}[t]
-  \centering
-  \begin{minipage}{0.49\textwidth}
-    \subfloat[$(Q_e$]{
-      \lstinputlisting[
-        basicstyle=\scriptsize\sffamily,
-        language=sparql,
-        numbers=none,
-        columns=fixed,
-        showstringspaces=false]{
-          figures/query-q1-j2-no-star.rq
-        }
-      \label{fig:q1-j2-1hop}
-    } \\
-    % \subfloat[$(Q_1^{J_2})^{1..2}$]{
-    %   \lstinputlisting[
-    %     basicstyle=\scriptsize\sffamily,
-    %     language=sparql,
-    %     numbers=none,
-    %     columns=fixed,
-    %     showstringspaces=false]{
-    %       figures/query-q1-j2-2hop.rq
-    %     }
-    %   \label{fig:q1-j2-2hop}
-    % }
-  \end{minipage}
+\begin{figure}
+  \setlength{\fboxsep}{0pt} % box tighlty around text
+  \begin{subfigure}{0.48\textwidth}
+    \fbox{% frame
+      \adjustbox{valign=B}{% margins
+        \resizebox{\textwidth}{!}{% scale
+          \lstinputlisting[
+            basicstyle=\scriptsize\sffamily,
+            language=sparql, numbers=none, columns=flexible,
+            commentstyle=\color{Gray!70},
+            showstringspaces=false]{
+            figures/query-q1-j2-no-star.rq
+      } } } }
+    \caption{\label{fig:q1-j2-1hop}Query $Q_e$: All cycling races of Central America along
+      with their respective country.}
+  \end{subfigure}
   \hfill
-  \begin{minipage}{0.50\textwidth}
-    \subfloat[RDF graph $G_1$]{
-      \includegraphics[width=\textwidth]{figures/graph-g1.png}
-    }
-  \end{minipage}
-  \caption{
-    query $Q_e$  evaluated on RDF graph $G_1$.
-  }
-  \label{fig:random_walks_example}
+  \begin{subfigure}{0.48\textwidth}
+    \fbox{%
+      \resizebox{\textwidth}{!}{% scale
+        \input{figures/fig_graph.tex}
+    }}
+    % \includegraphics[width=\textwidth]{figures/graph-g1.png}
+    \caption{RDF Graph $G_1$: $A$, $B$, and $C$ are cycling sports; $D$ and $E$
+      are countries of Central America.}
+  \end{subfigure}
+  \caption{\label{fig:random_walks_example}Query $Q_e$  evaluated on the RDF graph $G_1$.
+    \TODO{Better caption}}
 \end{figure}
 
+\section{\NAME: RAndom Walks for Apache Jena}
 
-
-\section{\NAME}
-
-
-\paragraph{Sampling principles}
+\paragraph{Sampling principles.}
 
 
 Let $Q$ be a SPARQL conjunctive query, and $J = \langle tp_1, ..., tp_n \rangle$ be
