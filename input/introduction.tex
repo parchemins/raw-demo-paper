@@ -1,7 +1,7 @@
 
 \section{Introduction}
 
-Sampling-based Approximate Query Arocessing (S-AQP) drastically reduces query
+Sampling-based Approximate Query Processing (S-AQP) drastically reduces query
 execution time by delivering approximated results with error
 estimates~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}. S-AQP has many important use-cases in RDF including
 computing large scale
@@ -23,7 +23,7 @@ One could draw random triples from Wikidata~\cite{soulet2019anytime}
 by repeatedly executing \lstinline[language=SPARQL]|SELECT * {?s ?p  ?o} LIMIT 1 OFFSET r|,
 where $r$ is a random number between $0$ and
 the dataset size ($0<r<12B$). However, this method times out for $r$
-above $100M$. Some triple stores proposes ad-hoc methods for sampling
+above $100M$. Some triple stores propose ad-hoc methods for sampling
 triple
 patterns\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service.}}
 \footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}}.
@@ -33,8 +33,8 @@ equivalent to the \texttt{TABLESAMPLE} clause that is part of the SQL
 standard since 2003. This is a major issue, especially when trying to
 build an eco-system based on SPARQL endpoints. With no S-AQP support
 on SPARQL endpoints, building summaries directly from SPARQL endpoints
-is difficult, as computing VOID descriptions, computing embedding,
-optimising join orders for federated queries etc.
+such as VoID descriptions is challenging, as well as computing graph
+embeddings or optimizing join orders for federated queries, etc.
 
 % From the state of art~\cite{DBLP:conf/cidr/LeisRGK017}, we know that
 % is possible to draw a random triple from a triple pattern in
@@ -53,7 +53,7 @@ optimising join orders for federated queries etc.
  has proven to be accurate on the G-Care
  benchmark~\cite{DBLP:conf/sigmod/ParkKBKHH20} for RDF datasets. Thanks
  to traditional SPO, POS, OSP indexes of RDF, random
- walks for conjunctive queries are executed in $k.log(|G|)$ where
+ walks are executed in $k.log(|G|)$ for conjunctive queries where
  $k$ is the number of triple patterns in the query and $|G|$ the size
  of the dataset. Thanks to the random walk approach, \NAME converges
  to complete results, i.e. sampling the query multiple times eventually
