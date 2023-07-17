@@ -42,7 +42,7 @@ and each subsequent $t_i$ ($i > 1$) in $\llbracket t_{i-1} \bowtie tp_i \rrbrack
 Once computed, the cardinality of $Q$ is estimated as the inverse probability
 of sampling $\gamma_i$, i.e. $P(\gamma_i)^{-1}$, with $P(\gamma_i) = |\llbracket tp_1 \rrbracket_G|^{-1} \prod_{i=2}^{n}
 |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$.
-
+%
 For instance, let us consider the query $Q_e$ and the RDF graph $G_1$
 depicted in Figure~\ref{fig:random_walks_example}. Following the join order $tp_3,tp_2,tp_1$, the random walk 
 $\gamma_1$ is computed as follow:
@@ -70,7 +70,7 @@ probability of sampling $\gamma_1$:
 \end{tabular}
 \end{small}
 
-\noindent Of course, a random walk may fail if it becomes impossible to sample $t_i$ for
+\noindent Note that a random walk may fail if it becomes impossible to sample $t_i$ for
 some $i \leq n$. In this case, its probability $P(\gamma_i)$ of being sampled is 0.
 For instance, if $t_1 = (B, P641, Q3609)$ is picked in
 $\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$
@@ -79,8 +79,8 @@ $\llbracket (B, P17, ?x3) \rrbracket_{G_1} = \emptyset$.
 %
 To improve the quality of estimates, instead of computing only one random
 walk, a set $\Gamma = \langle \gamma_1, ..., \gamma_k \rangle$ of $k$ random walks is computed,
-and the cardinality of the query is estimated as $card(\Gamma) =
-|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$.
+and the cardinality of the query is estimated as
+$|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$.
 
 
 \paragraph{\NAME in action}
@@ -99,37 +99,37 @@ and the cardinality of the query is estimated as $card(\Gamma) =
 %knowledge graphs. \TODO{In fields.}
 
  As a motivating example, we rely on the query $Q_{604}$ of
- WDBench~\cite{angles2022wdbench} presented in the
- figure~\ref{fig:raw_screenshot}. This query are looking for people
- with the same birth and death date. This query returns ~25M results,
+ WDbench~\cite{angles2022wdbench} presented in
+ Figure~\ref{fig:raw_screenshot}. This query searches for people
+ with the same date of birth and death. This query returns ~25M results,
  time-out on the public Wikidata SPARQL endpoint, and takes more than
- 2 hours to execute on JENA. However, in 35 seconds \NAME estimates the
- cardinality of $Q_{604}$ around 26 millions of results more or less 3
- millions and returns 1434 random results.
+ 2 hours to complete on JENA. However, in 35 seconds \NAME estimates
+ the cardinality of $Q_{604}$ around $26 \pm 3$ millions of results and
+ returns 1434 random results.
 
  
 % \paragraph{Web interface.}
  Figure~\ref{fig:raw_screenshot} presents the user interface
  exploiting \NAME's random walks. The top part of the figure shows
  where the users type their queries. The bottom panel displays the
- random walks $\gamma_i$ with $P(\gamma_i))$ ie. all displayed random
- walks failed.  The left panel presents the evolution of cardinality
- estimation and confidence interval when the number of random walks
- increases. As we can see, the cardinality estimation converges to the
+ random walks $\gamma_i$ with $P(\gamma_i))$, i.e. all displayed random
+ walks failed.  The left panel presents the evolution of the cardinality
+ estimate and the confidence interval when the number of random walks
+ increases. As we can see, the cardinality estimate converges to the
  real cardinality.
 
- The right panel display the join order $J$ with number of random
- walks that reach the triple pattern ie. for 100000 random walks
+ The right panel display the join order $J$ with the number of random
+ walks that reach each triple pattern, i.e. for 100000 random walks
  launched on $quad_1$, only 1434 reached $quad_6$.
 
  By pressing the play button, it asks the server for random walks on
- this whole BGP. When the server reaches a configurable threshold of
- $10 000$ random walks, or $60s$ execution time, it returns its
+ the whole BGP. When the server reaches a configurable threshold of
+ $10 000$ random walks, or $60s$ of execution time, it returns its
  results. By repeating the operation, results are merged iteratively
  in a pay-as-you-go fashion hence displaying more accurate
  information. Figure~\ref{fig:raw_screenshot} shows that over $10$
  iterations, \NAME performed $100k$ random walks but only $1434$
- actual successes.
+ succeeded.
 
  % Yet, the bottom left figure provides an estimation
  % of the number of results over the number of random walks with
