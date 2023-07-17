@@ -97,6 +97,9 @@ and the cardinality of the query is estimated as $card(\Gamma) =
 
 \paragraph{\NAME in action}
 
+
+% ?x1 <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q5> . ?x2 <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q5> . ?x1 <http://www.wikidata.org/prop/direct/P569> ?x3 . ?x2 <http://www.wikidata.org/prop/direct/P569> ?x3 . ?x1 <http://www.wikidata.org/prop/direct/P570> ?x4 . ?x2 <http://www.wikidata.org/prop/direct/P570> ?x4 . 
+
  \begin{figure*}
    \centering
    \includegraphics[width=0.85\textwidth]{figures/raw_screenshot.png}
@@ -107,8 +110,8 @@ and the cardinality of the query is estimated as $card(\Gamma) =
 %Researchers and practitioners in need of sampling services over RDF
 %knowledge graphs. \TODO{In fields.}
 
- As a motivating example, we rely on the query 604 of
- WDbench\cite{angles2022wdbench} presented in the
+ As a motivating example, we rely on the query $Q_{604}$ of
+ WDBench~\cite{angles2022wdbench} presented in the
  figure~\ref{fig:raw_screenshot}. This query are looking for people
  with the same birth and death date. This query returns ~25M results,
  time-out on the public Wikidata SPARQL endpoint, and takes more than
