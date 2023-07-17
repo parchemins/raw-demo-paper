@@ -100,19 +100,19 @@ $|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$.
 %Researchers and practitioners in need of sampling services over RDF
 %knowledge graphs. \TODO{In fields.}
 
- As a motivating example, we executed the query $Q_{604}$ of
+ We executed the query $Q_{604}$ of
  WDbench~\cite{angles2022wdbench} presented in
- Figure~\ref{fig:raw_screenshot}. This query searches for people
- with the same date of birth and death. This query returns ~25M results,
- time-out on the public Wikidata SPARQL endpoint, and takes more than
- 2 hours to complete on JENA.
-
- Each time the play button is pressed, the server computes random
- walks and stop after $10 000$ random walks, or $60s$ of execution
+ Figure~\ref{fig:raw_screenshot} that searches for people with
+ the same date of birth and death. $Q_{604}$ time-out on the public
+ Wikidata SPARQL endpoint, takes more that  2 hours to complete
+ JENA and returns ~25M results.
+%
+With \NAME,  each time the play button is pressed, the server computes random
+ walks until reaching  $10 000$ random walks, or $60s$ of execution
  time. By repeating the operation, results are merged iteratively in a
  pay-as-you-go fashion hence displaying more accurate
  information. Figure~\ref{fig:raw_screenshot} shows the state of after
- $10$ iterationsexected in ~35 seconds. \NAME estimates
+ $10$ iterations executed in ~35 seconds. \NAME estimates
  the cardinality of $Q_{604}$ around $26 \pm 3$ millions of results
  and returns 1434 random results among 100k random walks.
 % 
@@ -126,7 +126,10 @@ $|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$.
  order $J$ with the number of random walks that reach each triple
  pattern, i.e. for 100000 random walks launched on $quad_1$, only 1434
  reached $quad_6$. Maybe the join order choosed by JENA is not the
- best one and should be corrected.
+ best one and should be corrected. This example shows how S-AQP can be
+ used for exploratory queries and query optimisation. Using the same
+ approach, it is also possible to compute large scale statistics,
+ compute embeddings or summaries.
 
 
  % Yet, the bottom left figure provides an estimation
