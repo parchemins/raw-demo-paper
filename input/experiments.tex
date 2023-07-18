@@ -6,7 +6,7 @@
 %% How it improves processing time of embeddings over wikidata.
 
 %% How it allows users to get approximate query results on wikidata
-%% queries that would otherwise time-out on public endpoints. 
+%% queries that would otherwise time out on public endpoints. 
 
 \section{Demonstration Plan}
 
@@ -24,7 +24,7 @@
  WDbench~\cite{angles2022wdbench} presented in
  Figure~\ref{fig:raw_screenshot}. This query searches for people
  with the same date of birth and death. This query returns ~25M results,
- time-out on the public Wikidata SPARQL endpoint, and takes more than
+ times out on the public Wikidata SPARQL endpoint, and takes more than
  2 hours to complete on JENA. However, using \NAME, in 35 seconds it
  is possible to estimate that the query should return around $26 \pm 3$ 
  millions of results and return 1434 random results.
