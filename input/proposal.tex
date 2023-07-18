@@ -41,7 +41,7 @@ $\gamma_i = \langle t_1, ..., t_n\rangle$ is computed over
 an RDF graph $G$ by randomly picking $t_1$ in $\llbracket tp_1 \rrbracket_G$,
 and each subsequent $t_i$ ($i > 1$) in $\llbracket t_{i-1} \bowtie tp_i \rrbracket_G$.
 Once computed, the cardinality of $Q$ is estimated as  the inverse probability
-of sampling $\gamma_i$~\cite{li2019wanderjoin}, i.e.,  $P(\gamma_i)^{-1}$, with $P(\gamma_i) = |\llbracket tp_1 \rrbracket_G|^{-1} \prod_{i=2}^{n}
+of sampling $\gamma_i$~\cite{li2019wanderjoin}, with $P(\gamma_i) = |\llbracket tp_1 \rrbracket_G|^{-1} \prod_{i=2}^{n}
 |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$.
 %
 For instance, let us consider the query $Q_1$ and the RDF graph $G_1$
@@ -101,7 +101,7 @@ $|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$.
 %knowledge graphs. \TODO{In fields.}
 
  We executed the query $Q_{604}$ of
- WDbench~\cite{angles2022wdbench} presented in
+ WDBench~\cite{angles2022wdbench} presented in
  Figure~\ref{fig:raw_screenshot} that searches for people with
  the same date of birth and death. $Q_{604}$ times out on the public
  Wikidata SPARQL endpoint takes over 2 hours to complete on JENA and returns ~25M results.
