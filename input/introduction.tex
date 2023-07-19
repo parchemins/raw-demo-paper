@@ -15,8 +15,9 @@ queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.
 %
 However, SPARQL 1.1 does not support S-AQP. Consequently queries have
 to be executed on all data instead of a sample of data. In these
-conditions, most of queries just time-out on public SPARQL endpoints
-and S-AQP use-cases cannot be efficiently implemented.
+conditions, many queries just time-out on \emph{public} SPARQL
+endpoints, and building a robust decentralized eco-system of SPARQL
+endpoints remains challenging.
 
 %leaving end-users with no choice but to materialize and then sample
 %results. While sampling could be a way to making online knowledge
@@ -38,8 +39,9 @@ triple patterns\footnote{\url{https://docs.stardog.com/query-stardog/sampling-se
 \footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}},
 but these solutions are limited to single triple patterns and the
 underlying complexity is not established.
-The challenge for S-AQP support in SPARQL is be sure to deliver random
-results in the current quota of public SPARQL endpoint.
+%
+%The challenge for S-AQP support in SPARQL is be sure to deliver random
+%results in the current quota of public SPARQL endpoint.
 
 In this demonstration, we extended JENA to efficiently support S-AQP
 for conjunctive SPARQL queries. \NAME evaluates a query $Q$ over
