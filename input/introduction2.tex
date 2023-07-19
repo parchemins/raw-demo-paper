@@ -1,67 +1,76 @@
 
 \section{Introduction}
 
-SPARQL queries, such as the query $Q_{604}$ of Figure~\ref{fig:raw_screenshot} cannot be executed on public SPARQL
-endpoints due to their fair-use policy i.e., they are stopped after the 60s
-returning only partial results. Because of this limitation, many
-use-cases are such as building summaries or computing statistics are
-impossible using only public SPARQL endpoints. This is a major issue,
-especially for building a decentralized eco-system of public SPARQL
-endpoints.
-
-Sampling-based Approximate Query Processing
-(S-AQP)~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} may tackle this issue
-for some use-cases such as computing large-scale
+Public SPARQL endpoints cannot fully execute many SPARQL queries due
+to their quotas and fair-use policies. After 60 seconds, they stop
+their execution and return only partial results, forbidding many use
+cases such use cases such as computing large-scale
 statistics~\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
-knowledge graph embeddings~\cite{ristoski2016rdf2vec}, join orders
-optimisation~\cite{DBLP:conf/cidr/LeisRGK017}, approximate
+knowledge graph embeddings~\cite{ristoski2016rdf2vec}, join
+orders~\cite{DBLP:conf/cidr/LeisRGK017}, approximate
 aggregations~\cite{wang2022approximate},
 summaries~\cite{10.1007/978-3-030-49461-2_10}, and exploratory
-queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}. By evaluating SPARQL
-queries only a sample of data, S-AQP drastically reduce execution time
-returning approximated results with error estimation.  The challenge
-for S-AQP support in SPARQL is to garantee that the evaluation of
-SPARQL query under sampling never time-out on public SPARQL endpoints.
+queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.  This constitutes a
+major issue for building robust decentralized ecosystems of public
+SPARQL endpoints.
 
-In this demonstration, we extended JENA to efficiently support S-AQP
-for conjunctive SPARQL queries. \NAME evaluates a query $Q$ over
-dataset $D$ by drawing  random walks guided by $Q$ over $D$ as defined in
-\WANDER~\cite{li2019wanderjoin}. We rely on random walks for the
-following reasons:
+Sampling-based Approximate Query Processing
+(S-AQP)~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} tackles this issue by
+confining query executions to samples of large datasets, drastically
+reducing query execution time, delivering approximate results with
+error estimates.
 %
+To support S-AQP in SPARQL, the evaluation of such queries \emph{must}
+both
 \begin{inparaenum}[(i)]
-%
-\item As each random walk is independant, a
-user can draw multiple random walks distributed in time, respecting
-the fair policy of public SPARQL endpoint and getting random results
-in a pay-as-go approach.
-%
-\item As the complexity of drawing one random walk is logarithmic, it is
-possible to draw thousands of random walk per second. Thanks to
-traditional BTree indexes, which are widely used to index RDF data,
-\NAME computes a random walk in $\mathcal{O}(|Q|log(|D|))$ where $|Q|$
-is the number of triple pattern in $Q$ and $|D|$ is the number of
-triples in $D$.
-%
-\item As random walks produce random partial results, estimating the
-cardinality of complete allows users estimate the representativeness
-of the sample. For example, for the query $Q_{604}$, after 35s of
-processing, it is possible to find 1534 results, but users kwow that
-the query returns approximately 25M results. Attaching probalities to random path allows to estimate
-the cardinality of queries\cite{li2019wanderjoin} with high accuracy
-as descibed in G-CARE benchmark~\cite{DBLP:conf/sigmod/ParkKBKHH20}
+\item return random samples, and
+\item comply with fair-use policies of public SPARQL endpoints.
 \end{inparaenum}
+Ad-hoc methods already exist to sample knowledge graphs.  For example,
+a user could draw random triples from
+Wikidata~\cite{soulet2019anytime} by repeatedly executing
+\verb|SELECT * {?s ?p ?o} OFFSET r LIMIT 1|, where $r$ is a random
+number between $0$ and the dataset size ($0<r<12B$). However, all
+queries time out when $r$ is above $100M$.
+%Hala: random sampling from the set of results matched by a particular SPARQL triple pattern
+Some triple stores propose home-made methods for sampling triple
+patterns%
+\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service}}\textsuperscript{,}\footnote{\url{https://docs.openlinksw.com/virtuoso/rndsalltr/}},
+but these solutions are limited to single triple patterns and the
+underlying complexity is not established.
 
+In this demonstration, we introduce \NAME, an extension of Apache Jena
+that efficiently supports S-AQP for conjunctive SPARQL queries. \NAME
+evaluates a query $Q$ over a dataset $D$ by drawing random walks
+guided by $Q$, as defined in \WANDER~\cite{li2019wanderjoin}. Random
+walks have two desirable properties:
+\begin{inparaenum}[(i)]
+\item As each random walk is \emph{independant}, a user can distribute
+  its query execution into multiple requests, hence collecting and
+  merging random walks in a pay-as-you-go fashion without impairing
+  the fair-use policy of public SPARQL endpoints.
+\item As each random walk enjoys a \emph{logarithmic time complexity},
+  endpoints can draw thousands of random walks per second: the widely
+  used BTree indexes of RDF stores allow endpoints to compute each
+  random walk in $\mathcal{O}(|Q| \log |D|)$ where $|Q|$ is the number
+  of triple patterns in $Q$ and $|D|$ is the number of triples in $D$.
+\end{inparaenum}
+  
+\noindent As \NAME produces random partial results, estimating the
+number of complete results allows users to appreciate the
+representativeness of provided samples. These estimates prove highly
+accurate as long as random walks remain paired with their probability
+of being drawn~\cite{DBLP:conf/sigmod/ParkKBKHH20}.
+%% as shown in the G-CARE benchmark.
+For instance, Figure~\ref{fig:raw_screenshot} shows that the execution of
+$Q_{604}$ returns $1534$ random results after sampling for 35 seconds.
+\NAME improved its estimates over time, finally estimating the number
+of results to $26\pm 3M$, while the actual number of results is $25M$.
 
-%
-% Note sure about the following sentences... Do we want to promote the pay-as-you-go evaluation strategy?
-%
-%One advantage of random walks is to provide a pay-as-you-go service. % for all use-cases.
-%The data collected by sampling $Q$ over $D$ can be merged with previously collected
-%data to get more results and a better estimate of the total number of results. With an
-%unlimited budget, \NAME eventually returns all the results of $Q$.
+% With an unlimited budget, \NAME eventually returns all the results
+% of $Q$.
 
-For the demonstration, we load the 1,2 billion triples Wikidata dataset
+For the demonstration, we load the 1,2 billion triples Wikidata dataset \todo{Rework this last paragraph}
 provided by WDBench~\cite{angles2022wdbench}, and
 we re-execute the 16 queries that time out on Jena using \NAME. %S-AQP as explained in Section~\ref{proposal}. 
 %
