@@ -25,12 +25,13 @@
     \caption{RDF Graph $G_1$: $A$, $B$, and $C$ are cycling sports; $D$ and $E$
       are countries of Central America~\cite{10.1007/978-3-031-33455-9_3}}
   \end{subfigure}
-  \caption{\label{fig:random_walks_example} Query $Q_1$ evaluated on the RDF graph $G_1$ from \cite{10.1007/978-3-031-33455-9_3}.
-    \TODO{Better caption}}
+  \caption{\label{fig:random_walks_example}Query $Q_1$ evaluated on
+    the RDF graph $G_1$ provides cardinality insights~\cite{10.1007/978-3-031-33455-9_3}.}
 \end{figure}
 
 \section{\NAME: RAndom Walks for Apache Jena}
 \label{sec:proposal}
+
 
 \paragraph{Sampling principles.}
 
@@ -84,69 +85,60 @@ cardinality of $Q$ is estimated as
 $|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$.
 
 
-\paragraph{\NAME in action.}
-
-\TODO{\url{https://youtu.be/We5-rG6uxN8}}.
+\paragraph{\NAME in action (\url{https://youtu.be/We5-rG6uxN8}).}
 
 % ?x1 <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q5> . ?x2 <http://www.wikidata.org/prop/direct/P31> <http://www.wikidata.org/entity/Q5> . ?x1 <http://www.wikidata.org/prop/direct/P569> ?x3 . ?x2 <http://www.wikidata.org/prop/direct/P569> ?x3 . ?x1 <http://www.wikidata.org/prop/direct/P570> ?x4 . ?x2 <http://www.wikidata.org/prop/direct/P570> ?x4 . 
 
  \begin{figure*}
    \centering
    \includegraphics[width=0.85\textwidth]{figures/raw_screenshot.png}
-   \caption{\label{fig:raw_screenshot} Processing  $Q_{604}$ of
-     WDBench\cite{angles2022wdbench} with ~\NAME.}
+   \caption{\label{fig:raw_screenshot} Processing $Q_{604}$ of
+     WDBench~\cite{angles2022wdbench} with \NAME.}
  \end{figure*}
 
-%\paragraph{Target audience.}
-%Researchers and practitioners in need of sampling services over RDF
-%knowledge graphs. \TODO{In fields.}
 
- We executed the query $Q_{604}$ of
- WDBench~\cite{angles2022wdbench} presented in
- Figure~\ref{fig:raw_screenshot} that searches for people with
- the same date of birth and death. $Q_{604}$ times out on the public
- Wikidata SPARQL endpoint takes over 2 hours to complete on JENA and returns ~25M results.
+We executed the query $Q_{604}$ of WDBench~\cite{angles2022wdbench}
+presented in Figure~\ref{fig:raw_screenshot} that searches for people
+with the same dates of birth and death. $Q_{604}$ expects $25M$
+results, but times out on the public Wikidata SPARQL endpoint after
+$60$ seconds; and takes longer than $2$ hours to complete on Apache
+Jena.
+
+
+\noindent Each time the user presses the play button, \NAME computes
+either $10k$ random walks or as many as possible before reaching $60$
+seconds of execution time. By repeating the operation, the web client
+merges the results iteratively in a pay-as-you-go fashion.
+
+
+\noindent The bottom panel of Figure~\ref{fig:raw_screenshot} displays
+both succeeded and failed random walks $\gamma_i$ with their
+respective probability of being drawn $P(\gamma_i)$.  Increasing the
+number of random walks allows displaying more accurate estimates.  The
+left panel of Figure~\ref{fig:raw_screenshot} presents the evolution
+of cardinality estimates and confidence intervals with respect to the
+number of random walks.  The $1^{st}$ iteration provides a rough
+estimate of $35 \pm 15M$ expected results. After $35$ seconds of
+execution time and $100k$ random walks, the $10^{th}$ iteration
+provides a more accurate estimate of $26 \pm 3M$ of expected results,
+and $1434$ actual random results.
 %
-With \NAME, the server computes random walks each time the play button is pressed until reaching  $10 000$ random walks, or $60s$ of execution
- time. By repeating the operation, results are merged iteratively in a
- pay-as-you-go fashion hence displaying more accurate
- information. Figure~\ref{fig:raw_screenshot} shows results after
- $10$ iterations executed in ~35 seconds. \NAME estimates
- the cardinality of $Q_{604}$ around $26 \pm 3$ millions of results
- and returns 1434 random results among 100k random walks.
-% Hala: Figure pas lisible
-% \paragraph{Web interface.}
- The bottom panel of Figure~\ref{fig:raw_screenshot} displays the
- random walks $\gamma_i$ with $P(\gamma_i)$, i.e., all displayed
- random walks failed.  The left panel presents the evolution of the
- cardinality estimate and the confidence interval when the number of
- random walks increases. As we can see, the cardinality estimate
- converges to the real cardinality.  The right panel displays the join
- order $J$ with the number of random walks that reach each triple
- pattern, i.e., for 100000 random walks launched on $quad_1$, only 1434
- reached $quad_6$. Maybe the join order chosen by JENA is not the
- best and should be corrected. This example shows how S-AQP can be
- used for exploratory queries and optimization. It is also possible to compute large-scale statistics,
- embeddings, or summaries using the same approach.
+The right panel of Figure~\ref{fig:raw_screenshot} displays
+the join order with
+\begin{inparaenum}[(i)]
+\item the estimated cardinality of the partial query up to each
+  triple/quad pattern, and
+\item the number of random walks that reached each triple/quad pattern.
+\end{inparaenum}
+Among $100k$ random walks launched on $quad_1$, only $1434$ reached
+$quad_6$. This hints that the join order might be suboptimal since
+$quad_5$ is very selective and makes random walks fail.
 
 
- % Yet, the bottom left figure provides an estimation
- % of the number of results over the number of random walks with
- % confidence intervals. The bottom right figure provides the estimated
- % number of intermediate results along with the number of random walks
- % that reached each triple/quad pattern.  Finally, the bottom part
- % shows both failed and succeeded random walks along with the
- % probability that they were chosen at execution time.
-
-% \paragraph{Getting insights on timed out WDBench queries.}
-% A few queries of WDBench fail to execute under the 60 seconds mark,
-% providing nothing whatsoever. We execute these queries using \NAME and
-% show that, with as little as 1 second, we retrieve interesting
-% insights on the query plan that may help optimizers to perform their
-% join ordering. We also get a rough approximation of the number of
-% results that we improve by executing the query for additional seconds.
-% The plotted curve converges towards the actual cardinality of the query.
-
+\noindent This example shows how S-AQP can be used for exploratory
+queries and optimization. Nevertheless, S-AQP also provides
+opportunities for computing large-scale statistics, embeddings, or
+summaries.
 
 
 % %%% Local Variables:
