@@ -1,0 +1,88 @@
+
+\section{Introduction}
+
+Many SPARQL queries such as the query $Q_{604}$ of the
+figure~\ref{fig:raw_screenshot} cannot be executed on Public SPARQL
+endpoints due to their fair-use policy ie. they are stopped after 60s
+returning only partial results. Because of this limitation, many
+use-cases are such as building summaries or computing statistics are
+impossible using only public SPARQL endpoints. This is a major issue,
+especially for building a decentralized eco-system of public SPARQL
+endpoints.
+
+Sampling-based Approximate Query Processing
+(S-AQP)~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} may tackle this issue
+for some use-cases such as computing large-scale
+statistics~\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
+knowledge graph embeddings~\cite{ristoski2016rdf2vec}, join orders
+optimisation~\cite{DBLP:conf/cidr/LeisRGK017}, approximate
+aggregations~\cite{wang2022approximate},
+summaries~\cite{10.1007/978-3-030-49461-2_10}, and exploratory
+queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}. By evaluating SPARQL
+queries only a sample of data, S-AQP drastically reduce execution time
+returning approximated results with error estimation.  The challenge
+for S-AQP support in SPARQL is to garantee that the evaluation of
+SPARQL query under sampling never time-out on public SPARQL endpoints.
+
+In this demonstration, we extended JENA to efficiently support S-AQP
+for conjunctive SPARQL queries. \NAME evaluates a query $Q$ over
+dataset $D$ by drawing  random walks guided by $Q$ over $D$ as defined in
+\WANDER~\cite{li2019wanderjoin}. We rely on random walks for the
+following reasons:
+%
+\begin{inparaenum}[(i)]
+%
+\item As each random walk is independant, a
+user can draw multiple random walks distributed in time, respecting
+the fair policy of public SPARQL endpoint and getting random results
+in a pay-as-go approach.
+%
+\item As the complexity of drawing one random walk is logarithmic, it is
+possible to draw thousands of random walk per second. Thanks to
+traditional BTree indexes, which are widely used to index RDF data,
+\NAME computes a random walk in $\mathcal{O}(|Q|log(|D|))$ where $|Q|$
+is the number of triple pattern in $Q$ and $|D|$ is the number of
+triples in $D$.
+%
+\item As random walks produce random partial results, estimating the
+cardinality of complete allows users estimate the representativeness
+of the sample. For example, for the query $Q_{604}$, after 35s of
+processing, it is possible to find 1534 results, but users kwow that
+the query returns approximately 25M results. Attaching probalities to random path allows to estimate
+the cardinality of queries\cite{li2019wanderjoin} with high accuracy
+as descibed in G-CARE benchmark~\cite{DBLP:conf/sigmod/ParkKBKHH20}
+\end{inparaenum}
+
+
+%
+% Note sure about the following sentences... Do we want to promote the pay-as-you-go evaluation strategy?
+%
+%One advantage of random walks is to provide a pay-as-you-go service. % for all use-cases.
+%The data collected by sampling $Q$ over $D$ can be merged with previously collected
+%data to get more results and a better estimate of the total number of results. With an
+%unlimited budget, \NAME eventually returns all the results of $Q$.
+
+For the demonstration, we load the 1,2 billion triples Wikidata dataset
+provided by WDBench~\cite{angles2022wdbench}, and
+we re-execute the 16 queries that time out on Jena using \NAME. %S-AQP as explained in Section~\ref{proposal}. 
+%
+% Hala
+%  The S-AQP results shed light on the reasons for these queries time out and provide users with valuable  information about
+% Thanks to S-AQP results, users can understand
+% why these queries time out. Overall, this demonstration highlights
+\NAME aims to highlight
+\begin{inparaenum}[(i)]
+\item the benefits of S-AQP for an ecosystem of public SPARQL endpoints,
+\item the feasibility of implementing S-AQP on well-known engines.
+\end{inparaenum}
+
+% - There's nothing about fair use policies?
+% - There's just a little about how to guarantee logarithmic time complexity for triple pattern sampling.
+%   In the conclusion it's written that "\NAME demonstrates how S-AQP can be easily integrated into a
+%   representative SPARQL endpoint" but this part is not explained in the paper...
+% - What about the SAMPLE keyword of SPARQL?
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "../paper.tex"
+%%% End:
