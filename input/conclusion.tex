@@ -1,9 +1,16 @@
 
 \section{Conclusion}
 
-S-AQP has many important use-cases crucial to maintain an ecosystem of SPARQL endpoints. \NAME demonstrates how S-AQP can be
-easily integrated into a representative SPARQL endpoint. As random
-walks have a bounded complexity, random walks never time out and are not concerned by fair-use policies of public SPARQL endpoints.  In
-future works, we plan to support full SPARQL queries and to show
-how the SPARQL standard could evolve to integrate sampling as SQL
-did with the TABLESAMPLE clause.
+S-AQP has many important use cases that are crucial to build and
+maintain ecosystems of public SPARQL endpoints.
+%
+\NAME demonstrates the feasability of implementing S-AQP on a
+representative SPARQL endpoint: Apache Jena.  As each random walk is
+independant and enjoys a logarithmic upper bound on its time
+complexity, users can collect and merge samples across multiple
+executions of the same query. Such a pay-as-you-go approach perfectly
+fits the fair-use policies of public SPARQL endpoints.
+
+\noindent In future works, we plan to support full SPARQL queries and
+to show how the SPARQL standard could evolve to integrate sampling as
+SQL did with the \verb|TABLESAMPLE| clause.
