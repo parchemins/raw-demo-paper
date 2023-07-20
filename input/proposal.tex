@@ -46,8 +46,7 @@ of sampling $\gamma_i$~\cite{li2019wanderjoin}, with $P(\gamma_i) = |\llbracket 
 |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$.
 %
 For instance, let us consider the query $Q_1$ and the RDF graph $G_1$
-depicted in Figure~\ref{fig:random_walks_example}. Following the join
-order $tp_3,tp_2,tp_1$, the random walk $\gamma_1$ is computed as
+depicted in Figure~\ref{fig:random_walks_example}. Following the join order $tp_3,tp_2,tp_1$, the random walk $\gamma_1$ is computed as
 follows:
 
 \begin{small}
@@ -122,14 +121,13 @@ merges the results iteratively in a pay-as-you-go fashion.
 \noindent The bottom panel of Figure~\ref{fig:raw_screenshot} displays
 both succeeded and failed random walks $\gamma_i$ with their
 respective probability of being drawn $P(\gamma_i)$.  Increasing the
-number of random walks allows displaying more accurate estimates.  The
+number of random walks allows for displaying more accurate estimates.  The
 left panel of Figure~\ref{fig:raw_screenshot} presents the evolution
 of cardinality estimates and confidence intervals with respect to the
 number of random walks.  The $1^{st}$ iteration provides a rough
 estimate of $35 \pm 15M$ expected results. After $35$ seconds of
 execution time and $100k$ random walks, the $10^{th}$ iteration
-provides a more accurate estimate of $26 \pm 3M$ of expected results,
-and $1434$ actual random results.
+provides a more accurate estimate of $26 \pm 3M$ of expected results and $1434$ actual random results.
 %
 The right panel of Figure~\ref{fig:raw_screenshot} displays
 the join order with
