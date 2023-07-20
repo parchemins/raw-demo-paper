@@ -46,43 +46,51 @@ of sampling $\gamma_i$~\cite{li2019wanderjoin}, with $P(\gamma_i) = |\llbracket 
 |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$.
 %
 For instance, let us consider the query $Q_1$ and the RDF graph $G_1$
-depicted in Figure~\ref{fig:random_walks_example}. Following the join order $tp_3,tp_2,tp_1$, the random walk 
-$\gamma_1$ is computed as follows:
+depicted in Figure~\ref{fig:random_walks_example}. Following the join
+order $tp_3,tp_2,tp_1$, the random walk $\gamma_1$ is computed as
+follows:
 
-% \begin{center}
-  \begin{small}
-    \begin{tabular}{l|lll}
-      $tp_3$ & draw  $t_1$ &$= (\textbf{A}, P641, Q3609)$ & $\in \llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$ \\
-      $tp_2$ & draw  $t_2$ &$= (A, P17, \textbf{D})$ & $ \in \llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}$  \\
-      $tp_1$ & draw  $t_3$ &$= (D, P361, Q27611)$ & $\in \llbracket (\textbf{D}, P361, Q27611) \rrbracket_{G_1}$  
-    \end{tabular}
-  \end{small} 
-% \end{center}
+\begin{small}
+  \begin{tabular}{l|lll}
+    $tp_3$ & draw  $t_1$ &$= (\textbf{A}, P641, Q3609)$ & $\in \llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$ \\
+    $tp_2$ & draw  $t_2$ &$= (A, P17, \textbf{D})$ & $ \in \llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}$  \\
+    $tp_1$ & draw  $t_3$ &$= (D, P361, Q27611)$ & $\in \llbracket (\textbf{D}, P361, Q27611) \rrbracket_{G_1}$  
+  \end{tabular}
+\end{small} 
 
 \noindent The cardinality of $Q_1$ is then estimated as the inverse
 probability of sampling $\gamma_1$:
-\begin{small}
 
-\noindent\begin{tabular}{ll}
-    $P(\gamma_1)^{-1}$  &$=  |\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \times
-                          |\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \times
+\noindent
+\begin{small}
+$P(\gamma_1)^{-1}  =  |\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \cdot
+                          |\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \cdot
                           |\llbracket (\textbf{D}, P361,
-                          Q27611) \rrbracket_{G_1}| $ \\
-                      &$=  2 \times 1 \times 1 = 2$
-\end{tabular}
+                          Q27611) \rrbracket_{G_1}| 
+                      =  2 \cdot 1 \cdot 1 = 2$
 \end{small}
+
+%% \begin{small}
+%% \begin{tabular}{ll}
+%%     $P(\gamma_1)^{-1}$  &$=  |\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \times
+%%                           |\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \times
+%%                           |\llbracket (\textbf{D}, P361,
+%%                           Q27611) \rrbracket_{G_1}| $ \\
+%%                       &$=  2 \times 1 \times 1 = 2$
+%% \end{tabular}
+%% \end{small}
 
 \noindent Note that a random walk may fail if it becomes impossible to sample $t_i$ for
 some $i \leq n$. In this case, its probability $P(\gamma_i)$ of being sampled is 0.
 For instance, if $t_1 = (B, P641, Q3609)$ is picked in
 $\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$
 instead of $(A, P641, Q3609)$, then the random walk fails because
-$\llbracket (B, P17, ?x3) \rrbracket_{G_1} = \emptyset$.
+$\llbracket (B, P17, ?x3) \rrbracket_{G_1} = \varnothing$.
 %
 To improve the quality of estimates, we compute a set of $k$ random
 walks $\Gamma = \langle \gamma_1, ..., \gamma_k \rangle$, and the
 cardinality of $Q$ is estimated as
-$|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$.
+\smash{$|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$}.
 
 
 \paragraph{\NAME in action (\url{https://youtu.be/We5-rG6uxN8}).}
