@@ -23,11 +23,10 @@ execution time, delivering approximate results with error estimates.
 To support S-AQP in SPARQL, the evaluation of such queries \emph{must}
 both
 \begin{inparaenum}[(i)]
-\item return random samples, and
+\item returns random samples, and
 \item comply with fair-use policies of public SPARQL endpoints.
 \end{inparaenum}
-Ad-hoc methods already exist to sample knowledge graphs.  For example,
-a user could draw random triples from
+Ad-hoc methods already exist to sample knowledge graphs.  For example, a user could draw random triples from
 Wikidata~\cite{soulet2019anytime} by repeatedly executing
 \verb|SELECT * {?s ?p ?o} OFFSET r LIMIT 1|, where $r$ is a random
 number between $0$ and the dataset size ($0<r<12B$). However, all
@@ -62,8 +61,8 @@ results. Without cardinality estimates, users cannot appreciate the
 quality of provided samples. In Figure~\ref{fig:raw_screenshot}, \NAME
 returns $1434$ random results after $35$ seconds. By adding an
 estimate of the total number of results ($26 \pm 3M$), the user
-acknwoledges that her sample represents but a tiny fraction of the
-whole results.  Provided stimates prove highly accurate as long as
+acknowledges that her sample represents but a tiny fraction of the
+whole results.  Provided estimates prove highly accurate as long as
 random walks remain paired with their probability of being
 drawn~\cite{DBLP:conf/sigmod/ParkKBKHH20}. Despite starting from $35
 \pm 15M$, \NAME improved over time, reaching $26\pm 3M$ while the
@@ -74,7 +73,7 @@ WDBench~\cite{angles2022wdbench} that comprises $1.2B$ triples.  We
 let users choose a query among the $16$ that time out on Apache
 Jena. We execute it using \NAME to highlight
 \begin{inparaenum}[(i)]
-\item the benefits of S-AQP for ecosystems of public SPARQL endpoints,
+\item the benefits of S-AQP for ecosystems of public SPARQL endpoints
   and
 \item the feasibility of implementing S-AQP on well-known engines.
 \end{inparaenum}
