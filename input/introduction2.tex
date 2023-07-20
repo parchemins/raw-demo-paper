@@ -4,21 +4,21 @@
 Public SPARQL endpoints cannot fully execute many SPARQL queries due
 to their quotas and fair-use policies. After 60 seconds, they stop
 their execution and return only partial results, forbidding many use
-cases such use cases such as computing large-scale
+cases such as building summaries or computing large-scale statistics.
+This constitutes a major issue for building decentralized ecosystems
+of public SPARQL endpoints.
+
+Sampling-based Approximate Query Processing
+(S-AQP)~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} tackles this issue
+for use cases such as computing large-scale
 statistics~\cite{soulet2019anytime,10.1007/978-3-319-18818-8_14},
 knowledge graph embeddings~\cite{ristoski2016rdf2vec}, join
 orders~\cite{DBLP:conf/cidr/LeisRGK017}, approximate
 aggregations~\cite{wang2022approximate},
 summaries~\cite{10.1007/978-3-030-49461-2_10}, and exploratory
-queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.  This constitutes a
-major issue for building robust decentralized ecosystems of public
-SPARQL endpoints.
-
-Sampling-based Approximate Query Processing
-(S-AQP)~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14} tackles this issue by
-confining query executions to samples of large datasets, drastically
-reducing query execution time, delivering approximate results with
-error estimates.
+queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.  By confining query
+execution to samples of large datasets, S-AQP drastically reduces
+execution time, delivering approximate results with error estimates.
 %
 To support S-AQP in SPARQL, the evaluation of such queries \emph{must}
 both
@@ -53,42 +53,42 @@ walks have two desirable properties:
   endpoints can draw thousands of random walks per second: the widely
   used BTree indexes of RDF stores allow endpoints to compute each
   random walk in $\mathcal{O}(|Q| \log |D|)$ where $|Q|$ is the number
-  of triple patterns in $Q$ and $|D|$ is the number of triples in $D$.
+  of triple/quad patterns in $Q$ and $|D|$ is the number of
+  triples/quad in $D$.
 \end{inparaenum}
-  
-\noindent As \NAME produces random partial results, estimating the
-number of complete results allows users to appreciate the
-representativeness of provided samples. These estimates prove highly
-accurate as long as random walks remain paired with their probability
-of being drawn~\cite{DBLP:conf/sigmod/ParkKBKHH20}.
-%% as shown in the G-CARE benchmark.
-For instance, Figure~\ref{fig:raw_screenshot} shows that the execution of
-$Q_{604}$ returns $1534$ random results after sampling for 35 seconds.
-\NAME improved its estimates over time, finally estimating the number
-of results to $26\pm 3M$, while the actual number of results is $25M$.
 
-% With an unlimited budget, \NAME eventually returns all the results
-% of $Q$.
+\NAME produces random partial results instead of complete
+results. Without cardinality estimates, users cannot appreciate the
+quality of provided samples. In Figure~\ref{fig:raw_screenshot}, \NAME
+returns $1434$ random results after $35$ seconds. By adding an
+estimate of the total number of results ($26 \pm 3M$), the user
+acknwoledges that her sample represents but a tiny fraction of the
+whole results.  Provided stimates prove highly accurate as long as
+random walks remain paired with their probability of being
+drawn~\cite{DBLP:conf/sigmod/ParkKBKHH20}. Despite starting from $35
+\pm 15M$, \NAME improved over time, reaching $26\pm 3M$ while the
+actual number of results is $25M$.
 
-For the demonstration, we load the 1,2 billion triples Wikidata dataset \todo{Rework this last paragraph}
-provided by WDBench~\cite{angles2022wdbench}, and
-we re-execute the 16 queries that time out on Jena using \NAME. %S-AQP as explained in Section~\ref{proposal}. 
+For the demonstration, we load the dump of Wikidata provided by
+WDBench~\cite{angles2022wdbench} that comprises $1.2B$ triples.  We
+let users choose a query among the $16$ that time out on Apache
+Jena. We execute it using \NAME to highlight
+\begin{inparaenum}[(i)]
+\item the benefits of S-AQP for ecosystems of public SPARQL endpoints,
+  and
+\item the feasibility of implementing S-AQP on well-known engines.
+\end{inparaenum}
+
+%% the $1.2B$ triples Wikidata dataset
+%% provided by WDBench~\cite{angles2022wdbench}, and we re-execute the 16
+%% queries that time out on Jena using \NAME. %S-AQP as explained in
+%% Section~\ref{proposal}.
 %
 % Hala
 %  The S-AQP results shed light on the reasons for these queries time out and provide users with valuable  information about
 % Thanks to S-AQP results, users can understand
 % why these queries time out. Overall, this demonstration highlights
-\NAME aims to highlight
-\begin{inparaenum}[(i)]
-\item the benefits of S-AQP for an ecosystem of public SPARQL endpoints,
-\item the feasibility of implementing S-AQP on well-known engines.
-\end{inparaenum}
 
-% - There's nothing about fair use policies?
-% - There's just a little about how to guarantee logarithmic time complexity for triple pattern sampling.
-%   In the conclusion it's written that "\NAME demonstrates how S-AQP can be easily integrated into a
-%   representative SPARQL endpoint" but this part is not explained in the paper...
-% - What about the SAMPLE keyword of SPARQL?
 
 %%% Local Variables:
 %%% mode: latex
