@@ -32,7 +32,6 @@
 \section{\NAME: RAndom Walks for Apache Jena}
 \label{sec:proposal}
 
-
 \paragraph{Sampling principles.}
 
 %\NAME is based on WanderJoin\cite{li2019wanderjoin}.
@@ -98,18 +97,18 @@ cardinality of $Q$ is estimated as
 
  \begin{figure*}
    \centering
-   \includegraphics[width=0.81\textwidth]{figures/raw_screenshot.png}
+   \includegraphics[width=0.91\textwidth]{figures/raw_screenshot.png}
    \caption{\label{fig:raw_screenshot} Processing $Q_{604}$ of
      WDBench~\cite{angles2022wdbench} with \NAME.}
  \end{figure*}
 
-
-We executed the query $Q_{604}$ of WDBench~\cite{angles2022wdbench}
-presented in Figure~\ref{fig:raw_screenshot} that searches for people
-with the same dates of birth and death. $Q_{604}$ expects $25M$
-results, but times out on the public Wikidata SPARQL endpoint after
-$60$ seconds; and takes longer than $2$ hours to complete on Apache
-Jena.
+The code is open source and available on the GitHub platform at
+\url{https://github.com/Chat-Wane/raw-jena}.  We executed the query
+$Q_{604}$ of WDBench~\cite{angles2022wdbench} presented in
+Figure~\ref{fig:raw_screenshot} that searches for people with the same
+dates of birth and death. $Q_{604}$ expects $25M$ results, but times
+out on the public Wikidata SPARQL endpoint after $60$ seconds; and
+takes longer than $2$ hours to complete on Apache Jena.
 
 
 \noindent Each time the user presses the play button, \NAME computes
