@@ -48,13 +48,13 @@ For instance, let us consider the query $Q_1$ and the RDF graph $G_1$
 depicted in Figure~\ref{fig:random_walks_example}. Following the join order $tp_3,tp_2,tp_1$, the random walk $\gamma_1$ is computed as
 follows:
 
-\begin{small}
+\begin{center}
   \begin{tabular}{l|lll}
     $tp_3$ & draw  $t_1$ &$= (\textbf{A}, P641, Q3609)$ & $\in \llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$ \\
     $tp_2$ & draw  $t_2$ &$= (A, P17, \textbf{D})$ & $ \in \llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}$  \\
     $tp_1$ & draw  $t_3$ &$= (D, P361, Q27611)$ & $\in \llbracket (\textbf{D}, P361, Q27611) \rrbracket_{G_1}$  
   \end{tabular}
-\end{small} 
+\end{center} 
 
 \noindent The cardinality of $Q_1$ is then estimated as the inverse
 probability of sampling $\gamma_1$:
