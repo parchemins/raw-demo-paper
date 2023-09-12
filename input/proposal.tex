@@ -146,6 +146,39 @@ opportunities for computing large-scale statistics, embeddings, or
 summaries.
 
 
+\paragraph{Live demonstration.}
+During the session, we start a local \NAME server on the dataset of
+WDBench~\cite{angles2022wdbench} that comprises $1.2B$ triples.  We
+present the Web interface of \NAME depicted in
+Figure~\ref{fig:raw_screenshot}. The user can choose a query among a
+predefined set of conjunctive queries that timed out using Apache
+Jena; or even type her own.
+
+\noindent We show that using \NAME, after a second of execution time,
+the user already gets meaningful insights on her query
+execution. Together, we analyze query plan Web view that highlights
+where random walks succeeded or failed. We deduce a better join order,
+emphasizing the benefits of S-AQP for this first use case.
+
+\noindent Afterwards, we further show the advantages of pay-as-you-go
+approaches by starting and stopping the query execution multiple times
+until reaching the $60$ seconds timeout mark of public SPARQL
+endpoints.  The Web client manages to receive and aggregate incoming
+data, thus providing an estimate of the expected number of
+results. The cardinality estimation view allows users to observe the
+accuracy evolution over time. The estimates and confidence intervals
+converge towards the actual number of results of her query. This
+demonstrates the approximate aggregations use
+case~\cite{wang2022approximate} that proves useful for numerous other
+use cases such as exploratory
+queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.
+
+\noindent Finally, we show that \NAME returns both failed and
+succeeded random walks along with their probability of being drawn
+which enables other use cases such as the computation of knowledge
+graph embeddings~\cite{ristoski2016rdf2vec}, or
+summaries~\cite{10.1007/978-3-030-49461-2_10}.
+
 % %%% Local Variables:
 % %%% mode: latex
 % %%% TeX-master: "../paper.tex"
