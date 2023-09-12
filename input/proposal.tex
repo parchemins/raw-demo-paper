@@ -33,13 +33,13 @@
 \label{sec:proposal}
 
 \NAME is an open source extension of Apache Jena available on the
-GitHub platform at \url{https://github.com/GDD-Nantes/raw-jena}.
-\NAME heavily relies on sampling principles to process its
-aggregates. This Section provides a formal framework for sampling and
-applies it on a small toy example; then it details the benefits of
-\NAME on a larger larger example extracted from
-WDBench~\cite{angles2022wdbench}; finally it describes the
-demonstration protocol for the live session.
+GitHub platform at \url{https://github.com/GDD-Nantes/raw-jena}.  It
+efficiently supports Sampling-based Approximate Query Processing
+(S-AQP) for conjunctive SPARQL queries.  This Section provides a
+formal framework for sampling and applies it on a small toy example;
+then it details the benefits of \NAME on a larger larger example
+extracted from WDBench~\cite{angles2022wdbench}; finally it describes
+the demonstration protocol for the live session.
 
 \paragraph{Sampling principles.}
 
@@ -156,11 +156,11 @@ summaries.
 
 \paragraph{Live demonstration.}
 During the session, we start a local \NAME server on the dataset of
-WDBench~\cite{angles2022wdbench} that comprises $1.2B$ triples.  We
-present the Web interface of \NAME depicted in
-Figure~\ref{fig:raw_screenshot}. The user can choose a query among a
-predefined set of conjunctive queries that timed out using Apache
-Jena; or even type her own.
+WDBench~\cite{angles2022wdbench} that comprises $1.2B$ triples
+extracted from Wikidata.  We present the Web interface of \NAME
+depicted in Figure~\ref{fig:raw_screenshot}. The user can choose a
+query among a predefined set of conjunctive queries that timed out
+using Apache Jena; or even type her own.
 
 \noindent We show that using \NAME, after a second of execution time,
 the user already gets meaningful insights on her query
