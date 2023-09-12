@@ -32,6 +32,15 @@
 \section{\NAME: RAndom Walks for Apache Jena}
 \label{sec:proposal}
 
+\NAME is an open source extension of Apache Jena available on the
+GitHub platform at \url{https://github.com/GDD-Nantes/raw-jena}.
+\NAME heavily relies on sampling principles to process its
+aggregates. This Section provides a formal framework for sampling and
+applies it on a small toy example; then it details the benefits of
+\NAME on a larger larger example extracted from
+WDBench~\cite{angles2022wdbench}; finally it describes the
+demonstration protocol for the live session.
+
 \paragraph{Sampling principles.}
 
 %\NAME is based on WanderJoin\cite{li2019wanderjoin}.
@@ -102,8 +111,7 @@ cardinality of $Q$ is estimated as
      WDBench~\cite{angles2022wdbench}.}
  \end{figure*}
 
-The code is open source and available on the GitHub platform at
-\url{https://github.com/GDD-Nantes/raw-jena}.  We executed the query
+We executed the query
 $Q_{604}$ of WDBench~\cite{angles2022wdbench} presented in
 Figure~\ref{fig:raw_screenshot} that searches for people with the same
 dates of birth and death. $Q_{604}$ expects $25M$ results, but times
@@ -175,8 +183,8 @@ queries~\cite{DBLP:conf/sigmod/AgarwalMKTJMMS14}.
 
 \noindent Finally, we show that \NAME returns both failed and
 succeeded random walks along with their probability of being drawn
-which enables other use cases such as the computation of knowledge
-graph embeddings~\cite{ristoski2016rdf2vec}, or
+which enables use cases such as the computation of knowledge graph
+embeddings~\cite{ristoski2016rdf2vec}, or
 summaries~\cite{10.1007/978-3-030-49461-2_10}.
 
 % %%% Local Variables:
