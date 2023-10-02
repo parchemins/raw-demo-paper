@@ -1,0 +1,86 @@
+\documentclass[25pt, a0paper, portrait]{tikzposter}
+
+\usepackage{hyperref}
+
+\RequirePackage[T1]{fontenc}
+\RequirePackage{fontspec}
+\fontspec[AutoFakeBold=2.5]{IMFellEnglish-Regular.ttf}
+
+\setmainfont{IMFellEnglish}[
+  Path=./,
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  ItalicFont = *-Italic,
+  BoldFont= *-Regular,
+  BoldFeatures={FakeBold=3},
+]
+
+\definecolorpalette{sampleColorPalette} {
+  \definecolor{colorOne}{named}{green}
+  \definecolor{colorTwo}{named}{black}
+  \definecolor{colorThree}{named}{cyan}
+} {
+  \colorlet{backgroundcolor}{colorOne}
+}
+
+\definelayouttheme{sample}{
+  \usecolorstyle[colorPalette=sampleColorPalette]{sampleColorStyle}
+}
+
+\usetheme{sample}
+
+
+
+
+\title{RAW-JENA: Approximate Query Processing for SPARQL Endpoints}
+
+\author{Julien Aimonier-Davat, Minh-Hoang Dang, Pascal Molli, Brice Nédelec, and Hala Skaf-Molli}
+\date{November 6--10}
+\institute{Nantes Université, CNRS, LS2N}
+
+
+\begin{document}
+\maketitle
+
+\begin{columns}
+  \column{0.5}
+  \block{S-AQP}{
+    And why it is useful
+  }
+  \column{0.5}
+  \block{Ad-hoc sampling}{
+    Not great
+  }
+\end{columns}
+
+
+\begin{columns} 
+  \column{0.5}
+  \block{Random walks}{WanderJoin}
+  \column{0.5}
+  \block{In Apache Jena}{
+    Modifying balanced trees\\
+    Implementing cardinality estimation
+  }
+\end{columns}
+
+
+\begin{columns} % See Section 4.4
+  \column{0.33} % See Section 4.4
+  \block{Conclusion}{
+    Rather simple
+  }
+  \column{0.33}
+  \block{Perspective}{
+    More operators
+  }
+  \column{0.33}
+  \block{}{
+    \includegraphics[width=0.28\textwidth]{images/qr-code.png}
+    \begin{center}
+      \url{https://github.com/gdd-nantes/raw-jena}
+    \end{center}
+  }
+\end{columns}
+
+\end{document}
