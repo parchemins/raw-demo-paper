@@ -5,6 +5,11 @@
 \usepackage{booktabs}
 \usepackage{adjustbox}
 \usepackage{multicol}
+\usepackage{listings}
+\usepackage{stmaryrd, amssymb}
+
+
+\definecolor{Black}{RGB}{0,0,0}
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fontspec}
@@ -168,21 +173,122 @@
   }
 \end{columns}
 
-\begin{columns} 
-  \column{0.5}
-  \block{Random walks}{WanderJoin}
-  \column{0.5}
-  \block{In Apache Jena}{
-    Modifying balanced trees\\
-    Implementing cardinality estimation
+\block{Random walks for cardinality estimates and confidence with WanderJoin}{
+  \fbox{
+    \begin{tikzpicture}
+      \newcommand\X{5cm}
+      \newcommand\Y{-2.273cm}
+      \draw[anchor=west] (0*\X,0*\Y) node {\texttt{SELECT ?x1 ?x3 WHERE \{}};
+      \draw[anchor=west] (1*\X,1*\Y) node {\texttt{?x1 wdt:P641 wd:Q3609  .         \# tp3}};
+      \draw[anchor=west] (1*\X,2*\Y) node {\texttt{?x1 wdt:P17  ?x3       .         \# tp2}};
+      \draw[anchor=west] (1*\X,3*\Y) node {\texttt{?x3 wdt:P361 wd:Q27611 .         \# tp1}};
+      \draw[anchor=west] (0*\X,4*\Y) node {\texttt{\}}};
+      \draw (7*\X,0*\Y) node {\hphantom{positioning}};
+    \end{tikzpicture}
   }
-\end{columns}
+  \fbox{
+    \begin{tikzpicture}
+      \thickmuskip=0mu
+      \medmuskip=0mu
+      \thinmuskip=0mu
+      
+      \newcommand\X{15cm}
+      \newcommand\Y{-3cm}
+      \newcommand\PREDICATE{\normalsize}
+      \newcommand{\RECTSIZE}{1cm}
+      
+      \draw (0, 0) node(A){\textbf{A}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (\X, 0) node(D){\textbf{D}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (2.2*\X, 0) node(Q3609){\textbf{Q3609}} +(-2.7*\RECTSIZE, -\RECTSIZE) rectangle +(2.7*\RECTSIZE, \RECTSIZE);
+      
+      \draw (\X, \Y) node(B){\textbf{B}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (2.2*\X, \Y) node(Q27611){\textbf{Q27611}} +(-3*\RECTSIZE, -\RECTSIZE) rectangle +(3*\RECTSIZE, \RECTSIZE);
+      \draw (0, 2*\Y) node(C){\textbf{C}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (1*\X, 2*\Y) node(E){\textbf{E}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      
+
+      \draw[->] (A) -- node[fill=white, font=\PREDICATE]{P17} (D);
+      \draw[->] (C) -- node[fill=white, sloped, font=\PREDICATE]{P641} (B);
+      \draw[->] (C) -- node[fill=white, sloped, font=\PREDICATE, xshift=3cm]{P17} (E);
+      \draw[->] (B) -- node[fill=white, sloped, font=\PREDICATE, xshift=-5cm]{P641} (Q3609);
+      \draw[->] (E) -- node[fill=white, sloped, font=\PREDICATE]{P361} (Q27611);
+      \draw[->] (D) -- node[fill=white, sloped, font=\PREDICATE, xshift=-5cm]{P361} (Q27611);
+      \draw[->] (A) to[out=20, in=165] node[fill=white,sloped, font=\PREDICATE]{P641} (Q3609);
+      
+    \end{tikzpicture}
+    }\\
+  %
+  \adjustbox{max width=0.4\columnwidth}{Figure 1: Query $Q_1$: All cycling races of Central America along with their respective country.}
+  \hspace{7cm}
+  \adjustbox{max width=0.45\columnwidth}{Figure 2: RDF Graph $G_1$: $A$, $B$, and $C$ are cycling sports; $D$ and $E$ are countries of Central
+    America.}\\
+
+  % Let $Q$ be a SPARQL conjunctive query, and $J = \langle tp_1, ..., tp_n \rangle$ be
+  % the join order to perform random walks. A random walk
+  % $\gamma_i = \langle t_1, ..., t_n\rangle$ is computed over
+  % an RDF graph $G$ by randomly picking $t_1$ in $\llbracket tp_1 \rrbracket_G$,
+  % and each subsequent $t_i$ ($i > 1$) in $\llbracket t_{i-1} \bowtie tp_i \rrbracket_G$.
+  % Once computed, the cardinality of $Q$ is estimated as  the inverse probability
+  % of sampling $\gamma_i$~\cite{li2019wanderjoin}, with
+
+  $P(\gamma_i) = |\llbracket tp_1 \rrbracket_G|^{-1} \prod_{i=2}^{n}
+  |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$.
+
+  %% For instance, let us consider the query $Q_1$ and the RDF graph $G_1$
+  %% depicted in Figure~\ref{fig:random_walks_example}. Following the join order $tp_3,tp_2,tp_1$, the random walk $\gamma_1$ is computed as
+  %% follows:
+
+\begin{center}
+  \begin{tabular}{l|lll}
+    $tp_3$ & draw  $t_1$ &$= (\textbf{A}, P641, Q3609)$ & $\in \llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$ \\
+    $tp_2$ & draw  $t_2$ &$= (A, P17, \textbf{D})$ & $ \in \llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}$  \\
+    $tp_1$ & draw  $t_3$ &$= (D, P361, Q27611)$ & $\in \llbracket (\textbf{D}, P361, Q27611) \rrbracket_{G_1}$  
+  \end{tabular}
+\end{center} 
+
+%% \noindent The cardinality of $Q_1$ is then estimated as the inverse
+%% probability of sampling $\gamma_1$:
+
+\begin{small}
+$P(\gamma_1)^{-1}  =  |\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \cdot
+                          |\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \cdot
+                          |\llbracket (\textbf{D}, P361,
+                          Q27611) \rrbracket_{G_1}| 
+                      =  2 \cdot 1 \cdot 1 = 2$
+\end{small}
+
+%% \begin{small}
+%% \begin{tabular}{ll}
+%%     $P(\gamma_1)^{-1}$  &$=  |\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \times
+%%                           |\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \times
+%%                           |\llbracket (\textbf{D}, P361,
+%%                           Q27611) \rrbracket_{G_1}| $ \\
+%%                       &$=  2 \times 1 \times 1 = 2$
+%% \end{tabular}
+%% \end{small}
+
+\noindent Note that a random walk may fail if it becomes impossible to sample $t_i$ for
+some $i \leq n$. In this case, its probability $P(\gamma_i)$ of being sampled is 0.
+For instance, if $t_1 = (B, P641, Q3609)$ is picked in
+$\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$
+instead of $(A, P641, Q3609)$, then the random walk fails because
+$\llbracket (B, P17, ?x3) \rrbracket_{G_1} = \varnothing$.
+%
+To improve the quality of estimates, we compute a set of $k$ random
+walks $\Gamma = \langle \gamma_1, ..., \gamma_k \rangle$, and the
+cardinality of $Q$ is estimated as
+\smash{$|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$}.
+  
+}
 
 
 \begin{columns} % See Section 4.4
   \column{0.33} % See Section 4.4
   \block{Conclusion}{
-    Rather simple
+      In Apache Jena
+      Modifying balanced trees\\
+      Implementing cardinality estimation
+      Rather simple
   }
   \column{0.33}
   \block{Perspective}{
@@ -196,5 +302,12 @@
     \end{center}
   }
 \end{columns}
+
+\block{References}{
+  WanderJoin
+  S-AQP
+  virtuoso
+  stardog
+}
 
 \end{document}
