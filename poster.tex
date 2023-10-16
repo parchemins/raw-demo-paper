@@ -1,58 +1,172 @@
 \documentclass[25pt, a0paper, portrait]{tikzposter}
+\tikzposterlatexaffectionproofoff %% remove the mark on the bottom right
 
 \usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{multicol}
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fontspec}
-\fontspec[AutoFakeBold=2.5]{IMFellEnglish-Regular.ttf}
+\fontspec[AutoFakeBold=3.5]{IMFellEnglish-Regular.ttf}
 
+%% Font of the text, might use a different one for the title
+%% that matches better the New York Times front page.
 \setmainfont{IMFellEnglish}[
   Path=./,
   Extension = .ttf,
   UprightFont = *-Regular,
   ItalicFont = *-Italic,
   BoldFont= *-Regular,
-  BoldFeatures={FakeBold=3},
+  BoldFeatures={FakeBold=3.5},
 ]
 
-\definecolorpalette{sampleColorPalette} {
-  \definecolor{colorOne}{named}{green}
+%% Custom background and frame, we only need it to be white
+\definebackgroundstyle{samplebackgroundstyle}{
+  \draw[inner sep=0pt, line width=0pt, color=white, fill=white]
+  (bottomleft) rectangle (topright);
+}
+
+%% Custom title, nothing really, just remove the ugly frame
+\definetitlestyle{sampletitlestyle}{
+  width=500mm, roundedcorners=20, linewidth=2pt, innersep=5pt,
+  titletotopverticalspace=15mm, titletoblockverticalspace=30mm
+}{}
+
+%% Custom block style, we want a title and that's it.
+\defineblockstyle{sampleblockstyle}{
+    titlewidthscale=1, bodywidthscale=1, titleleft,
+    titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+    bodyverticalshift=0pt, roundedcorners=0,
+    titleinnersep=0.5cm, bodyinnersep=0.5cm
+}{ %% nothing really
+}
+
+%% Colors
+\definecolorstyle{samplecolorstyle} {
+  \definecolor{colorOne}{named}{yellow}
   \definecolor{colorTwo}{named}{black}
   \definecolor{colorThree}{named}{cyan}
 } {
   \colorlet{backgroundcolor}{colorOne}
+  \colorlet{framecolor}{black}
+  \colorlet{blocktitlefgcolor}{black}
+  \colorlet{blocktitlebgcolor}{white}
 }
 
 \definelayouttheme{sample}{
-  \usecolorstyle[colorPalette=sampleColorPalette]{sampleColorStyle}
+  \usecolorstyle{samplecolorstyle}
+  \usetitlestyle{sampletitlestyle}
+  \usebackgroundstyle{samplebackgroundstyle}
+  \useblockstyle{sampleblockstyle}
+  \useinnerblockstyle{sampleblockstyle}
 }
 
 \usetheme{sample}
 
 
+\makeatletter
+\renewcommand\Huge{\@setfontsize\Huge{135}{135}}
+\renewcommand\huge{\@setfontsize\Huge{120}{120}}
+\renewcommand\LARGE{\@setfontsize\Huge{70}{70}}
+\renewcommand\Large{\@setfontsize\Huge{60}{60}}
+\renewcommand\large{\@setfontsize\Huge{50}{50}}
+\renewcommand\normalsize{\@setfontsize\Huge{40}{40}} %% between 24-36
+\renewcommand\small{\@setfontsize\Huge{20}{20}}
+\renewcommand\footnotesize{\@setfontsize\Huge{15}{15}}
+\renewcommand\scriptsize{\@setfontsize\Huge{12}{12}}
+\renewcommand\tiny{\@setfontsize\Huge{10}{10}} 
+\makeatother
+
+\newcommand{\TOPBLOCK}{0.17}
+
+\settitle{
+  \centering
+  \begin{tabular}{p{\TOPBLOCK\columnwidth}p{0.62\columnwidth}p{\TOPBLOCK\columnwidth}}
+    \adjustbox{max width=\TOPBLOCK\columnwidth}{\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}
+        {``\@author ~ from \textit{\@institute}''}}} &
+    \centering\bfseries\Huge\@title &
+    \adjustbox{max width=\TOPBLOCK\columnwidth}{{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
+          \begin{center}
+            \textbf{ISWC edition}
+          \end{center}
+          
+          The 22$^{nd}$ International Semantic Web Conference: The
+          premier international forum for the Semantic Web and Linked
+          Data Community.}}} \vspace{0.25em}\\ \midrule
+    
+    & \centering\textsc{\uppercase{Athens, Greece, 6-10 November 2023}} & \hfill\$0.00\\ \bottomrule
+  \end{tabular}
+}
+
+\newcommand{\HRULE}{\centerline{\rule{0.6667\linewidth}{0.1cm}}}
+
 
 
-\title{RAW-JENA: Approximate Query Processing for SPARQL Endpoints}
+\title{RAW-JENA}
 
 \author{Julien Aimonier-Davat, Minh-Hoang Dang, Pascal Molli, Brice Nédelec, and Hala Skaf-Molli}
 \date{November 6--10}
 \institute{Nantes Université, CNRS, LS2N}
 
+\setlength{\columnsep}{1.5cm}
 
 \begin{document}
-\maketitle
+\maketitle[width=\columnwidth]
 
 \begin{columns}
-  \column{0.5}
-  \block{S-AQP}{
-    And why it is useful
+  \column{0.74}
+  \block{Approximate Query Processing for SPARQL Endpoints}{
+    \begin{multicols}{2}
+      \begin{center}
+        \HRULE
+        \textit{Integrate sampling as SQL did with the TABLESAMPLE clause.}
+        \HRULE
+      \end{center}
+      
+      Sample-based approximate query processing (S-AQP) has many
+      important use cases for RDF such as computing
+      \begin{itemize}
+      \item large-scale statistics,
+      \item knowledge graph embeddings,
+      \item join orders,
+      \item approximate aggregations,
+      \item summaries,
+      \item exploratory queries.
+      \end{itemize}
+      \ \\
+      By confining query execution to samples of large datasets,
+      S-AQP drastically
+      \begin{itemize}
+      \item reduces execution time, 
+      \item delivering approximate results
+      \item with error estimates.
+      \end{itemize}
+    \end{multicols}%
   }
-  \column{0.5}
+  \draw[line width=0.2cm] (blocktitle.north east) -- (blockbody.south east);%
+  %
+  \column{0.26}
   \block{Ad-hoc sampling}{
-    Not great
+    \begin{center}
+      \HRULE
+      \textit{is not great!}
+      \HRULE
+      
+      \uppercase{May time out on public SPARQL endpoints\ldots}
+      \HRULE
+    \end{center}
+    
+    \texttt{SELECT * \{?s ?p ?o\} OFFSET r LIMIT 1}, where $r$ is a
+    random number between 0 and the dataset size (0 $< r <$ 12B).\\
+
+    %% Well-known engines such as
+    %% Stardog\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service}},
+    %% or
+    %% Virtuoso\footnote{https://docs.openlinksw.com/virtuoso/rndsalltr/},
+    %% propose an ad-hoc sampling API, but with no guarantee on complexity.\\
   }
 \end{columns}
-
 
 \begin{columns} 
   \column{0.5}
