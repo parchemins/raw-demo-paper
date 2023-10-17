@@ -20,7 +20,7 @@
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fontspec}
-\fontspec[AutoFakeBold=2.5]{IMFellEnglish-Regular.ttf}
+\fontspec[AutoFakeBold=3.5]{IMFellEnglish-Regular.ttf}
 
 %% Font of the text, might use a different one for the title
 %% that matches better the New York Times front page.
@@ -29,7 +29,7 @@
   UprightFont = *-Regular.ttf,
   ItalicFont = *-Italic.ttf,
   BoldFont= *-Regular.ttf,
-  BoldFeatures={FakeBold=2.5},
+  BoldFeatures={FakeBold=3.5},
   SmallCapsFont=Chomsky.otf,
 ]
 
@@ -100,7 +100,7 @@
   \begin{tabular}{p{\TOPBLOCK\columnwidth}p{0.62\columnwidth}p{\TOPBLOCK\columnwidth}}
     \adjustbox{max width=\TOPBLOCK\columnwidth}{\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}
         {``\@author ~ from \textit{\@institute}''}}} &
-    \centering\bfseries\Huge\scshape\@title &
+    \centering\Huge\scshape\@title &
     \adjustbox{max width=\TOPBLOCK\columnwidth}{{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
           \begin{center}
             \textbf{ISWC edition}
@@ -312,7 +312,7 @@
 \begin{columns} 
   \column{0.68} 
   \block{Conclusion and Future Work}{
-    \hl{RAW-JENA provides S-AQP by implementing random walks on top of
+    \hl{RAW-JENA provides a \textbf{pay-as-you-go} S-AQP by implementing random walks on top of
       Apache Jena.} It does not need to reingest the data, everything is
     already here, and it was quite easy to implement.
     The code is open source and available at \dotfill >
