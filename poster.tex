@@ -8,6 +8,13 @@
 \usepackage{listings}
 \usepackage{stmaryrd, amssymb}
 
+\usepackage{paralist}
+
+\usetikzlibrary{arrows.meta}
+\tikzset{>={Latex[width=6mm,length=10mm]}}
+
+\usepackage{color,soul} %% highlighting
+
 
 \definecolor{Black}{RGB}{0,0,0}
 
@@ -77,7 +84,7 @@
 \renewcommand\Large{\@setfontsize\Huge{60}{60}}
 \renewcommand\large{\@setfontsize\Huge{50}{50}}
 \renewcommand\normalsize{\@setfontsize\Huge{40}{40}} %% between 24-36
-\renewcommand\small{\@setfontsize\Huge{20}{20}}
+\renewcommand\small{\@setfontsize\Huge{33}{33}}
 \renewcommand\footnotesize{\@setfontsize\Huge{15}{15}}
 \renewcommand\scriptsize{\@setfontsize\Huge{12}{12}}
 \renewcommand\tiny{\@setfontsize\Huge{10}{10}} 
@@ -104,7 +111,11 @@
   \end{tabular}
 }
 
-\newcommand{\HRULE}{\centerline{\rule{0.6667\linewidth}{0.1cm}}}
+\newcommand{\HRULE}{\centerline{\rule{0.4\linewidth}{0.1cm}}}
+\newcommand{\VRULE}{\draw[line width=0.2cm] (blocktitle.north east) -- (blockbody.south east);}
+\newcommand{\VRULELEFT}{\draw[line width=0.2cm]
+  ([xshift=-1cm]blocktitle.north west) -- ([xshift=-1cm]blockbody.south west);}
+
 
 
 
@@ -129,7 +140,7 @@
         \HRULE
       \end{center}
       
-      Sample-based approximate query processing (S-AQP) has many
+      Sample-based approximate query processing (S-AQP) [2] has many
       important use cases for RDF such as computing
       \begin{itemize}
       \item large-scale statistics,
@@ -143,37 +154,42 @@
       By confining query execution to samples of large datasets,
       S-AQP drastically
       \begin{itemize}
-      \item reduces execution time, 
-      \item delivering approximate results
-      \item with error estimates.
+      \item \hl{reduces} execution time, 
+      \item delivering \hl{approximate results}
+      \item with \hl{error} estimates.
       \end{itemize}
     \end{multicols}%
   }
-  \draw[line width=0.2cm] (blocktitle.north east) -- (blockbody.south east);%
+  %  \VRULE
   %
   \column{0.26}
   \block{Ad-hoc sampling}{
     \begin{center}
       \HRULE
-      \textit{is not great!}
+      \textit{exists in a few engines~[A,B] and it is not great!}
       \HRULE
       
-      \uppercase{May time out on public SPARQL endpoints\ldots}
+      \uppercase{May \hl{time out} on public SPARQL endpoints\ldots}
       \HRULE
     \end{center}
     
     \texttt{SELECT * \{?s ?p ?o\} OFFSET r LIMIT 1}, where $r$ is a
     random number between 0 and the dataset size (0 $< r <$ 12B).\\
 
+%    Sampling and random exist in a few engines~[A, B].
+    
     %% Well-known engines such as
     %% Stardog\footnote{\url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service}},
     %% or
     %% Virtuoso\footnote{https://docs.openlinksw.com/virtuoso/rndsalltr/},
     %% propose an ad-hoc sampling API, but with no guarantee on complexity.\\
   }
+  \VRULELEFT
 \end{columns}
 
-\block{Random walks for cardinality estimates and confidence with WanderJoin}{
+
+
+\block{Random walks for cardinality estimates and confidence with Wander~Join~[2]}{
   \fbox{
     \begin{tikzpicture}
       \newcommand\X{5cm}
@@ -197,108 +213,120 @@
       \newcommand\PREDICATE{\normalsize}
       \newcommand{\RECTSIZE}{1cm}
       
-      \draw (0, 0) node(A){\textbf{A}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
-      \draw (\X, 0) node(D){\textbf{D}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (0, 0) node(A){\hl{\textbf{A}}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (\X, 0) node(D){\hl{\textbf{D}}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
       \draw (2.2*\X, 0) node(Q3609){\textbf{Q3609}} +(-2.7*\RECTSIZE, -\RECTSIZE) rectangle +(2.7*\RECTSIZE, \RECTSIZE);
       
       \draw (\X, \Y) node(B){\textbf{B}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
-      \draw (2.2*\X, \Y) node(Q27611){\textbf{Q27611}} +(-3*\RECTSIZE, -\RECTSIZE) rectangle +(3*\RECTSIZE, \RECTSIZE);
+      \draw (2.2*\X, \Y) node(Q27611){\hl{\textbf{Q27611}}} +(-3*\RECTSIZE, -\RECTSIZE) rectangle +(3*\RECTSIZE, \RECTSIZE);
       \draw (0, 2*\Y) node(C){\textbf{C}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
       \draw (1*\X, 2*\Y) node(E){\textbf{E}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
       
 
-      \draw[->] (A) -- node[fill=white, font=\PREDICATE]{P17} (D);
-      \draw[->] (C) -- node[fill=white, sloped, font=\PREDICATE]{P641} (B);
-      \draw[->] (C) -- node[fill=white, sloped, font=\PREDICATE, xshift=3cm]{P17} (E);
-      \draw[->] (B) -- node[fill=white, sloped, font=\PREDICATE, xshift=-5cm]{P641} (Q3609);
-      \draw[->] (E) -- node[fill=white, sloped, font=\PREDICATE]{P361} (Q27611);
-      \draw[->] (D) -- node[fill=white, sloped, font=\PREDICATE, xshift=-5cm]{P361} (Q27611);
-      \draw[->] (A) to[out=20, in=165] node[fill=white,sloped, font=\PREDICATE]{P641} (Q3609);
+      \draw[->, line width=0.1cm] (A) -- node[fill=white, font=\PREDICATE]{P17} (D);
+      \draw[->, line width=0.1cm] (C) -- node[fill=white, sloped, font=\PREDICATE]{P641} (B);
+      \draw[->, line width=0.1cm] (C) -- node[fill=white, sloped, font=\PREDICATE, xshift=3cm]{P17} (E);
+      \draw[->, line width=0.1cm] (B) -- node[fill=white, sloped, font=\PREDICATE, xshift=-5cm]{P641} (Q3609);
+      \draw[->, line width=0.1cm] (E) -- node[fill=white, sloped, font=\PREDICATE]{P361} (Q27611);
+      \draw[->, line width=0.1cm] (D) -- node[fill=white, sloped, font=\PREDICATE, xshift=-5cm]{P361} (Q27611);
+      \draw[->, line width=0.1cm] (A) to[out=20, in=165] node[fill=white,sloped, font=\PREDICATE]{P641} (Q3609);
       
     \end{tikzpicture}
     }\\
   %
-  \adjustbox{max width=0.4\columnwidth}{Figure 1: Query $Q_1$: All cycling races of Central America along with their respective country.}
+  \adjustbox{max width=0.4\columnwidth}{Figure 1: Query $Q_1$: All cycling
+    races of Central America along with their respective country.}
   \hspace{7cm}
-  \adjustbox{max width=0.45\columnwidth}{Figure 2: RDF Graph $G_1$: $A$, $B$, and $C$ are cycling sports; $D$ and $E$ are countries of Central
-    America.}\\
-
-  % Let $Q$ be a SPARQL conjunctive query, and $J = \langle tp_1, ..., tp_n \rangle$ be
-  % the join order to perform random walks. A random walk
-  % $\gamma_i = \langle t_1, ..., t_n\rangle$ is computed over
-  % an RDF graph $G$ by randomly picking $t_1$ in $\llbracket tp_1 \rrbracket_G$,
-  % and each subsequent $t_i$ ($i > 1$) in $\llbracket t_{i-1} \bowtie tp_i \rrbracket_G$.
-  % Once computed, the cardinality of $Q$ is estimated as  the inverse probability
-  % of sampling $\gamma_i$~\cite{li2019wanderjoin}, with
-
-  $P(\gamma_i) = |\llbracket tp_1 \rrbracket_G|^{-1} \prod_{i=2}^{n}
-  |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$.
-
-  %% For instance, let us consider the query $Q_1$ and the RDF graph $G_1$
-  %% depicted in Figure~\ref{fig:random_walks_example}. Following the join order $tp_3,tp_2,tp_1$, the random walk $\gamma_1$ is computed as
-  %% follows:
-
-\begin{center}
-  \begin{tabular}{l|lll}
-    $tp_3$ & draw  $t_1$ &$= (\textbf{A}, P641, Q3609)$ & $\in \llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$ \\
-    $tp_2$ & draw  $t_2$ &$= (A, P17, \textbf{D})$ & $ \in \llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}$  \\
-    $tp_1$ & draw  $t_3$ &$= (D, P361, Q27611)$ & $\in \llbracket (\textbf{D}, P361, Q27611) \rrbracket_{G_1}$  
-  \end{tabular}
-\end{center} 
-
-%% \noindent The cardinality of $Q_1$ is then estimated as the inverse
-%% probability of sampling $\gamma_1$:
-
-\begin{small}
-$P(\gamma_1)^{-1}  =  |\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \cdot
-                          |\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \cdot
-                          |\llbracket (\textbf{D}, P361,
-                          Q27611) \rrbracket_{G_1}| 
-                      =  2 \cdot 1 \cdot 1 = 2$
-\end{small}
-
-%% \begin{small}
-%% \begin{tabular}{ll}
-%%     $P(\gamma_1)^{-1}$  &$=  |\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \times
-%%                           |\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \times
-%%                           |\llbracket (\textbf{D}, P361,
-%%                           Q27611) \rrbracket_{G_1}| $ \\
-%%                       &$=  2 \times 1 \times 1 = 2$
-%% \end{tabular}
-%% \end{small}
-
-\noindent Note that a random walk may fail if it becomes impossible to sample $t_i$ for
-some $i \leq n$. In this case, its probability $P(\gamma_i)$ of being sampled is 0.
-For instance, if $t_1 = (B, P641, Q3609)$ is picked in
-$\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$
-instead of $(A, P641, Q3609)$, then the random walk fails because
-$\llbracket (B, P17, ?x3) \rrbracket_{G_1} = \varnothing$.
-%
-To improve the quality of estimates, we compute a set of $k$ random
-walks $\Gamma = \langle \gamma_1, ..., \gamma_k \rangle$, and the
-cardinality of $Q$ is estimated as
-\smash{$|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$}.
-  
+  \adjustbox{max width=0.45\columnwidth}{Figure 2: RDF Graph $G_1$: $A$, $B$,
+    and $C$ are cycling sports; $D$ and $E$ are countries of Central
+    America.}
 }
 
-
-\begin{columns} % See Section 4.4
-  \column{0.33} % See Section 4.4
-  \block{Conclusion}{
-      In Apache Jena
-      Modifying balanced trees\\
-      Implementing cardinality estimation
-      Rather simple
-  }
-  \column{0.33}
-  \block{Perspective}{
-    More operators
-  }
-  \column{0.33}
+\begin{columns}
+  \column{0.6}
   \block{}{
-    \includegraphics[width=0.28\textwidth]{images/qr-code.png}
+    \HRULE
     \begin{center}
-      \url{https://github.com/gdd-nantes/raw-jena}
+      \textit{The estimated cardinality is the inverse probability of sampling}\\
+      \hl{$P(\gamma_i) = |\llbracket tp_1 \rrbracket_G|^{-1} \prod_{i=2}^{n}
+      |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$}.
+    \end{center}
+    \HRULE
+    
+    The random walk starts from tp3 with the triple (A, P641, Q3609);
+    then instanciating tp2's variable $?x1$ with the node D, it draws
+    the triple (D, P361, Q27611); finally instanciating tp1's variable
+    $?x3$ with the node D, it assesses that it exists.
+
+    \noindent The cardinality of $Q_1$ is estimated as the inverse
+    probability of sampling $\gamma_1$ on graph $G_1$:\\
+    \begin{small}
+    \begin{tabular}{lll}
+      $P(\gamma_1)^{-1} =|\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \cdot$
+       $|\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \cdot$ 
+       $|\llbracket (\textbf{D}, P361, Q27611) \rrbracket_{G_1}|$
+       $= 2 \cdot 1 \cdot 1$
+    \end{tabular}
+    \end{small}
+  }
+  % \VRULE
+  \column{0.4}
+  \block{Complexity}{
+    We need
+    \begin{inparaenum}[(i)]
+    \item cardinality estimates at the scale of triple patterns, and
+    \item retrieving random triples from triple patterns.
+    \end{inparaenum}
+      
+    Common SPARQL query engines -- such as Apache Jena, Virtuoso,
+    RDF4J, Blazegraph -- rely on \hl{balanced trees}.\\
+
+    We achieve a \hl{logarithmic} upper-bound on time complexity !
+  }
+  \VRULELEFT
+\end{columns}
+
+%% \noindent Note that a random walk may fail if it becomes impossible to sample $t_i$ for
+%% some $i \leq n$. In this case, its probability $P(\gamma_i)$ of being sampled is 0.
+%% For instance, if $t_1 = (B, P641, Q3609)$ is picked in
+%% $\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}$
+%% instead of $(A, P641, Q3609)$, then the random walk fails because
+%% $\llbracket (B, P17, ?x3) \rrbracket_{G_1} = \varnothing$.
+%% %
+%% To improve the quality of estimates, we compute a set of $k$ random
+%% walks $\Gamma = \langle \gamma_1, ..., \gamma_k \rangle$, and the
+%% cardinality of $Q$ is estimated as
+%% \smash{$|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$}.
+  
+
+
+\begin{columns} 
+  \column{0.68} 
+  \block{Conclusion and Future Work}{
+    \hl{RAW-JENA provides S-AQP by implementing random walks on top of
+      Apache Jena.} It does not need to reingest the data, everything is
+    already here, and it was quite easy to implement.
+
+    \vspace{0.5em}
+    
+    However, we need \hl{more} than conjunctive queries, and
+    \hl{more} SPARQL engines with such a feature.
+  }
+  \block{}{
+    \small
+    [1] S. Agarwal, H. Milner, A. Kleiner, A. Talwalkar, M. I. Jordan, S. Madden, B. Mozafari, I. Stoica, \textit{Knowing when you’re wrong: Building fast and reliable approximate query processing systems}.
+    
+    [2] F. Li, B. Wu, K. Yi, Z. Zhao, \textit{Wander Join and XDB: online aggregation via random walks}.
+
+    [A] Virtuoso, \url{https://docs.openlinksw.com/virtuoso/rndsalltr/}
+
+    [B] Stardog, \url{https://docs.stardog.com/query-stardog/sampling-service\#sampling-service}
+  }
+  \column{0.34}
+  \block{}{
+    \begin{center}
+    \includegraphics[width=0.28\textwidth]{images/qr-code.png}
+      \small\url{https://github.com/gdd-nantes/raw-jena}
     \end{center}
   }
 \end{columns}
