@@ -1,4 +1,9 @@
+ceur-author-agreement-ccby-ntp.*
+creationdate.lua
+
+poster.pdf
 paper.pdf
+
 *.abs
 *.xmpdata
 .DS_Store

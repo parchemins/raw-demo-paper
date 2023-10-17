@@ -78,7 +78,7 @@
 
 
 \makeatletter
-\renewcommand\Huge{\@setfontsize\Huge{230}{230}} %% big title
+\renewcommand\Huge{\@setfontsize\Huge{220}{220}} %% big title
 \renewcommand\huge{\@setfontsize\Huge{120}{120}}
 \renewcommand\LARGE{\@setfontsize\Huge{70}{70}}
 \renewcommand\Large{\@setfontsize\Huge{60}{60}}
@@ -96,6 +96,7 @@
 \newcommand*{\oldfont}{\fontfamily{rmfamily}\selectfont}
 
 \settitle{
+  \vspace{-1em}
   \centering
   \begin{tabular}{p{\TOPBLOCK\columnwidth}p{0.62\columnwidth}p{\TOPBLOCK\columnwidth}}
     \adjustbox{max width=\TOPBLOCK\columnwidth}{\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}
@@ -124,7 +125,7 @@
 
 \title{Raw-Jena}
 
-\author{Julien Aimonier-Davat, Minh-Hoang Dang, Pascal Molli, Brice Nédelec, and Hala Skaf-Molli}
+\author{Julien Aimonier-Davat and Minh-Hoang Dang and Pascal Molli and Brice Nédelec and Hala Skaf-Molli}
 \date{November 6--10}
 \institute{Nantes Université, CNRS, LS2N}
 
@@ -257,8 +258,8 @@
     \HRULE
     \begin{center}
       \textit{The estimated cardinality is the inverse probability of sampling}\\
-      \hl{$P(\gamma_i) = |\llbracket tp_1 \rrbracket_G|^{-1} \prod_{i=2}^{n}
-      |\llbracket t_{i-1} \bowtie tp_i \rrbracket_G|^{-1}$}.
+      \hl{$P(\gamma_i) = |\left\llbracket tp_1 \right\rrbracket_G|^{-1} \prod_{i=2}^{n}
+      |\left\llbracket t_{i-1} \bowtie tp_i \right\rrbracket_G|^{-1}$}.
     \end{center}
     \HRULE
     
@@ -271,9 +272,9 @@
     probability of sampling $\gamma_1$ on graph $G_1$:\\
     \begin{small}
     \begin{tabular}{lll}
-      $P(\gamma_1)^{-1} =|\llbracket (?x1, P641, Q3609) \rrbracket_{G_1}| \cdot$
-       $|\llbracket (\textbf{A}, P17, ?x3) \rrbracket_{G_1}| \cdot$ 
-       $|\llbracket (\textbf{D}, P361, Q27611) \rrbracket_{G_1}|$
+      $P(\gamma_1)^{-1} =|\left\llbracket (?x1, P641, Q3609) \right\rrbracket_{G_1}| \cdot$
+       $|\left\llbracket (\textbf{A}, P17, ?x3) \right\rrbracket_{G_1}| \cdot$ 
+       $|\left\llbracket (\textbf{D}, P361, Q27611) \right\rrbracket_{G_1}|$
        $= 2 \cdot 1 \cdot 1$
     \end{tabular}
     \end{small}
