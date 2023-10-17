@@ -20,17 +20,17 @@
 
 \RequirePackage[T1]{fontenc}
 \RequirePackage{fontspec}
-\fontspec[AutoFakeBold=3.5]{IMFellEnglish-Regular.ttf}
+\fontspec[AutoFakeBold=2.5]{IMFellEnglish-Regular.ttf}
 
 %% Font of the text, might use a different one for the title
 %% that matches better the New York Times front page.
 \setmainfont{IMFellEnglish}[
   Path=./,
-  Extension = .ttf,
-  UprightFont = *-Regular,
-  ItalicFont = *-Italic,
-  BoldFont= *-Regular,
-  BoldFeatures={FakeBold=3.5},
+  UprightFont = *-Regular.ttf,
+  ItalicFont = *-Italic.ttf,
+  BoldFont= *-Regular.ttf,
+  BoldFeatures={FakeBold=2.5},
+  SmallCapsFont=Chomsky.otf,
 ]
 
 %% Custom background and frame, we only need it to be white
@@ -78,7 +78,7 @@
 
 
 \makeatletter
-\renewcommand\Huge{\@setfontsize\Huge{135}{135}}
+\renewcommand\Huge{\@setfontsize\Huge{230}{230}} %% big title
 \renewcommand\huge{\@setfontsize\Huge{120}{120}}
 \renewcommand\LARGE{\@setfontsize\Huge{70}{70}}
 \renewcommand\Large{\@setfontsize\Huge{60}{60}}
@@ -92,12 +92,15 @@
 
 \newcommand{\TOPBLOCK}{0.17}
 
+\newcommand*{\myfont}{\fontfamily{scfamily}\selectfont}
+\newcommand*{\oldfont}{\fontfamily{rmfamily}\selectfont}
+
 \settitle{
   \centering
   \begin{tabular}{p{\TOPBLOCK\columnwidth}p{0.62\columnwidth}p{\TOPBLOCK\columnwidth}}
     \adjustbox{max width=\TOPBLOCK\columnwidth}{\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}
         {``\@author ~ from \textit{\@institute}''}}} &
-    \centering\bfseries\Huge\@title &
+    \centering\bfseries\Huge\scshape\@title &
     \adjustbox{max width=\TOPBLOCK\columnwidth}{{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
           \begin{center}
             \textbf{ISWC edition}
@@ -107,7 +110,7 @@
           premier international forum for the Semantic Web and Linked
           Data Community.}}} \vspace{0.25em}\\ \midrule
     
-    & \centering\textsc{\uppercase{Athens, Greece, 6-10 November 2023}} & \hfill\$0.00\\ \bottomrule
+    & \centering\uppercase{Athens, Greece, 6-10 November 2023} & \hfill\$0.00\\ \bottomrule
   \end{tabular}
 }
 
@@ -119,7 +122,7 @@
 
 
 
-\title{RAW-JENA}
+\title{Raw-Jena}
 
 \author{Julien Aimonier-Davat, Minh-Hoang Dang, Pascal Molli, Brice Nédelec, and Hala Skaf-Molli}
 \date{November 6--10}
@@ -140,7 +143,7 @@
         \HRULE
       \end{center}
       
-      Sample-based approximate query processing (S-AQP) [2] has many
+      \hl{Sampling-based approximate query processing (S-AQP)} [2] has many
       important use cases for RDF such as computing
       \begin{itemize}
       \item large-scale statistics,
@@ -234,12 +237,18 @@
     \end{tikzpicture}
     }\\
   %
-  \adjustbox{max width=0.4\columnwidth}{Figure 1: Query $Q_1$: All cycling
-    races of Central America along with their respective country.}
-  \hspace{7cm}
-  \adjustbox{max width=0.45\columnwidth}{Figure 2: RDF Graph $G_1$: $A$, $B$,
+  \adjustbox{max width=0.94\columnwidth}{\textbf{Query $Q_1$: All cycling races of Central America along with
+    their respective country. \hspace{6.2em}RDF Graph $G_1$: $A$, $B$,
     and $C$ are cycling sports; $D$ and $E$ are countries of Central
-    America.}
+    America.}}
+
+    
+  %% \adjustbox{max width=0.37\columnwidth}{\textbf{Query $Q_1$: All cycling
+  %%   races of Central America along with their respective country.}}
+  %% \hspace{7cm}
+  %% \adjustbox{max width=0.45\columnwidth}{\textbf{RDF Graph $G_1$: $A$, $B$,
+  %%   and $C$ are cycling sports; $D$ and $E$ are countries of Central
+  %%   America.}}
 }
 
 \begin{columns}
