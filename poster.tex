@@ -6,7 +6,7 @@
 \usepackage{adjustbox}
 \usepackage{multicol}
 \usepackage{listings}
-\usepackage{stmaryrd, amssymb}
+\usepackage{stmaryrd, amssymb, amsmath}
 
 \usepackage{paralist}
 
@@ -198,10 +198,13 @@
     \begin{tikzpicture}
       \newcommand\X{5cm}
       \newcommand\Y{-2.273cm}
-      \draw[anchor=west] (0*\X,0*\Y) node {\texttt{SELECT ?x1 ?x3 WHERE \{}};
-      \draw[anchor=west] (1*\X,1*\Y) node {\texttt{?x1 wdt:P641 wd:Q3609  .         \# tp3}};
-      \draw[anchor=west] (1*\X,2*\Y) node {\texttt{?x1 wdt:P17  ?x3       .         \# tp2}};
-      \draw[anchor=west] (1*\X,3*\Y) node {\texttt{?x3 wdt:P361 wd:Q27611 .         \# tp1}};
+      \draw[anchor=west] (0*\X,0*\Y) node {\texttt{\textbf{SELECT} ?x1 ?x3 \textbf{WHERE} \{}};
+      \draw[anchor=west] (1*\X,1*\Y) node {\texttt{?x1 wdt:P641 wd:Q3609 .}};
+      \draw[anchor=west, color=black!50] (6.5*\X,1*\Y) node {\texttt{\# tp3}};
+      \draw[anchor=west] (1*\X,2*\Y) node {\texttt{?x1 wdt:P17  ?x3 .}};
+      \draw[anchor=west, color=black!50] (6.5*\X, 2*\Y) node {\texttt{\# tp2}};
+      \draw[anchor=west] (1*\X,3*\Y) node {\texttt{?x3 wdt:P361 wd:Q27611 .}};
+      \draw[anchor=west, color=black!50] (6.5*\X, 3*\Y) node {\texttt{\# tp1}};
       \draw[anchor=west] (0*\X,4*\Y) node {\texttt{\}}};
       \draw (7*\X,0*\Y) node {\hphantom{positioning}};
     \end{tikzpicture}
@@ -242,14 +245,6 @@
     their respective country. \hspace{6.2em}RDF Graph $G_1$: $A$, $B$,
     and $C$ are cycling sports; $D$ and $E$ are countries of Central
     America.}}
-
-    
-  %% \adjustbox{max width=0.37\columnwidth}{\textbf{Query $Q_1$: All cycling
-  %%   races of Central America along with their respective country.}}
-  %% \hspace{7cm}
-  %% \adjustbox{max width=0.45\columnwidth}{\textbf{RDF Graph $G_1$: $A$, $B$,
-  %%   and $C$ are cycling sports; $D$ and $E$ are countries of Central
-  %%   America.}}
 }
 
 \begin{columns}
@@ -272,10 +267,10 @@
     probability of sampling $\gamma_1$ on graph $G_1$:\\
     \begin{small}
     \begin{tabular}{lll}
-      $P(\gamma_1)^{-1} =|\left\llbracket (?x1, P641, Q3609) \right\rrbracket_{G_1}| \cdot$
-       $|\left\llbracket (\textbf{A}, P17, ?x3) \right\rrbracket_{G_1}| \cdot$ 
-       $|\left\llbracket (\textbf{D}, P361, Q27611) \right\rrbracket_{G_1}|$
-       $= 2 \cdot 1 \cdot 1$
+      $P(\gamma_1)^{-1} =|\left\llbracket (?x1, \text{P641}, \text{Q3609}) \right\rrbracket_{G_1}| \cdot
+       |\left\llbracket (\textbf{A}, \text{P17}, ?x3) \right\rrbracket_{G_1}| \cdot
+       |\left\llbracket (\textbf{D}, \text{P361}, \text{Q27611}) \right\rrbracket_{G_1}|
+       = 2 \cdot 1 \cdot 1$
     \end{tabular}
     \end{small}
   }
