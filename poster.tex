@@ -7,6 +7,7 @@
 \usepackage{multicol}
 \usepackage{listings}
 \usepackage{stmaryrd, amssymb, amsmath}
+\usepackage{xspace}
 
 \usepackage{paralist}
 
@@ -32,6 +33,14 @@
   BoldFeatures={FakeBold=3.5},
   SmallCapsFont=Chomsky.otf,
 ]
+
+\newcommand*\hlbis[1]{%
+    \tikz[baseline,%
+      decoration={random steps,amplitude=4pt,segment length=25pt},%
+      outer sep=-0.1em, inner sep = 0pt%
+    ]%
+   \node[decorate,rectangle,fill=yellow,anchor=text]{#1\xspace};%
+}%
 
 %% Custom background and frame, we only need it to be white
 \definebackgroundstyle{samplebackgroundstyle}{
@@ -144,8 +153,9 @@
         \HRULE
       \end{center}
       
-      \hl{Sampling-based approximate query processing (S-AQP)} [2] has many
-      important use cases for RDF such as computing
+      \hlbis{Sampling-based approximate query pro-}
+      \hlbis{cessing (S-AQP)} [1]
+      has many important use cases for RDF such as computing
       \begin{itemize}
       \item large-scale statistics,
       \item knowledge graph embeddings,
@@ -158,9 +168,9 @@
       By confining query execution to samples of large datasets,
       S-AQP drastically
       \begin{itemize}
-      \item \hl{reduces} execution time, 
-      \item delivering \hl{approximate results}
-      \item with \hl{error} estimates.
+      \item \hlbis{reduces} execution time, 
+      \item delivering \hlbis{approximate results}
+      \item with \hlbis{error} estimates.
       \end{itemize}
     \end{multicols}%
   }
@@ -173,7 +183,7 @@
       \textit{exists in a few engines~[A,B] and it is not great!}
       \HRULE
       
-      \uppercase{May \hl{time out} on public SPARQL endpoints\ldots}
+      \uppercase{May \hlbis{time out} on public SPARQL endpoints\ldots}
       \HRULE
     \end{center}
     
@@ -220,12 +230,12 @@
       \newcommand\PREDICATE{\normalsize}
       \newcommand{\RECTSIZE}{1cm}
       
-      \draw (0, 0) node(A){\hl{\textbf{A}}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
-      \draw (\X, 0) node(D){\hl{\textbf{D}}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (0, 0) node(A){\hlbis{\textbf{A}}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
+      \draw (\X, 0) node(D){\hlbis{\textbf{D}}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
       \draw (2.2*\X, 0) node(Q3609){\textbf{Q3609}} +(-2.7*\RECTSIZE, -\RECTSIZE) rectangle +(2.7*\RECTSIZE, \RECTSIZE);
       
       \draw (\X, \Y) node(B){\textbf{B}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
-      \draw (2.2*\X, \Y) node(Q27611){\hl{\textbf{Q27611}}} +(-3*\RECTSIZE, -\RECTSIZE) rectangle +(3*\RECTSIZE, \RECTSIZE);
+      \draw (2.2*\X, \Y) node(Q27611){\hlbis{\textbf{Q27611}}} +(-3*\RECTSIZE, -\RECTSIZE) rectangle +(3*\RECTSIZE, \RECTSIZE);
       \draw (0, 2*\Y) node(C){\textbf{C}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
       \draw (1*\X, 2*\Y) node(E){\textbf{E}} +(-\RECTSIZE, -\RECTSIZE) rectangle +(\RECTSIZE, \RECTSIZE);
       
@@ -253,7 +263,7 @@
     \HRULE
     \begin{center}
       \textit{The estimated cardinality is the inverse probability of sampling}\\
-      \hl{$P(\gamma_i) = |\left\llbracket tp_1 \right\rrbracket_G|^{-1} \prod_{i=2}^{n}
+      \hlbis{$P(\gamma_i) = |\left\llbracket tp_1 \right\rrbracket_G|^{-1} \prod_{i=2}^{n}
       |\left\llbracket t_{i-1} \bowtie tp_i \right\rrbracket_G|^{-1}$}.
     \end{center}
     \HRULE
@@ -280,13 +290,13 @@
     We need
     \begin{inparaenum}[(i)]
     \item cardinality estimates at the scale of triple patterns, and
-    \item retrieving random triples from triple patterns.
+    \item random triples from triple patterns.
     \end{inparaenum}
       
     Common SPARQL query engines -- such as Apache Jena, Virtuoso,
-    RDF4J, Blazegraph -- rely on \hl{balanced trees}.\\
+    RDF4J, Blazegraph -- rely on \hlbis{balanced trees}.\\
 
-    We achieve a \hl{logarithmic} upper-bound on time complexity !
+    We achieve a \hlbis{logarithmic} upper-bound on time complexity !
   }
   \VRULELEFT
 \end{columns}
@@ -304,19 +314,19 @@
 %% \smash{$|\Gamma|^{-1}\sum_{i=1}^{|\Gamma|} P(\gamma_i)^{-1}$}.
   
 
-
+%% TODO: add smart client that can perform aggregate
 \begin{columns} 
   \column{0.68} 
   \block{Conclusion and Future Work}{
-    \hl{RAW-JENA provides a \textbf{pay-as-you-go} S-AQP by implementing random walks on top of
+    RAW-JENA provides a \hlbis{\textbf{pay-as-you-go} S-AQP} by implementing \hlbis{random walks on top of
       Apache Jena.} It does not need to reingest the data, everything is
     already here, and it was quite easy to implement.
     The code is open source and available at \dotfill >
 
     \vspace{0.75em}
     
-    However, we need \hl{more} than conjunctive queries, and
-    \hl{more} SPARQL engines with such a feature. We need a \hl{standard}!
+    However, we need \hlbis{more} than conjunctive queries, and
+    \hlbis{more} SPARQL engines with such a feature. We need a \hlbis{standard}!
   }
   \block{}{
     \small
