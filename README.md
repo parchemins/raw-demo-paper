@@ -1,4 +1,4 @@
-# RAW-Jena: Approximate Query Processing for SPARQL Endpoints [[pdf](https://hal.science/hal-04250060v1/file/paper.pdf)]
+# RAW-Jena: Approximate Query Processing for SPARQL Endpoints [[pdf](https://hal.science/hal-04250060v1/file/paper.pdf)][[demo](https://github.com/GDD-Nantes/raw-jena)]
 
 <i>Authors: Julien Aimonier-Davat, Minh-Hoang Dang, Pascal Molli,
 Brice Nédelec, and Hala Skaf-Molli</i>
