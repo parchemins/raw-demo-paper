@@ -8,6 +8,7 @@
 \usepackage{listings}
 \usepackage{stmaryrd, amssymb, amsmath}
 \usepackage{xspace}
+\usepackage{epstopdf,epsfig}
 
 \usepackage{paralist}
 
@@ -110,7 +111,11 @@
   \begin{tabular}{p{\TOPBLOCK\columnwidth}p{0.62\columnwidth}p{\TOPBLOCK\columnwidth}}
     \adjustbox{max width=\TOPBLOCK\columnwidth}{\fbox{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}
         {``\@author ~ from \textit{\@institute}''}}} &
-    \centering\Huge\scshape\@title &
+    \centering\Huge\scshape\@title\\
+    \normalsize\normalshape
+    \includegraphics[width=0.13\columnwidth]{logos/Logotype_NantesUniversité.eps}\hfill
+    \includegraphics[width=0.1\columnwidth]{logos/LOGOS_LS2N_noir-quadriCMJN.eps}\vspace{-1em}\\
+    &
     \adjustbox{max width=\TOPBLOCK\columnwidth}{{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule}{
           \begin{center}
             \textbf{ISWC edition}
@@ -118,9 +123,10 @@
           
           The 22$^{nd}$ International Semantic Web Conference: The
           premier international forum for the Semantic Web and Linked
-          Data Community.}}} \vspace{0.25em}\\ \midrule
-    
-    & \centering\uppercase{Athens, Greece, 6-10 November 2023} & \hfill\$0.00\\ \bottomrule
+          Data Community.}}} \vspace{0.25em}\\
+    \midrule
+    & \centering\uppercase{Athens, Greece, 6-10 November 2023} & \hfill\$0.00\\
+    \bottomrule
   \end{tabular}
 }
 
@@ -141,6 +147,7 @@
 \setlength{\columnsep}{1.5cm}
 
 \begin{document}
+
 \maketitle[width=\columnwidth]
 
 \begin{columns}
@@ -149,7 +156,7 @@
     \begin{multicols}{2}
       \begin{center}
         \HRULE
-        \textit{Integrate sampling as SQL did with the TABLESAMPLE clause.}
+        \textit{Integrate sampling as SQL did in 2003.}
         \HRULE
       \end{center}
       
@@ -187,7 +194,7 @@
       \HRULE
     \end{center}
     
-    \texttt{SELECT * \{?s ?p ?o\} OFFSET r LIMIT 1}, where $r$ is a
+    \texttt{\textbf{SELECT} * \{?s ?p ?o\} \textbf{OFFSET} r \textbf{LIMIT} 1}, where $r$ is a
     random number between 0 and the dataset size (0 $< r <$ 12B).\\
 
 %    Sampling and random exist in a few engines~[A, B].
@@ -252,8 +259,8 @@
     }\\
   %
   \adjustbox{max width=0.94\columnwidth}{\textbf{Query $Q_1$: All cycling races of Central America along with
-    their respective country. \hspace{6.2em}RDF Graph $G_1$: $A$, $B$,
-    and $C$ are cycling sports; $D$ and $E$ are countries of Central
+    their respective country. \hspace{6.2em}RDF Graph $G_1$: A, B,
+    and C are cycling sports; D and E are countries of Central
     America.}}
 }
 
@@ -330,6 +337,12 @@
   }
   \block{}{
     \small
+    \vspace{-0.75em}
+    \textit{\textbf{Acknowledgements:}This work is supported by the
+      French ANR project DeKaloG (Decentralized Knowledge Graphs), and
+      the French Labex CominLabs project MiKroloG (The Microdata
+      Knowledge Graph).}
+    
     \vspace{0.55em}
     [1] S. Agarwal, H. Milner, A. Kleiner, A. Talwalkar, M. I. Jordan, S. Madden, B. Mozafari, I. Stoica, \textit{Knowing when you’re wrong: Building fast and reliable approximate query processing systems}.
     
@@ -347,12 +360,5 @@
     \end{center}
   }
 \end{columns}
-
-\block{References}{
-  WanderJoin
-  S-AQP
-  virtuoso
-  stardog
-}
 
 \end{document}
