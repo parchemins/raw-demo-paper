@@ -1,6 +1,9 @@
 ceur-author-agreement-ccby-ntp.*
 creationdate.lua
 
+## We don't want .svg in our latex
+*.svg
+
 poster.pdf
 paper.pdf
 
