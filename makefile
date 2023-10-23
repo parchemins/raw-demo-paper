@@ -14,3 +14,7 @@ all:
 	pdflatex paper.tex
 	rm -f paper.xmpdata
 	pdflatex paper.tex
+
+
+poster:
+	lualatex poster.tex
