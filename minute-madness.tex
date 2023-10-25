@@ -1,0 +1,56 @@
+\documentclass{beamer}
+\usetheme{metropolis}
+
+\newcommand{\TITLE}{D-27\\RAW-JENA: Approximate Query Processing for SPARQL Endpoints}
+\author{Julien Aimonier-Davat, Minh-Hoang Dang, Pascal Molli, Brice Nédelec, and Hala Skaf-Molli}
+
+\setbeamertemplate{frame numbering}[none]
+\setbeamersize{text margin left=0pt,text margin right=0pt} 
+
+\usepackage{epstopdf,epsfig}
+\usetikzlibrary{arrows.meta}
+\tikzset{>={Latex[width=2mm,length=2mm]}}
+
+
+\begin{document}
+
+\newcommand{\X}{13}
+\newcommand{\Y}{5}
+\newcommand{\FIGUREWIDTH}{0.2\textwidth}
+
+\begin{frame}{\centering\TITLE}
+
+  \vspace{1em}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.35]
+    \scriptsize
+    \draw (0,0) node (title_query) {\textbf{An awesome SPARQL query!}};
+    \draw (title_query.south) node (request) [anchor=north,align=left] {
+      SELECT * WHERE \{\\~~~?x1 wdt:P641 wd:Q3609 .\\~~~?x1 wdt:P17 ?x3 .\\~~~?x3 wdt:P361 wd:Q27611 .\\\}};
+
+    \draw (\X, \Y) node (public_endpoint) {\textbf{Public SPARQL Endpoint}};
+    \draw (public_endpoint.south) node [anchor=north] (wikidata) {\includegraphics[width=\FIGUREWIDTH]{logos/wikidata.eps}};
+
+    \draw (2*\X, \Y) node (timeout) {\textbf{TIME OUT :(}};
+    \draw (timeout.south) node [anchor=north] (sad) {\includegraphics[width=\FIGUREWIDTH]{images/sad.eps}};
+
+
+    \draw  (\X, -\Y) node (saqp) {\textbf{Approximate Query Processing}};
+    \draw  (saqp.south) node [anchor=north,align=center] (raw) {\includegraphics[width=\FIGUREWIDTH]{images/qr-code.png}\\RAW-JENA};
+    
+    \draw  (2*\X, -\Y) node (results) {\textbf{Online Sample :)}};
+    \draw  (results.south) node [anchor=north, align=left] (raw) {?x1 -> A, ?x3 -> brazil\\?x1 -> B, ?x3 -> equador\\?x1 -> C, ?x3 -> equador\\\\cardinality $\approx 15 \pm 5$};
+
+
+    \draw[->] (title_query.east) -- (0.55*\X, \Y);
+    \draw[->] (title_query.east) -- (0.55*\X, -\Y);
+
+    \draw[->] (public_endpoint.east) -- (timeout.west);
+    \draw[<->] (saqp.east) -- (results.west);
+    
+  \end{tikzpicture}
+  \end{center}
+  
+\end{frame}
+
+\end{document}

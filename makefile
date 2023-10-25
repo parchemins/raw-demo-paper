@@ -18,3 +18,7 @@ all:
 
 poster:
 	lualatex poster.tex
+
+
+minute:
+	lualatex minute-madness.tex
