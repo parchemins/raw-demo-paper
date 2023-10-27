@@ -14,7 +14,7 @@
 
 \begin{document}
 
-\newcommand{\X}{13}
+\newcommand{\X}{10}
 \newcommand{\Y}{5}
 \newcommand{\FIGUREWIDTH}{0.2\textwidth}
 
@@ -22,12 +22,18 @@
 
   \vspace{1em}
   \begin{center}
-  \begin{tikzpicture}[scale=0.35]
-    \scriptsize
-    \draw (0,0) node (title_query) {\textbf{An awesome SPARQL query!}};
-    \draw (title_query.south) node (request) [anchor=north,align=left] {
+  \begin{tikzpicture}[scale=0.35, every node/.style={scale=0.95}]
+    \tiny
+    \draw (0,\Y) node (title_query) {\textbf{An awesome SPARQL query!}};
+    \draw (title_query.south west) node (request) [anchor=north west,align=left, font=\ttfamily\tiny] {
+      SELECT * WHERE \{\\~~~?x1 wdt:P641 wd:Q3609 .\\~~~?x1 wdt:P17 ?x3 .\\~~~?x3 wdt:P361 wd:Q27611 .\\\}};
+    
+    \draw (0,-\Y) node (title_query_bot) {\textbf{An awesome SPARQL query!}};
+    \draw (title_query_bot.south west) node (request_bot) [anchor=north west,align=left, font=\ttfamily\tiny] {
       SELECT * WHERE \{\\~~~?x1 wdt:P641 wd:Q3609 .\\~~~?x1 wdt:P17 ?x3 .\\~~~?x3 wdt:P361 wd:Q27611 .\\\}};
 
+
+    
     \draw (\X, \Y) node (public_endpoint) {\textbf{Public SPARQL Endpoint}};
     \draw (public_endpoint.south) node [anchor=north] (wikidata) {\includegraphics[width=\FIGUREWIDTH]{logos/wikidata.eps}};
 
@@ -36,17 +42,29 @@
 
 
     \draw  (\X, -\Y) node (saqp) {\textbf{Approximate Query Processing}};
-    \draw  (saqp.south) node [anchor=north,align=center] (raw) {\includegraphics[width=\FIGUREWIDTH]{images/qr-code.png}\\RAW-JENA};
+    \draw  (saqp.south) node [anchor=north,align=center] (raw) {\includegraphics[width=\FIGUREWIDTH]{images/qr-code.png}\\\normalsize \textbf{RAW-JENA}};
     
     \draw  (2*\X, -\Y) node (results) {\textbf{Online Sample :)}};
     \draw  (results.south) node [anchor=north, align=left] (raw) {?x1 -> A, ?x3 -> brazil\\?x1 -> B, ?x3 -> equador\\?x1 -> C, ?x3 -> equador\\\\cardinality $\approx 15 \pm 5$};
 
 
-    \draw[->] (title_query.east) -- (0.55*\X, \Y);
-    \draw[->] (title_query.east) -- (0.55*\X, -\Y);
+    \draw (3*\X, -\Y) node (aggregated_query) {\textbf{Aggregation queries}};
+    \draw (aggregated_query.south west) node [anchor=north west] (join_ordering) {\textbf{Join order}};
+    \draw (join_ordering.south west) node [anchor=north west] (embeddings) {\textbf{Embeddings}};
+    \draw (embeddings.south west) node [anchor=north west] (summaries) {\textbf{Summaries}};
+    \draw (summaries.south west) node [anchor=north west] (exploratory) {\textbf{Exploratory queries}};
+    
+    \draw[->] (title_query.east) -- (public_endpoint.west);
+    \draw[->] (title_query_bot.east) -- (saqp.west);
 
     \draw[->] (public_endpoint.east) -- (timeout.west);
     \draw[<->] (saqp.east) -- (results.west);
+
+    \draw [->] (results.east) -- (aggregated_query.west);
+    \draw [->] (results.east) -- (join_ordering.west);
+    \draw [->] (results.east) -- (embeddings.west);
+    \draw [->] (results.east) -- (summaries.west);
+    \draw [->] (results.east) -- (exploratory.west);
     
   \end{tikzpicture}
   \end{center}
