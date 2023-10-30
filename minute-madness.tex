@@ -27,7 +27,7 @@
 %% estimate that states I should get 26 Billion results for this query as shown in this screenshot.
 %%% Such samples represent the cornerstone of many different use cases, such as join order optimizations, aggregations,
 %%% processing summaries which is impossible as of today, embeddings, and exploratory queries.
-%%%% Thank you, feel free to join us!
+%%%% Thank you, feel free to join us on D-27!
 %%%% Cheers.
 
 
@@ -42,7 +42,7 @@
 \begin{frame}{
     \vspace{-0.5em}
     \begin{tikzpicture}
-      \node(global_title)[anchor=west, align=left, style={scale=0.86}] at (0,1pt) {RAW-JENA: Approximate Query Processing for SPARQL Endpoints};
+      \node(global_title)[anchor=west, align=left, style={scale=0.86}] at (0,1pt) {\textbf{RAW-JENA: Approximate Query Processing for SPARQL Endpoints}};
       \draw (\BOOKMARKX, 0.33) node(d_27){D-27};
       \filldraw[draw=\BOOKMARKCOLOR, fill=\BOOKMARKCOLOR]
       (d_27.south west) -- (d_27.north west) --
@@ -86,7 +86,7 @@
       \includegraphics[width=0.12\textwidth]{images/democrite.png}
     };
 
-    \draw (sparql_query.south west) -- (sparql_query.south) -- (thinker.north east) -- (sparql_query.south east);
+    \draw[color=black!55] (sparql_query.south west) -- (sparql_query.south) -- (thinker.north east) -- (sparql_query.south east);
         
 
     
@@ -101,7 +101,7 @@
     
 
     \draw (2*\X, -\Y) node [align=center] (results) {
-      \includegraphics[width=0.3\textwidth]{images/results_example.png}\\\ \\
+      \includegraphics[width=0.3\textwidth]{images/results_example.png}\\\vspace{0.15em}%
       \includegraphics[width=0.3\textwidth]{images/cardinality_example.png}
     };
     \draw (results.south) node[anchor=north] (results_title) {\textbf{Online Sample \& Cardinality Estimates!}};    
