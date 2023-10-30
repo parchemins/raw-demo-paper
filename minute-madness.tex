@@ -1,11 +1,14 @@
 \documentclass{beamer}
 \usetheme{metropolis}
 
+\usepackage{epstopdf,epsfig}
+
 \newcommand{\TITLE}{D-27\\RAW-JENA: Approximate Query Processing for SPARQL Endpoints}
 \author{Julien Aimonier-Davat, Minh-Hoang Dang, Pascal Molli, Brice Nédelec, and Hala Skaf-Molli}
 
 \setbeamertemplate{frame numbering}[none]
-\setbeamersize{text margin left=0pt,text margin right=0pt} 
+\setbeamersize{text margin left=0pt,text margin right=0pt}
+
 
 \usepackage{epstopdf,epsfig}
 \usetikzlibrary{arrows.meta}
@@ -23,7 +26,7 @@
 %% Then, I get an online sample of the query within a second, and on demand i refine a cardinality
 %% estimate that states I should get 26 Billion results for this query as shown in this screenshot.
 %%% Such samples represent the cornerstone of many different use cases, such as join order optimizations, aggregations,
-%%% processing summaries which is impossible as of today, exploratory queries, embeddings.
+%%% processing summaries which is impossible as of today, embeddings, and exploratory queries.
 %%%% Thank you, feel free to join us!
 %%%% Cheers.
 
@@ -33,10 +36,25 @@
 \newcommand{\X}{10}
 \newcommand{\Y}{5}
 \newcommand{\FIGUREWIDTH}{0.18\textwidth}
+\newcommand{\BOOKMARKCOLOR}{mLightBrown!85}
+\newcommand{\BOOKMARKX}{11.5}
 
-\begin{frame}{\centering\TITLE}
+\begin{frame}{
+    \vspace{-0.5em}
+    \begin{tikzpicture}
+      \node(global_title)[anchor=west, align=left, style={scale=0.86}] at (0,1pt) {RAW-JENA: Approximate Query Processing for SPARQL Endpoints};
+      \draw (\BOOKMARKX, 0.33) node(d_27){D-27};
+      \filldraw[draw=\BOOKMARKCOLOR, fill=\BOOKMARKCOLOR]
+      (d_27.south west) -- (d_27.north west) --
+      (d_27.north east) -- (d_27.south east) --
+      (\BOOKMARKX, -10pt) -- cycle;
+      \draw[color=black!80] (d_27) node{D-27};
+    \end{tikzpicture}
+  }
 
-  \vspace{0.4em}
+  %% begining of the content
+  
+  \vspace{0.6em}
   \begin{center}
   \begin{tikzpicture}[scale=0.35, every node/.style={scale=0.9}]
     \tiny
@@ -78,7 +96,7 @@
       \includegraphics[width=0.3\textwidth]{images/results_example.png}\\\ \\
       \includegraphics[width=0.3\textwidth]{images/cardinality_example.png}
     };
-    \draw (results.south) node[anchor=north] (results_title) {\textbf{Online Sample \& Cardinality Estimates :)}};    
+    \draw (results.south) node[anchor=north] (results_title) {\textbf{Online Sample \& Cardinality Estimates!}};    
 
     %% \draw  (results.south) node [anchor=north, align=left] (raw_results) {?x1 -> A, ?x3 -> brazil\\?x1 -> B, ?x3 -> equador\\?x1 -> C, ?x3 -> equador\\\\cardinality $\approx 15 \pm 5$};
 
@@ -114,6 +132,12 @@
     
   \end{tikzpicture}
   \end{center}
+
+  \vspace{-0.6em}
+  \begin{tikzpicture}
+    \draw (0,0) node(univ) {\includegraphics[width=0.1\textwidth]{logos/Logotype_NantesUniversité.eps}};
+    \draw (11.4, 0) node(ls2n) {\includegraphics[width=0.065\textwidth]{logos/LOGOS_LS2N_noir-quadriCMJN.eps}};
+  \end{tikzpicture}
   
 \end{frame}
 
