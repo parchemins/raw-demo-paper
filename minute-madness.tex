@@ -12,59 +12,105 @@
 \tikzset{>={Latex[width=2mm,length=2mm]}}
 
 
+%%%%%%%%%%% text that goes with the slides %%%%%%%%%%%%%
+% We have an awesome query that we want to execute, so naturally we execute it on
+% a public SPARQL endpoints that unfortunately will return no results after a timeout of 60s
+% with no insights whatsoever on why it fails. Is it I that made a mistake somewhere?
+% I cannot build anything on this…
+%% So we advocate for a SAMPLING support in SPARQL, for approximate query processing.
+%% With the same query, we execute it on a same data with our slightly different engine that allows
+%% random walks.
+%% Then, I get an online sample of the query within a second, and on demand i refine a cardinality
+%% estimate that states I should get 26 Billion results for this query as shown in this screenshot.
+%%% Such samples represent the cornerstone of many different use cases, such as join order optimizations, aggregations,
+%%% processing summaries which is impossible as of today, exploratory queries, embeddings.
+%%%% Thank you, feel free to join us!
+%%%% Cheers.
+
+
 \begin{document}
 
 \newcommand{\X}{10}
 \newcommand{\Y}{5}
-\newcommand{\FIGUREWIDTH}{0.2\textwidth}
+\newcommand{\FIGUREWIDTH}{0.18\textwidth}
 
 \begin{frame}{\centering\TITLE}
 
-  \vspace{1em}
+  \vspace{0.4em}
   \begin{center}
-  \begin{tikzpicture}[scale=0.35, every node/.style={scale=0.95}]
+  \begin{tikzpicture}[scale=0.35, every node/.style={scale=0.9}]
     \tiny
-    \draw (0,\Y) node (title_query) {\textbf{An awesome SPARQL query!}};
-    \draw (title_query.south west) node (request) [anchor=north west,align=left, font=\ttfamily\tiny] {
-      SELECT * WHERE \{\\~~~?x1 wdt:P641 wd:Q3609 .\\~~~?x1 wdt:P17 ?x3 .\\~~~?x3 wdt:P361 wd:Q27611 .\\\}};
     
-    \draw (0,-\Y) node (title_query_bot) {\textbf{An awesome SPARQL query!}};
-    \draw (title_query_bot.south west) node (request_bot) [anchor=north west,align=left, font=\ttfamily\tiny] {
-      SELECT * WHERE \{\\~~~?x1 wdt:P641 wd:Q3609 .\\~~~?x1 wdt:P17 ?x3 .\\~~~?x3 wdt:P361 wd:Q27611 .\\\}};
+    %% \draw (0,\Y) node (title_query) {\textbf{An awesome SPARQL query!}};
+    %% \draw (title_query.south west) node (request) [anchor=north west,align=left, font=\ttfamily\tiny] {
+    %%   SELECT * WHERE \{\\~~~?x1 wdt:P641 wd:Q3609 .\\~~~?x1 wdt:P17 ?x3 .\\~~~?x3 wdt:P361 wd:Q27611 .\\\}};
+    
+    %% \draw (0,-\Y) node (title_query_bot) {\textbf{An awesome SPARQL query!}};
+    %% \draw (title_query_bot.south west) node (request_bot) [anchor=north west,align=left, font=\ttfamily\tiny] {
+    %%   SELECT * WHERE \{\\~~~?x1 wdt:P641 wd:Q3609 .\\~~~?x1 wdt:P17 ?x3 .\\~~~?x3 wdt:P361 wd:Q27611 .\\\}};
 
+    %% \draw (0, -0.5*\Y) node (sparql_query) [align=left, font=\ttfamily\tiny, style={scale=0.5}] {
+    %%   \textbf{SELECT} ?h1 ?h2 ?h3 ?h4 \textbf{WHERE} \{\\
+    %%     ~~?h1 wdd:P31  wde:Q5 .  \# a human being\\
+    %%     ~~?h2 wdd:P31  wde:Q5 .  \# another human being\\
+    %%     ~~?h1 wdd:P569 ?bd .     \# with a birthdate\\
+    %%     ~~?h2 wdd:P569 ?bd .     \# birthdate is identical\\
+    %%     ~~?h1 wdd:P570 ?dd .     \# with a date of death\\
+    %%     ~~?h2 wdd:P570 ?dd .     \# death date is identical\\
+    %%   \}
+    %% };
+
+    \draw (0, 0) node (sparql_query) {
+      \includegraphics[width=0.27\textwidth]{images/query_example.png}
+    };
+    
+    \draw (\X, \Y) node (wikidata) {\includegraphics[width=\FIGUREWIDTH]{logos/wikidata.eps}};
+    \draw (wikidata.north) node [anchor=south] (public_endpoint) {\textbf{Public SPARQL Endpoint}};
+
+    \draw (2.5*\X, \Y) node  (sad) {\includegraphics[width=0.21\textwidth]{images/sad.eps}};    
+    % \draw (sad.north) node [anchor=south] (timeout) {\textbf{TIME OUT :(}};
+
+    \draw  (\X, -\Y) node [align=center] (raw) {\includegraphics[width=\FIGUREWIDTH]{images/qr-code.png}\\\normalsize \textbf{RAW-JENA}};
+    \draw  (raw.south) node [anchor=north](saqp) {\textbf{Approximate Query Processing}};
+    
+
+    \draw (2*\X, -\Y) node [align=center] (results) {
+      \includegraphics[width=0.3\textwidth]{images/results_example.png}\\\ \\
+      \includegraphics[width=0.3\textwidth]{images/cardinality_example.png}
+    };
+    \draw (results.south) node[anchor=north] (results_title) {\textbf{Online Sample \& Cardinality Estimates :)}};    
+
+    %% \draw  (results.south) node [anchor=north, align=left] (raw_results) {?x1 -> A, ?x3 -> brazil\\?x1 -> B, ?x3 -> equador\\?x1 -> C, ?x3 -> equador\\\\cardinality $\approx 15 \pm 5$};
+
+
+
+    \draw (2.9*\X, 0.25*\Y - \Y) node (aggregated_query) {\textbf{\uppercase{Embeddings}}}; %% 4
+    \draw (aggregated_query.south west) node [anchor=north west] (join_ordering) {\textbf{\uppercase{Exploratory}}}; %% 5
+    \draw (aggregated_query.north west) node [anchor=south west] (embeddings) {\textbf{\uppercase{Summaries}}}; %% 3
+    \draw (join_ordering.south west) node [anchor=north west] (summaries) {\textbf{\vphantom{S}\ldots}}; %% 6
+    \draw (embeddings.north west) node [anchor=south west] (exploratory) {\textbf{\uppercase{Aggregations}}}; %% 2
+    \draw (exploratory.north west) node [anchor=south west] (etc) {\textbf{\uppercase{Join orders}}}; %% 1
+
+    \draw (summaries.south west) node [anchor=north west] {
+      %% from https://pixabay.com/fr/vectors/atlas-monde-mythologie-grecque-7337047/
+      \includegraphics[width=0.1\textwidth]{images/atlas.png}
+    };
 
     
-    \draw (\X, \Y) node (public_endpoint) {\textbf{Public SPARQL Endpoint}};
-    \draw (public_endpoint.south) node [anchor=north] (wikidata) {\includegraphics[width=\FIGUREWIDTH]{logos/wikidata.eps}};
+    %% \draw[->] (title_query.east) -- (public_endpoint.west);
+    %% \draw[->] (title_query_bot.east) -- (saqp.west);
+    \draw[->, very thick] (sparql_query.east) -- (wikidata.west);
+    \draw[->, very thick] (sparql_query.east) -- (raw.west);
 
-    \draw (2*\X, \Y) node (timeout) {\textbf{TIME OUT :(}};
-    \draw (timeout.south) node [anchor=north] (sad) {\includegraphics[width=\FIGUREWIDTH]{images/sad.eps}};
+    \draw[->, very thick] (wikidata.east) -- node[anchor=south, font=\small]{>60s\ldots ~ \textcolor{red}{\textbf{TIMEOUT!}}} (sad.west);
+    \draw[<->, very thick] (raw.east) -- node[anchor=south]{1s} (results.west);
 
-
-    \draw  (\X, -\Y) node (saqp) {\textbf{Approximate Query Processing}};
-    \draw  (saqp.south) node [anchor=north,align=center] (raw) {\includegraphics[width=\FIGUREWIDTH]{images/qr-code.png}\\\normalsize \textbf{RAW-JENA}};
-    
-    \draw  (2*\X, -\Y) node (results) {\textbf{Online Sample :)}};
-    \draw  (results.south) node [anchor=north, align=left] (raw) {?x1 -> A, ?x3 -> brazil\\?x1 -> B, ?x3 -> equador\\?x1 -> C, ?x3 -> equador\\\\cardinality $\approx 15 \pm 5$};
-
-
-    \draw (3*\X, -\Y) node (aggregated_query) {\textbf{Aggregation queries}};
-    \draw (aggregated_query.south west) node [anchor=north west] (join_ordering) {\textbf{Join order}};
-    \draw (join_ordering.south west) node [anchor=north west] (embeddings) {\textbf{Embeddings}};
-    \draw (embeddings.south west) node [anchor=north west] (summaries) {\textbf{Summaries}};
-    \draw (summaries.south west) node [anchor=north west] (exploratory) {\textbf{Exploratory queries}};
-    
-    \draw[->] (title_query.east) -- (public_endpoint.west);
-    \draw[->] (title_query_bot.east) -- (saqp.west);
-
-    \draw[->] (public_endpoint.east) -- (timeout.west);
-    \draw[<->] (saqp.east) -- (results.west);
-
-    \draw [->] (results.east) -- (aggregated_query.west);
-    \draw [->] (results.east) -- (join_ordering.west);
-    \draw [->] (results.east) -- (embeddings.west);
-    \draw [->] (results.east) -- (summaries.west);
-    \draw [->] (results.east) -- (exploratory.west);
+    \draw [->, very thick] (results.east) -- (aggregated_query.west);
+    \draw [->, very thick] (results.east) -- (join_ordering.west);
+    \draw [->, very thick] (results.east) -- (embeddings.west);
+    \draw [->, very thick] (results.east) -- (summaries.west);
+    \draw [->, very thick] (results.east) -- (exploratory.west);
+    \draw [->, very thick] (results.east) -- (etc.west);
     
   \end{tikzpicture}
   \end{center}
