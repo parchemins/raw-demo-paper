@@ -81,6 +81,14 @@
     \draw (0, 0) node (sparql_query) {
       \includegraphics[width=0.27\textwidth]{images/query_example.png}
     };
+
+    \draw (sparql_query.south) node (thinker) [anchor=north east, xshift=-1em, yshift=-1em]{
+      \includegraphics[width=0.12\textwidth]{images/democrite.png}
+    };
+
+    \draw (sparql_query.south west) -- (sparql_query.south) -- (thinker.north east) -- (sparql_query.south east);
+        
+
     
     \draw (\X, \Y) node (wikidata) {\includegraphics[width=\FIGUREWIDTH]{logos/wikidata.eps}};
     \draw (wikidata.north) node [anchor=south] (public_endpoint) {\textbf{Public SPARQL Endpoint}};
@@ -109,9 +117,9 @@
     \draw (embeddings.north west) node [anchor=south west] (exploratory) {\textbf{\uppercase{Aggregations}}}; %% 2
     \draw (exploratory.north west) node [anchor=south west] (etc) {\textbf{\uppercase{Join orders}}}; %% 1
 
-    \draw (summaries.south west) node [anchor=north west] {
+    \draw (summaries.south west) node [anchor=north west, xshift=-0.8em] {
       %% from https://pixabay.com/fr/vectors/atlas-monde-mythologie-grecque-7337047/
-      \includegraphics[width=0.1\textwidth]{images/atlas.png}
+      \includegraphics[width=0.11\textwidth]{images/atlas.png}
     };
 
     
