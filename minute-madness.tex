@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[aspectratio=43]{beamer}
 \usetheme{metropolis}
 
 \usepackage{epstopdf,epsfig}
@@ -16,17 +16,20 @@
 
 
 %%%%%%%%%%% text that goes with the slides %%%%%%%%%%%%%
-% We have an awesome query that we want to execute, so naturally we execute it on
-% a public SPARQL endpoints that unfortunately will return no results after a timeout of 60s
-% with no insights whatsoever on why it fails. Is it I that made a mistake somewhere?
-% I cannot build anything on this…
-%% So we advocate for a SAMPLING support in SPARQL, for approximate query processing.
-%% With the same query, we execute it on a same data with our slightly different engine that allows
-%% random walks.
-%% Then, I get an online sample of the query within a second, and on demand i refine a cardinality
-%% estimate that states I should get 26 Billion results for this query as shown in this screenshot.
-%%% Such samples represent the cornerstone of many different use cases, such as join order optimizations, aggregations,
-%%% processing summaries which is impossible as of today, embeddings, and exploratory queries.
+% We have an awesome query that we want to execute, so naturally we
+% execute it on a public SPARQL endpoints, and unfortunately, after 60 seconds
+% of execution, i get no results and no insights whatsoever
+% on why it failed. I cannot build anything on top of this… sadly…
+%
+%% So instead, with the same query, we execute it on a same data with
+%% our slightly different engine that allows for random walks.  Within a second, I get an
+%% online sample and a cardinality estimate of this query, that i can then
+%% refine on-demand to get more samples and more accurate estimates.
+%%% Such samples represent the cornerstone of many different use
+%%% cases, such as join order optimizations, aggregations, processing
+%%% summaries of SPARQL endpoints, embeddings, and
+%%% exploratory queries.
+%%%
 %%%% Thank you, feel free to join us on D-27!
 %%%% Cheers.
 
